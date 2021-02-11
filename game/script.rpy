@@ -1,32 +1,131 @@
-﻿# The script of the game goes in this file.
+# The script of the game goes in this file.
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
 
-define me = Character('Me', color="#c8ffc8")
+
+#Ideally id make a class for characters and their variables
+
+define al = Character('Alex', color="#c8ffc8")
+define jo = Character('Jolee', color="#c8c8ff")
+define ta = Character('Taylor', color="#c8ffc8")
+define th = Character('Thomas', color="#c8c8ff")
+define pl = Character('Player', color="#c8ffc8")
+
+define place1 = int(0) #placeholder "points" variable
+define place2 = int(0) #placeholder "points" variable
+
 
 # The game starts here.
-
 label start:
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
 
-    scene bg room
+#Start at sbu play talks to them self
+    scene SBU
+    with dissolve
+    #play music "illurock.ogg"
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+    pl "words go brrrrr"
+    pl "words go brrrrr"
+    pl "words go brrrrr"
 
-    show eileen happy
 
-    # These display lines of dialogue.
+    menu:
+        "Go into forum":
+            jump welcome
 
-    e "You've created a new Ren'Py game."
+        "Don't go into room":
+            jump leave
+    #needs close statement here
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
 
-    # This ends the game.
+#Decides to enter club room
+    label welcome:
 
+        scene SF4M
+        with dissolve
+        #play music "illurock.ogg" fadeout 1.0 fadein 1.0
+
+        pl "words go brrrrr"
+
+        show taylor
+        with dissolve
+
+        ta "words"
+        pl "words go brrrrr"
+        ta "words"
+
+        show taylor at right
+        show alex at left
+        #play sound "oof"
+
+        al "jumping in with words"
+        ta "words"
+        pl "words go brrrrr"
+        al "words"
+        ta "more words"
+
+
+    menu:
+        "Watch something on hulu":
+            hide taylor
+            hide alex
+            jump hulu
+
+        "Watch something on netflix":
+            hide taylor
+            hide alex
+            jump netflix
+    #needs close statement here
+
+
+    label hulu:
+
+            $ place1 += 1
+            show thomas
+
+            th "words"
+
+            show alex at right
+            show thomas at left
+
+            al "words"
+
+            hide alex
+            hide thomas
+            jump spiel
+    #needs close statement here
+
+    label netflix:
+
+            $ place2 += 1
+            show jolee
+
+            jo "words"
+
+            show jolee at right
+            show taylor at left
+
+            ta "words"
+
+            hide jolee
+            hide taylor
+            jump spiel
+    #needs close statement here
+
+    label spiel:
+
+        show jolee
+
+        jo "spiel"
+
+
+
+
+# This ends the game.
+    return
+
+
+#Don't enter club
+    label leave:
+        pl "words go brrrrr"
+        " - Lazy Ending"
     return
