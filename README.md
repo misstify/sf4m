@@ -4,5 +4,5 @@ This is an abomination being created solely because the universe extended an inv
 
 Here we go, these are all the relevant files for a project in renpy I guess, have fun.
 
-Plot Diagram: https://bit.ly/2Os6VFa
+
 
