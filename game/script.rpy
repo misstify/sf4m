@@ -1,4 +1,4 @@
-# The script of the game goes in this file. 
+# The script of the game goes in this file.
 # Ideally id make a class for characters and their variables
 
 define al = Character('Alex', color="#c8ffc8")
@@ -10,9 +10,9 @@ define pl = Character("[povname]", color="#c8ffc8")
 
 # Initialize placeholder values for characters for ease of use
 define gpa_rock = 0
-define alex = 1 
-define jolee = 2 
-define taylor = 3 
+define alex = 1
+define jolee = 2
+define taylor = 3
 define thomas = 4
 
 python:
@@ -63,7 +63,6 @@ init python in heartLevels:
             renpy.jump("thomas_end")
         else:
             renpy.jump("gpa_rock_end")
-        }
 
 define place1 = int(0) # placeholder "points" variable
 define place2 = int(0) # placeholder "points" variable
