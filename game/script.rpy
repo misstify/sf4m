@@ -51,19 +51,18 @@ init python in heartLevels:
                     return key
     # Jump to appropriate label for ending, gpa_rock if invalid input given
     def jumpToDate(char_name):
-        switch(char_name){
-            case 0:
-                renpy.jump("gpa_rock_end")
-            case 1:
-                renpy.jump("alex_end")
-            case 2:
-                renpy.jump("jolee_end")
-            case 3:
-                renpy.jump("taylor_end")
-            case 4:
-                renpy.jump("thomas_end")
-            default:
-                renpy.jump("gpa_rock_end")
+        if char_name == 0:
+            renpy.jump("gpa_rock_end")
+        elif char_name == 1:
+            renpy.jump("alex_end")
+        elif char_name == 2:
+            renpy.jump("jolee_end")
+        elif char_name == 3:
+            renpy.jump("taylor_end")
+        elif char_name == 4:
+            renpy.jump("thomas_end")
+        else:
+            renpy.jump("gpa_rock_end")
         }
 
 define place1 = int(0) # placeholder "points" variable
