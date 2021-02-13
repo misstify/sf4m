@@ -2,7 +2,7 @@
 
 
 
-#Ideally id make a class for characters and their variables
+# Ideally id make a class for characters and their variables
 
 define al = Character('Alex', color="#c8ffc8")
 define jo = Character('Jolee', color="#c8c8ff")
@@ -10,18 +10,18 @@ define ta = Character('Taylor', color="#c8ffc8")
 define th = Character('Thomas', color="#c8c8ff")
 define pl = Character('Player', color="#c8ffc8")
 
-define place1 = int(0) #placeholder "points" variable
-define place2 = int(0) #placeholder "points" variable
+define place1 = int(0) # placeholder "points" variable
+define place2 = int(0) # placeholder "points" variable
 
 
 # The game starts here.
 label start:
 
 
-#Start at sbu play talks to them self
+# Start at sbu play talks to them self
     scene SBU
     with dissolve
-    #play music "illurock.ogg"
+    # play music "illurock.ogg"
 
     pl "words go brrrrr"
     pl "words go brrrrr"
@@ -34,15 +34,15 @@ label start:
 
         "Don't go into room":
             jump leave
-    #needs close statement here
+    # needs close statement here
 
 
-#Decides to enter club room
+# Decides to enter club room
     label welcome:
 
         scene SF4M
         with dissolve
-        #play music "illurock.ogg" fadeout 1.0 fadein 1.0
+        # play music "illurock.ogg" fadeout 1.0 fadein 1.0
 
         pl "words go brrrrr"
 
@@ -55,7 +55,7 @@ label start:
 
         show taylor at right
         show alex at left
-        #play sound "oof"
+        # play sound "oof"
 
         al "jumping in with words"
         ta "words"
@@ -74,7 +74,7 @@ label start:
             hide taylor
             hide alex
             jump netflix
-    #needs close statement here
+    # needs close statement here
 
 
     label hulu:
@@ -92,7 +92,7 @@ label start:
             hide alex
             hide thomas
             jump spiel
-    #needs close statement here
+    # needs close statement here
 
     label netflix:
 
@@ -109,7 +109,7 @@ label start:
             hide jolee
             hide taylor
             jump spiel
-    #needs close statement here
+    # needs close statement here
 
     label spiel:
 
@@ -124,7 +124,7 @@ label start:
     return
 
 
-#Don't enter club
+# Don't enter club
     label leave:
         pl "words go brrrrr"
         " - Lazy Ending"
