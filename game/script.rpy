@@ -7,6 +7,10 @@ define ta = Character('Taylor', color="#c8ffc8")
 define th = Character('Thomas', color="#c8c8ff")
 # Prompt player for name and default if none is provided
 define pl = Character("[povname]", color="#c8ffc8")
+
+# Initialize placeholder values for characters for ease of use
+gpa_rock, alex, jolee, taylor, thomas = 0,1,2,3,4
+
 python:
     povname = renpy.input("What is your name?", length=32)
     povname = povname.strip()
@@ -23,6 +27,10 @@ init python in heartLevels:
         3 : 0,
         4 : 0
     }
+
+    # Update heart values
+    def updateHearts(char_name, value):
+        hearts[char_name] += value
 
     # Find out who your date is at end of game
     def findDate():
