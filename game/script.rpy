@@ -10,12 +10,28 @@ define ta = Character('Taylor', color="#c8ffc8")
 define th = Character('Thomas', color="#c8c8ff")
 define pl = Character('Player', color="#c8ffc8")
 
+# Heart levels to keep track of romance options
 init python in heartLevels:
-    al_heart = 0
-    jo_heart = 0
-    ta_heart = 0
-    th_heart = 0
-    pl_heart = 0
+    hearts = {
+        "al_heart" : 0,
+        "jo_heart" : 0,
+        "ta_heart" : 0,
+        "th_heart" : 0,
+        "pl_heart" : 0
+    }
+
+    # Find out who your date is at end of game
+    def findDate():
+        # make sure romance level has hit "dateable" level
+        datable = 10
+        max_romance = max(hearts.values())
+        if max_romance < datable:
+            return "GPA_ROCK"
+        else:
+            for key in hearts:
+                if hearts[key] == max_romance:
+                    return key
+        
 
 define place1 = int(0) # placeholder "points" variable
 define place2 = int(0) # placeholder "points" variable
