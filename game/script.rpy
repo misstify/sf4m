@@ -10,6 +10,13 @@ define ta = Character('Taylor', color="#c8ffc8")
 define th = Character('Thomas', color="#c8c8ff")
 define pl = Character('Player', color="#c8ffc8")
 
+init python in heartLevels:
+    al_heart = 0
+    jo_heart = 0
+    ta_heart = 0
+    th_heart = 0
+    pl_heart = 0
+
 define place1 = int(0) # placeholder "points" variable
 define place2 = int(0) # placeholder "points" variable
 
