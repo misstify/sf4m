@@ -1,14 +1,18 @@
-# The script of the game goes in this file.
-
-
-
+# The script of the game goes in this file. 
 # Ideally id make a class for characters and their variables
 
 define al = Character('Alex', color="#c8ffc8")
 define jo = Character('Jolee', color="#c8c8ff")
 define ta = Character('Taylor', color="#c8ffc8")
 define th = Character('Thomas', color="#c8c8ff")
-define pl = Character('Player', color="#c8ffc8")
+# Prompt player for name and default if none is provided
+define pl = Character("[povname]", color="#c8ffc8")
+python:
+    povname = renpy.input("What is your name?", length=32)
+    povname = povname.strip()
+
+    if not povname:
+         povname = "Generic Protag"
 
 # Heart levels to keep track of romance options
 init python in heartLevels:
