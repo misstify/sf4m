@@ -9,7 +9,11 @@ define th = Character('Thomas', color="#c8c8ff")
 define pl = Character("[povname]", color="#c8ffc8")
 
 # Initialize placeholder values for characters for ease of use
-gpa_rock, alex, jolee, taylor, thomas = 0,1,2,3,4
+define gpa_rock = 0
+define alex = 1 
+define jolee = 2 
+define taylor = 3 
+define thomas = 4
 
 python:
     povname = renpy.input("What is your name?", length=32)
