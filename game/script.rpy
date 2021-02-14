@@ -64,6 +64,7 @@ define place2 = int(0) # placeholder "points" variable
 label start:
 # Start at sbu play talks to them self
     scene sbu
+    with dissolve
 
     python: 
         name = renpy.input("What is your name?", length=32)
@@ -89,7 +90,7 @@ label start:
 # Decides to enter club room
     label welcome:
 
-        scene SF4M
+        scene sf4m
         with dissolve
         # play music "illurock.ogg" fadeout 1.0 fadein 1.0
 
