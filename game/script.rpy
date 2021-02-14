@@ -59,6 +59,26 @@ init python in heartLevels:
 define place1 = int(0) # placeholder "points" variable
 define place2 = int(0) # placeholder "points" variable
 
+# Go backwards wheeeee
+init python in rewind:
+    # Stack to store messages
+    stack = []
+    # Method to initialize stack
+    def init_stack(lab):
+        stack.append(lab)
+    # Method to store messages in stack
+    def store_msg(char_name, msg):
+        stack.append((char_name, msg))
+    # Method to rewind time
+    def rewind_msgs():
+        while len(stack) != 0:
+            # if stack has reached bottom jump to label
+            if len(stack) == 1:
+                renpy.jump(stack[0])
+            # otherwise display message
+            else:
+                obj = stack[-1]
+                obj[0](obj[1])
 
 # The game starts here.
 label start:
