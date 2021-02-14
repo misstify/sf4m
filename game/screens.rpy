@@ -367,16 +367,25 @@ screen main_menu():
 
     ## The use statement includes another screen inside this one. The actual
     ## contents of the main menu are in the navigation screen.
-    use navigation
+    #use navigation
 
     if gui.show_name:
+        grid 3 1:
+            null
 
-        vbox:
-            text "[config.name!t]":
-                style "main_menu_title"
+            grid 1 3:
+                vbox:
+                    text "[config.name!t]":
+                        style "main_menu_title"
 
-            text "[config.version]":
-                style "main_menu_version"
+                    text "[config.version]":
+                        style "main_menu_version"
+                
+                null
+
+                use navigation
+
+            null
 
 
 style main_menu_frame is empty
