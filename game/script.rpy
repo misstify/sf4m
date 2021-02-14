@@ -63,9 +63,7 @@ define place2 = int(0) # placeholder "points" variable
 # The game starts here.
 label start:
 # Start at sbu play talks to them self
-    scene bg "SBU.jpg"
-    with dissolve
-    # play music "illurock.ogg"
+    scene sbu
 
     python: 
         name = renpy.input("What is your name?", length=32)

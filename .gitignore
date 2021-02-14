@@ -1,7 +1,7 @@
 # Ignore cache files
-game/cache/*
+/game/cache/bytecode.rpyb
 # Ignore saves
-game/saves/*
+/game/saves/*
 # Ignore log and traceback files
 log.txt
 traceback.txt
