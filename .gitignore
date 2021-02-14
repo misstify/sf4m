@@ -5,3 +5,4 @@ game/saves/*
 # Ignore log and traceback files
 log.txt
 traceback.txt
+errors.txt

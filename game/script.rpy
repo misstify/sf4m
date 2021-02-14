@@ -5,8 +5,7 @@ define al = Character('Alex', color="#c8ffc8")
 define jo = Character('Jolee', color="#c8c8ff")
 define ta = Character('Taylor', color="#c8ffc8")
 define th = Character('Thomas', color="#c8c8ff")
-# Prompt player for name and default if none is provided
-define pl = Character("[povname]", color="#c8ffc8")
+define pl = Character("[name]")
 
 # Initialize placeholder values for characters for ease of use
 define gpa_rock = 0
@@ -14,13 +13,6 @@ define alex = 1
 define jolee = 2
 define taylor = 3
 define thomas = 4
-
-python:
-    povname = renpy.input("What is your name?", length=32)
-    povname = povname.strip()
-
-    if not povname:
-         povname = "Generic Protag"
 
 # Heart levels to keep track of romance options
 init python in heartLevels:
@@ -70,12 +62,17 @@ define place2 = int(0) # placeholder "points" variable
 
 # The game starts here.
 label start:
-
-
 # Start at sbu play talks to them self
-    scene SBU
+    scene bg "SBU.jpg"
     with dissolve
     # play music "illurock.ogg"
+
+    python: 
+        name = renpy.input("What is your name?", length=32)
+        name = name.strip()
+
+        if not name:
+            name="Pat Smith"
 
     pl "words go brrrrr"
     pl "words go brrrrr"
