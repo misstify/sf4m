@@ -1,4 +1,7 @@
-**/game/cache/
-**/game/save/
+# Ignore cache files
+game/cache/*
+# Ignore saves
+game/saves/*
+# Ignore log and traceback files
 log.txt
 traceback.txt
