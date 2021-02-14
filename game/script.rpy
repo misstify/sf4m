@@ -86,17 +86,20 @@ label start:
     scene sbu
     with dissolve
 
-    python: 
+    python:
         name = renpy.input("What is your name?", length=32)
         name = name.strip()
 
         if not name:
-            name="Pat Smith"
+            name="Samuel Stanley"
 
-    pl "words go brrrrr"
-    pl "words go brrrrr"
-    pl "words go brrrrr"
-
+    pl "Stony Brook University. Land of the Seawolf, Home of Student Debt. Even though I don't dorm, the student fees are ridiculous but all in the name of pleasing my parents."
+    pl "I don't really have a clue how I got into this place considering that I spend most of my time procrastinating and sleeping."
+    pl "But here it is right in front of me! Barely a few weeks in and already dying inside."
+    pl "I mean-!"
+    pl "I'm not failing already or anything, but CSE 101 is harder than I expected. I need something to take the edge off."
+    pl "Today is the Involvement fair, or at least, the fair was going on earlier. I mostly showed up because someone posted on the school subreddit that there was a cotton candy machine."
+    pl "What can take the edge off more than free food?"
 
     menu:
         "Go into forum":
