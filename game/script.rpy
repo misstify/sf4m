@@ -101,6 +101,8 @@ label start:
     scene sbu
     with dissolve
 
+    jump finalChoices
+
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
         name = name.strip()
@@ -360,17 +362,35 @@ label start:
     # Nate testing ability to choose between two date options
     label finalChoices:
         $ updateHearts("THOMAS", 1)
+        $ updateHearts("TAYLOR", 3)
         python:
             # Grab two options
             options = findDates()
             # Show menu with options
-            charChosen = renpy.display_menu([("[options[0]]", "[options[0]]"), ("[options[1]]","[options[1]]")])
-            charChosen = charChosen.capitalize()
+            charChosen = renpy.display_menu([("[options[0]]", options[0]), ("[options[1]]",options[1])])
             # Jump to appropriate label 
-            renpy.say(charChosen,"[charChosen]")
-            #renpy.jump(charChosen)
+            jumpToDate(charChosen)
 
+    # Beginning of endings
+    label gpa_rock_end:
+        rj "GPA ROCK"
+        return
 
+    label alex_end:
+        al "Alex"
+        return 
+
+    label jolee_end:
+        jo "Jolee"
+        return 
+
+    label taylor_end:
+        ta "Taylor"
+        return 
+
+    label thomas_end:
+        th "Thomas"
+        return
 
 # This ends the game.
     return
