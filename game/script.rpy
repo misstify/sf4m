@@ -15,7 +15,7 @@ define taylor = 3
 define thomas = 4
 
 # Heart levels to keep track of romance options
-init python in heartLevels:
+init python:
     # Initialize heart values
     hearts = {
         "ALEX" : 0,
@@ -92,7 +92,7 @@ init python in rewind:
             # otherwise display message
             else:
                 obj = stack[-1]
-                obj[0](obj[1])
+                renpy.say(obj[0], obj[1])
 
 # The game starts here.
 label start:
@@ -106,6 +106,9 @@ label start:
 
         if not name:
             name="Samuel Stanley"
+
+    # Nate's using this to test, feel free to comment out for your testing
+    jump finalChoices
 
     pl "Stony Brook University. Land of the Seawolf, Home of Student Debt. Even though I don't dorm, the student fees are ridiculous but all in the name of pleasing my parents."
     pl "I don't really have a clue how I got into this place considering that I spend most of my time procrastinating and sleeping."
@@ -206,14 +209,15 @@ label start:
 
     # Nate testing ability to choose between two date options
     label finalChoices:
-        python in heartLevels:
+        $ updateHearts("THOMAS", 1)
+        python:
             # Grab two options
-            options = [hearts["ALEX"], hearts["JOLEE"]]
+            options = findDates()
             # Show menu with options
-            charChosen = renpy.display_menu([("Alex", "ALEX"), ("Jolee","JOLEE")])
+            charChosen = renpy.display_menu([("[options[0]]", "[options[0]]"), ("[options[1]]","[options[1]]")])
             charChosen = charChosen.capitalize()
             # Jump to appropriate label 
-            renpy.say(charChosen,"ALEX")
+            renpy.say(charChosen,"[charChosen]")
             #renpy.jump(charChosen)
 
 
