@@ -295,7 +295,6 @@ screen navigation():
         style_prefix "navigation"
 
         xpos gui.navigation_xpos
-        yalign 0.5
 
         spacing gui.navigation_spacing
 
@@ -344,6 +343,7 @@ style navigation_button:
 
 style navigation_button_text:
     properties gui.button_text_properties("navigation_button")
+    xalign 0.5
 
 
 ## Main Menu screen ############################################################
@@ -373,17 +373,16 @@ screen main_menu():
         grid 3 1:
             null
 
-            grid 1 3:
+            grid 1 2:
                 vbox:
                     text "[config.name!t]":
                         style "main_menu_title"
 
                     text "[config.version]":
                         style "main_menu_version"
-                
-                null
 
                 use navigation
+
 
             null
 
@@ -409,6 +408,7 @@ style main_menu_vbox:
 
 style main_menu_text:
     properties gui.text_properties("main_menu", accent=True)
+    text_align 0.5
 
 style main_menu_title:
     properties gui.text_properties("title")
