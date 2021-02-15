@@ -45,17 +45,17 @@ init python:
     # Jump to appropriate label, gpa_rock if invalid input given
     def jumpToDate(char_name, label_end):
         if char_name == "GPA_ROCK":
-            renpy.jump("gpa_rock_" + label_end)
+            renpy.jump("gpa_rock" + label_end)
         elif char_name == "ALEX":
-            renpy.jump("alex_" + label_end)
+            renpy.jump("alex" + label_end)
         elif char_name == "JOLEE":
-            renpy.jump("jolee_" + label_end)
+            renpy.jump("jolee" + label_end)
         elif char_name == "TAYLOR":
-            renpy.jump("taylor_" + label_end)
+            renpy.jump("taylor" + label_end)
         elif char_name == "THOMAS":
-            renpy.jump("thomas_" + label_end)
+            renpy.jump("thomas" + label_end)
         else:
-            renpy.jump("gpa_rock_" + label_end)
+            renpy.jump("gpa_rock" + label_end)
 
     # Find out who your date is at end of game
     def findDate():
@@ -371,7 +371,31 @@ label start:
             # Show menu with options
             charChosen = renpy.display_menu([("[choiceOne]", options[0]), ("[choiceTwo]",options[1])])
             # Jump to appropriate label 
-            jumpToDate(charChosen, "end")
+            jumpToDate(charChosen, "")
+
+    # Beginning of after choice options
+    label gpa_rock:
+        rj "GPA Rock"
+        jump after_choice
+    
+    label alex:
+        al "Alex"
+        jump after_choice
+
+    label jolee:
+        jo "Jolee"
+        jump after_choice
+
+    label taylor:
+        ta "Taylor"
+        jump after_choice
+    
+    label thomas:
+        th "Thomas"
+        jump after_choice
+    
+    label after_choice:
+        "You made your choice"
 
     # Beginning of endings
     label gpa_rock_end:
