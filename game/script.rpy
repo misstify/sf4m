@@ -101,7 +101,8 @@ label start:
     scene sbu
     with dissolve
 
-    jump finalChoices
+    # Nates testing cheaty jump
+    #jump finalChoices
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
