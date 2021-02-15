@@ -41,20 +41,6 @@ init python in heartLevels:
                 res.append(name)
         return res
 
-    # Find out who your date is at end of game
-    def findDate():
-        # make sure romance level has hit "dateable" level
-        datable = 10
-        max_romance = max(hearts.values())
-        # If date threshold not met, return gpa_rock code
-        if max_romance < datable:
-            return 0
-        # Otherwise find and return key corresponding to person with highest romance, choosing first person in event of tie
-        else:
-            for name in hearts:
-                if hearts[name] == max_romance:
-                    return name
-
     # Jump to appropriate label for ending, gpa_rock if invalid input given
     def jumpToDate(char_name):
         if char_name == "GPA_ROCK":
@@ -69,6 +55,20 @@ init python in heartLevels:
             renpy.jump("thomas_end")
         else:
             renpy.jump("gpa_rock_end")
+
+    # Find out who your date is at end of game
+    def findDate():
+        # make sure romance level has hit "dateable" level
+        datable = 10
+        max_romance = max(hearts.values())
+        # If date threshold not met, return gpa_rock code
+        if max_romance < datable:
+            return 0
+        # Otherwise find and return key corresponding to person with highest romance, choosing first person in event of tie
+        else:
+            for name in hearts:
+                if hearts[name] == max_romance:
+                    jumpToDate(name)
 
 define place1 = int(0) # placeholder "points" variable
 define place2 = int(0) # placeholder "points" variable
@@ -204,6 +204,17 @@ label start:
 
         jo "spiel"
 
+    # Nate testing ability to choose between two date options
+    label finalChoices:
+        python in heartLevels:
+            # Grab two options
+            options = [hearts["ALEX"], hearts["JOLEE"]]
+            # Show menu with options
+            charChosen = renpy.display_menu([("Alex", "ALEX"), ("Jolee","JOLEE")])
+            charChosen = charChosen.capitalize()
+            # Jump to appropriate label 
+            renpy.say(charChosen,"ALEX")
+            #renpy.jump(charChosen)
 
 
 
