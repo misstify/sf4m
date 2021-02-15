@@ -366,8 +366,10 @@ label start:
         python:
             # Grab two options
             options = findDates()
+            choiceOne = options[0].capitalize()
+            choiceTwo = options[1].capitalize()
             # Show menu with options
-            charChosen = renpy.display_menu([("[options[0]]", options[0]), ("[options[1]]",options[1])])
+            charChosen = renpy.display_menu([("[choiceOne]", options[0]), ("[choiceTwo]",options[1])])
             # Jump to appropriate label 
             jumpToDate(charChosen)
 
