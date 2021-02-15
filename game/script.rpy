@@ -16,17 +16,30 @@ define thomas = 4
 
 # Heart levels to keep track of romance options
 init python in heartLevels:
-    # 0=gpa_rock, 1=alex, 2=jolee, 3=taylor, 4=thomas
+    # Initialize heart values
     hearts = {
-        1 : 0,
-        2 : 0,
-        3 : 0,
-        4 : 0
+        "ALEX" : 0,
+        "JOLEE" : 0,
+        "TAYLOR" : 0,
+        "THOMAS" : 0
     }
 
     # Update heart values
     def updateHearts(char_name, value):
         hearts[char_name] += value
+
+    # Determine final day choice options
+    def findDates():
+        # Get all values from dictionary
+        heart_values = hearts.values()
+        # Sort heart values
+        heart_values.sort()
+        res = []
+        # Iterate through keys in hearts to get the two options
+        for name in hearts:
+            if hearts[name] == heart_values[-1] or hearts[name] == heart_values[-2]:
+                res.append(name)
+        return res
 
     # Find out who your date is at end of game
     def findDate():
@@ -38,20 +51,21 @@ init python in heartLevels:
             return 0
         # Otherwise find and return key corresponding to person with highest romance, choosing first person in event of tie
         else:
-            for key in hearts:
-                if hearts[key] == max_romance:
-                    return key
+            for name in hearts:
+                if hearts[name] == max_romance:
+                    return name
+
     # Jump to appropriate label for ending, gpa_rock if invalid input given
     def jumpToDate(char_name):
-        if char_name == 0:
+        if char_name == "GPA_ROCK":
             renpy.jump("gpa_rock_end")
-        elif char_name == 1:
+        elif char_name == "ALEX":
             renpy.jump("alex_end")
-        elif char_name == 2:
+        elif char_name == "JOLEE":
             renpy.jump("jolee_end")
-        elif char_name == 3:
+        elif char_name == "TAYLOR":
             renpy.jump("taylor_end")
-        elif char_name == 4:
+        elif char_name == "THOMAS":
             renpy.jump("thomas_end")
         else:
             renpy.jump("gpa_rock_end")
