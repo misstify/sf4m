@@ -344,7 +344,10 @@ style navigation_button:
 style navigation_button_text:
     properties gui.button_text_properties("navigation_button")
     xalign 0.5
-    size 33
+#    if main_menu:
+#        size 33
+#    else:
+#        size 20
 
 
 ## Main Menu screen ############################################################
