@@ -141,7 +141,7 @@ label start:
             jump welcome
 
         "Stay where you are":
-            jump leave
+            jump endinga
     # needs close statement here
 
 
@@ -858,8 +858,174 @@ label start:
         al "We have a lot of random stuff around here that’s usually more distracting."
         ta "But come on, get on with the questioning! This article is due at midnight and I’d like to pretend that I didn’t wait until the last minute!"
 
-        th "So… what do you want to know about [name]?"
+        jump choiceloop
 
+    # Setting up a looping menu for Thomas talking about Forum History
+
+    menu choiceloop:
+        th "So, what do you want to know about [name]?"
+
+        "Fahrenheit 451 and the Fire":
+            jump f451
+
+        "White Castle and Sherman":
+            jump raftenberg
+
+        "GPA Rock":
+            jump rockstory
+
+        "I'm good":
+            jump loopend
+
+    label f451:
+
+        pl "I’d like to know more about this Fahrenheit 451 book and the fire you mentioned."
+        pl "This copy of it does look like it’s been burnt, did you guys set it on fire or something?"
+        th "Ah, that. Well this wasn’t us, this is something that happened back in the 1980s."
+        th "You see, long ago, the four elements lived in harmony-"
+        ta "Thomas, I can’t use THAT in my article-!"
+        th "But everything changed when the forum fire happened."
+        th "Back in 1986, the forum wasn’t in this room but was being run out of one of the dorms."
+        th "Suffice to say, one idiot student later, and the dorm had a giant fire."
+        jo "This was back when smoking in these kinds of areas was allowed, it’s believed that someone didn’t put a cigarette out properly and it caused the whole thing."
+        th "The forum at the time lost pretty much most of its collection of books, memorabilia, artwork, all of it."
+        th "But, you see, what makes the story worth telling is that our shelves were alphabetical at the time so the fire was able to only burn through A-M before being put out."
+        th "Somehow though, this copy of Fahrenheit 451 survived almost completely intact besides the cover and edges being a bit worse for wear."
+        th "We like to think the lessons of the novel is something we as a library of science fiction should strive for. We still have the book and memorialize it today too."
+        ta "I thought we kept it just because it’s ironic as hell."
+        th "That too."
+        pl "Jeez, that’s crazy. And you guys said you’re the largest library or something like that…?"
+        jo "Yeah, even after losing half of our collection back then, we built it back even larger than before. We’re the largest free-lending library on the eastern seaboard."
+        ta "We don’t beat out the New York public library system, but in terms of free-lending without cards and such, no one on this side of the Mississippi beats us."
+
+        jump choiceloop
+
+    label raftenberg:
+
+        pl "So why did you put a White Castle wrapper in here Taylor? Who’s Sherman?"
+        ta "Oh, Sherman was an old student from like the 70s or something."
+        th "Ah, the unfortunate tale of Sherman Raftenburg."
+        th "You see, every year on the 8th of February, we used to hold an anniversary for this long lost forumite."
+        th "It is passed down by the orators that one insignificant night where Sherman was almost certainly drunk with friends, they were pulling some stupid antics."
+        th "You know Frey Hall yes?"
+        pl "Yeah, I have some math course in there."
+        th "Then you may have noticed that there are some large vents out there with giant vent covers."
+        th "But, long ago on that insignificant night… the vents were uncovered. Stony Brook wasn’t particularly caring about student safety back in those days."
+        th "So Sherman decided it would be an excellent idea to jump over this uncovered steam vent."
+        th "The first time, he jumped through it and successfully landed on the other side."
+        th "The second time, again, he jumped through the billowing steam and once again appeared on the other side."
+        th "The third time…"
+        th "The third time, he was not as lucky."
+        pl "You mean he?"
+        th "He fell into the vent. And was steamed alive."
+        ta "Yeah, if you look in the cabinet, one of those old newspapers has the article about it. I scoped it out, it’s not even a wives’ tale."
+        th "He was steamed alive for 18 seconds and his parents were paid restitution in $18,000 - $1,000 for each second he suffered."
+        ta "That part I’m less sure about, but I mean, I wouldn’t put it past Stony Brook."
+        pl "How does this all connect to White Castle though?"
+        th "The tradition to remember Sherman was that they would make a pilgrimage to White Castle and purchase burgers there as they are… steamed."
+        ta "Old forumites are crazier than we are honestly, I just leave some wrapped around or draw a burger on the white board, those guys went hard though."
+        jo "Don’t forget  the screaming."
+        pl "The screaming…?!"
+        th "Yes, following the pilgrimage, they travel to the steam vent in question and place these burgers as an offering."
+        th "The final step of the ritual is for the forum president to jump over the steam vent three times and on the third, all participants then scream for 18 seconds."
+        pl "..."
+        ta "..."
+        th "..."
+        jo "...So, you can understand why we don’t really do that anymore."
+        pl "Yeah."
+        ta "Yeah."
+        th "Yeah."
+        al "Would it be wrong of me to say I’m hungry now?"
+        ta "I’d say no, but I know Jolee will disagree with me."
+        jo "Yup."
+
+        jump choiceloop
+
+    label rockstory:
+
+        pl "I have to ask, what is up with this rock?"
+        th "Yeah, so as you’ve noticed, we have this giant rock here."
+        th "A long time ago, in a Stony Brook building far, far away, a forumite brought a rock into the forum."
+        th "We don’t know where he got it. We don’t know how he was able to move it."
+        th "What we do know is that somehow it ended up in the forum and every since then, we’ve just… moved it to every following location of the forum."
+        al "It’s basically part of the family now."
+        ta "Except it’s cursed."
+        pl "I feel like someone did mention the forum having a curse or two."
+        al "Yeah, this is one of them."
+        th "You see, this rock is known as the GPA rock because it will drain the GPA of those who stand near it, causing depression, apathy, confusion and extreme laziness."
+        th "Of course, the only logical way of preventing this catestrope is by sealing the GPA rock with a chainmail made from Battlestar Galactica keychains."
+        pl "Where did you guys even get this many keychains?"
+        th "Simple really. The forum used to hold a convention years ago, and during the planning of one of these, there was an error in ordering keychains."
+        th "With hundreds of extra keychains on their hands, shrewd forumites decided to weave them into this blessed chainmail to seal the great GPA rock and protect all future forumites to come."
+        ta "Yeah, usually we uncover it only during involvement fairs so the president can wear the chainmail to attract new forumites but this year RJ was complaining it hurt his back too much and refused."
+        al "It’s much heavier than you expect."
+        th "All the more reason not to uncover it."
+        ta "Unless of course… you want to tempt fate [name]?"
+        pl "What?"
+        ta "You’re free to uncover the rock if you dare."
+        th "I wouldn’t recommend it."
+        jo "Taylor, why are you trying to kill his GPA, he just got here."
+        ta "Well I mean, I could show him Ascension and get the same effect by getting him addicted to that game."
+        pl "What’s Ascension?"
+        th "A board game that killed the GPA of the last historian and forced him to leave the club."
+        ta "It’s fun but dangerous. That old historian was one of the few people who have uncovered the GPA rock so I maintain that the rock did it and Ascension was just the curse kicking in."
+        al "Still though, leave their GPA alone."
+        ta "Well I think that’s up to them to decide, no?"
+
+# Endings stored at the bottom of the script
+        menu:
+            "Uncover the GPA Rock":
+                jump endingb
+
+            "Leave it be":
+                jump refusal
+
+        label refusal:
+
+            pl "Nah, I’m good. I’d rather not tempt fate like that."
+            jo "Smart move."
+            ta "Aww, and here I was hoping to induct him into the Ascension cult."
+            pl "Maybe later?"
+            al "Don’t encourage her, she really isn’t kidding."
+            ta "Blood for the blood god, cards for the card throne!"
+
+            jump choiceloop
+
+# Release from the forum history loop
+    label loopend:
+
+        pl "I think I’m good on old forum stories."
+        th "Well if you’re ever curious let me know, there’s a lot more where that came from."
+        ta "I could always use more padding for this article, this stuff is way more interesting than writing about the ‘Bridge to Nowhere’ for the fifth time."
+        pl "Bridge to nowhere?"
+        jo "Stony Brook has a lot of weird stories, even outside the forum. Like the time it built a bridge to nowhere."
+        ta "That proceeded to collapse on people and had to be torn down like within a year of being finished or something like that."
+        al "Suffice to say, Stony Brook has never been the best place to go to school."
+        pl "I’ll say, some of these stories are kind of concerning."
+        th "What’s your opinion on history though [name]?"
+        pl "My opinion?"
+        "I look over to see Thomas looking at me with a curious expression, almost analytical."
+        th "Yeah, how do you feel about it?"
+        ta "History is for neeeerds-"
+        jo "This is a nerd club and you got a perfect score in your history classes in high school didn’t you?"
+        ta "Why must you counter my sass?"
+        al "Because you deserve it, let them answer."
+
+        menu:
+            "History is neat.":
+                jump neatnerd
+
+            "I'd rather make history.":
+                jump neatchad
+
+# Bookmark for where taylor left off the dialogue work
+    label neatnerd:
+
+        pl "I guess History is just... pretty neat?"
+
+    label neatchad:
+
+        pl "Taylor didn't write this yet because it's 2am and she should sleep."
 
     # Nate testing ability to choose between two date options
     label finalChoices:
@@ -925,10 +1091,49 @@ label start:
 
 
 # Don't enter club
-    label leave:
+    label endinga:
         "I watch as the guy stands in the way of a nearby student and begins expound on how he’s president of the club and made it great again or something."
         "It’s probably for the best that I just leave it be… right?"
         "Time to wait another 15 minutes for this stupid cotton candy…"
 
         "Ending A: What if?"
     return
+
+# Uncover the gpa rock
+
+    label endingb:
+
+        pl "Well, it’s just a rock, it can’t actually be cursed right?"
+        "I reach forward to pull off the chainmail as Thomas reels back. Alex completely stands up from the couch, moving further back into the room."
+        "Pulling it off I’m just faced with… a rock."
+        "It’s a mix of brown and grey mostly and is cool to the touch."
+        pl "Hey, for a cursed rock, it seems pretty normal."
+        al "That’s how it gets you."
+        jo "It was nice knowing you."
+        ta "Tell me [name]... how do you feel?"
+        "I think for a moment as I pull the chainmail back over the rock."
+        pl "I mean, I feel a bit hungry but besides that, fine."
+        ta "And if I was to propose showing you this ascension game I mentioned?"
+        "I look between everyone’s concerned faces and laugh."
+        pl "Guys, I swear I’m fine."
+        pl "And if you want to show me a new game, I won’t object."
+        ta "Okaaay, grab that silver box from the shelf next to you and come over here then…"
+        jo "Taylor, you’re the real agent of the rock at this point."
+        ta "Hush, it’s fine for them to accept their fate."
+
+        scene timeskip
+
+        "I learned how to play Ascension that day."
+
+        scene sbuoutside
+
+        "We played and played and played until I realized I had missed class and almost was going to miss the train home."
+        "Thomas thankfully drove me to the station so I’d get there in time, but it was the first of many days like that."
+        "I thought it was just a fluke, I didn’t forget about my classes the next day, or the day after that, or after that."
+        "But soon as I hung out at the forum more, meeting more of its members and playing more of its games…"
+        "I started willingly skipping classes to stay in this warm, friendly place."
+        "It was only when finals week came and I realized I needed to get perfect scores in so many of my classes to secure passing grades that it dawned on me."
+        "Maybe that rock was cursed."
+        "And maybe Jolee wasn’t wrong that its members were just agents of the rock."
+
+    "Ending B: Death of a GPA."
