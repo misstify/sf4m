@@ -1,12 +1,12 @@
 # The script of the game goes in this file.
 # Ideally id make a class for characters and their variables
 
-define al = Character('Alex', color="#c8ffc8")
-define jo = Character('Jolee', color="#c8c8ff")
-define ta = Character('Taylor', color="#c8ffc8")
-define th = Character('Thomas', color="#c8c8ff")
+define al = Character('Alex', color="#FFFF32")
+define jo = Character('Jolee', color="#FFAE19")
+define ta = Character('Taylor', color="#E50000")
+define th = Character('Thomas', color="#66B2FF")
 define pl = Character("[name]")
-define rj = Character('Egotistical Student', color="#2F2F2F")
+define rj = Character('Egotistical Student', color="#FFFFFF")
 
 # Initialize placeholder values for characters for ease of use
 define gpa_rock = 0
@@ -97,7 +97,7 @@ init python in rewind:
 
 # The game starts here.
 label start:
-# Start at sbu play talks to them self
+
     scene sbu
     with dissolve
 
@@ -189,10 +189,10 @@ label start:
 
         "The girl from the table turns and looks at me. She’s Asian, a large pair of glasses in front of her squinting eyes as she peers over. It seems more like she just can’t see rather than her being suspicious though."
         jo "Oh hello! Are you new?"
-        "The boy next to her looks up from the papers before them and grins."
 
         show thomas at right
 
+        "The boy next to her looks up from the papers before them and grins."
         th "Another person from the involvement fair?"
 
         show taylor at left
@@ -235,10 +235,10 @@ label start:
         show jolee at right
 
         jo "It’s not my fault I’m blind!"
-        "The boy sitting next to the poor-sighted girl picks up her water bottle and places it on the table before he points to a paper on the table."
 
         show thomas
 
+        "The boy sitting next to the poor-sighted girl picks up her water bottle and places it on the table before he points to a paper on the table."
         th "I’d like to at least decide on what event we should host first before I have to head to my next class…"
         ta "Events are for nerds, just put on a great movie like Splice and we’ll be set."
 
@@ -252,7 +252,7 @@ label start:
         "She suddenly looks over the boy’s shoulder and points to me, causing everyone’s attention to be redirected to me."
         pl "Uh… hi?"
 
-        show jolee
+        show jolee at left
 
         jo "Oh hello! Are you new?"
         pl "Yeah, I just heard some guy upstairs talking about this place."
@@ -272,13 +272,26 @@ label start:
 
         jo "Taylor, we at least have to make the club sound good."
         ta "Am I wrong though in that most people come here to sleep and watch the latest netflix releases?"
+
+        show thomas at right
+
         th "She’s not wrong."
+
+        hide thomas
+        show alex at right
+
         al "If you’re someone with taste though, we have Hulu also."
         ta "First you insult Splice, now Hulu? That’s two strikes nerd."
         al "First off, Splice is a movie that deserves to be insulted! Second off, Hulu is just better. You don’t see Hulu removing good stuff so often."
         ta "That’s because no one is looking at Hulu to begin with."
         jo "Are you two just constantly looking for things to argue about today?"
         "Taylor turns to look at me and smirks as she points at me once more."
+
+        hide jolee
+        hide alex
+        hide taylor
+        show taylor
+
         ta "Yo, new person, what’s your name?"
 
     menu:
@@ -309,56 +322,544 @@ label start:
 
     menu:
         "Hulu or bust":
-            hide taylor
-            hide alex
             jump hulu
 
         "Netflix all the way":
-            hide taylor
-            hide alex
             jump netflix
     # needs close statement here
 
-
     label hulu:
 
-            $ place1 += 1
-            show thomas
-
-            th "words"
-
             show alex at right
-            show thomas at left
 
-            al "words"
+            al "A-ha! Take that, 'nerd'!"
+            "The tired boy seems invigorated as the girl gives me an annoyed glare before she just grabs a pillow off of the couch."
+            ta "I'm hitting one of you with this, choose wisely fools."
+            al "Ha, I'll happily tae the blow to protect the new member actually being cultured."
 
             hide alex
-            hide thomas
-            jump spiel
+            hide taylor
+
+            jump split
     # needs close statement here
 
     label netflix:
 
-            $ place2 += 1
+            ta "Ha, see, new guy got taste."
+
+            show alex at right
+
+            al "You don't even own Netflix!"
+            ta "I don't need it when I can mooch off of you guys though."
+            "The girl at the table groans."
+
+            show taylor at left
             show jolee
 
-            jo "words"
+            jo "Taylor why?"
+            ta "Taylor yes."
 
-            show jolee at right
-            show taylor at left
-
-            ta "words"
-
+            hide alex
             hide jolee
             hide taylor
-            jump spiel
+
+            jump split
     # needs close statement here
 
-    label spiel:
+# Post Hulu/Netflix but before the first split
+    label split:
 
-        show jolee
+        "Taylor falls back on the couch, hugging onto a giant blue couch pillow as the boy at the table speaks up, waving a hand at me."
+        th "[name] was it? Nice to meet you. I’m Thomas."
+        jo "Oh, and I’m Jolee! Over there is Taylor and Alex."
+        al "Hiya."
+        pl "Nice to meet you all."
+        jo "This is just an open room, so feel free to sit and relax or go and come back later."
+        al "Maybe if you go and come back, there will actually be something on the TV by then."
+        pl "It’s alright, I don’t have class for a bit anyway."
+        ta "Are you a resident or commuter?"
+        pl "Commuter. Take the train here. Getting a car on campus seems like a lot honestly."
+        th "Ah, it kind of is but if you need help I can walk you through it. I just moved my truck to one of the other parking lots earlier."
+        pl "You had to move parking lots…?"
+        th "Yeah, all in the name of not getting tickets."
+        ta "Imagine not going into copious amounts of debt to stay in a dirty little room with someone else."
+        jo "You are here on basically full scholarship and you’re the reason our dorm is dirty."
+        ta "...I plead the fifth."
+        "As Taylor and Jolee begin to banter, I look and see Alex trying to lean over and take a controller off from the table."
+        "Taylor seems to follow my gaze and suddenly hits Alex with a pillow."
+        ta "Don’t try to grab the remote when I’m not looking, you’re not sneaking anything on!"
+        al "The silence is deafening and I’m shiftholder so I can overrule you."
+        ta "That insinuates I respect your authority."
+        "The two of them start bickering again, Jolee offering me an apologetic smile before she goes back to talking to Thomas about the papers they seem to be writing on."
+        "Maybe I should go talk to one of these pairs."
 
-        jo "spiel"
+    menu:
+        "Go over to Taylor and Alex":
+            jump taconvo
+
+        "Go over to Jolee and Thomas":
+            jump jtconvo
+    # needs close statement (i don't know why we put these here but ok)
+
+# Talking to Taylor and Alex
+    label taconvo:
+
+        scene forumalt
+        with dissolve
+
+        ta "I reject your reality and substitute my own."
+        al "You are not even in this reality."
+        "The two of them are still going at it even as I walk over, with no sign of stopping."
+        ta "Oh, hey [name]. Care to contribute a vote to the Splice Party?"
+        pl "What exactly is Splice?"
+        al "An awful movie, don’t look it up."
+        ta "I’d look it up for you but I’m not trying to get a mature rating y’know?"
+        al "You’re not mature at all."
+        pl "If it’s that bad a movie, why do you want to put it on?"
+        al "She always suggests Splice whenever we aren’t sure what to put on the tv."
+        ta "They put a limit on me, but because the semester just started I haven't used my splice ticket for this month and can still ask to put it on."
+        al "And you can do that when I’m not here. Just let me enjoy my Godzilla."
+        ta "Hm… I mean I could, but where’s the fun in that?"
+        "Alex looks at Taylor as if he wants to strangle her but she doesn’t even falter as she fiddles with the controller in her hands."
+
+        menu:
+            "Taylor, just let Alex put on his Godzilla":
+                jump godzilla
+
+            "Alex, just let Taylor put on Splice.":
+                jump splice
+
+        label godzilla:
+
+            $ updateHearts("ALEX", 1)
+
+            pl "Taylor, just let him put on Shin Godzilla."
+            pl "I don’t want my first movie in here to be some creepy, r-rated flick anyway."
+            "Taylor pouts while Alex seems revitalized, holding a hand out for the controller."
+            al "Two against one Taylor."
+            "She makes a whole show of rolling her eyes and dramatically smacking the controller in his hand."
+            ta "Fine, I suppose I’ll just have to torment you all later."
+            ta "I totally will start with you though [name]."
+            pl "I am quaking in my boots."
+            "Alex snorts before he goes to put the DVD in."
+            al "You can sit on the couch if you want though [name], come watch with us."
+            ta "Just treat the couch like a child you don’t abuse."
+
+            jump taconvo2
+
+        label splice:
+
+            $ updateHearts("TAYLOR", 1)
+
+            pl "Alex, just let Taylor put on Splice."
+            pl "She said herself that you all apparently limit her to only being able to do it once a month."
+            pl "So if she does it now, she won’t be able to put it on for awhile, right?"
+            "Alex grimaces at my logic."
+            al "I mean… you’re not wrong."
+            "Before he can put his DVD down though, Taylor busts out laughing."
+            ta "Oh my gods, did- did you really just convince him to watch Splice? Jesus, [name], you’re great."
+            ta "I was just messing with him, I wasn’t actually going to put it on."
+            al "Why must you torture me?"
+            ta "Because it’s fun. Now put on your Godzilla before I change my mind and make us watch Spiderverse for the 10th time this week instead."
+            "As Alex goes to put the DvD into the playstation, Taylor waves her hand towards me."
+            ta "You, new nerd, come chill out with us, you get the honor of sitting on the couch. Just treat it like a child you don’t abuse."
+
+            jump taconvo2
+
+# The Taylor-Alex conversation continues post-movie choice
+    label taconvo2:
+
+        pl "A child I don’t…?"
+        ta "You see this futon thing on the floor against the wall?"
+        pl "Yeah… is that someone sleeping on it?"
+        al "That’s Mike, he sleeps here a lot, don’t worry about it. We just wake him whenever he has class."
+        ta "Somehow we learn his class schedule before our own honestly."
+        pl "That’s nice of you."
+        ta "Yeah, he's a nice guy."
+        ta "But basically, this futon used to be the old forum couch. The first time someone sat on it though it collapsed under their weight."
+        pl "...The couch was to blame for that one, right?"
+        ta "Oh nah yeah, it was a cheap couch, the forumite wasn't a former character on 'My 600-pound life' or anything."
+        "Alex sits on the opposite end of the couch, leaving the spot in the middle open. I sit down between the two of them as he starts up the DVD."
+        al "Yeah well, I wouldn’t recommend napping here unless you want a certain someone going through your phone."
+        ta "I have no idea who you’re talking about."
+        ta "On a completely unrelated note though [name], we have this awesome phone charging port if you want to charge your phone."
+        al "Leave your phone unattended at your own risk."
+        "Looking down at my phone, it’s at 50 percent so it could use the charge before class. Plus, it’s locked."
+        "I pass it over, watching as Taylor plugs it into the mess of blue led lights and wires."
+        ta "It won’t explode, promise."
+        pl "I didn’t think it would."
+        al "Alright, Godzilla time!"
+        ta "I wish I had popcorn to throw at the screen."
+        al "Shh, it’s going to start."
+        "I chuckle at the two of them before settling back into the couch and looking over at the television as the movie begins."
+
+        jump endday1
+
+# The Jolee-Thomas conversation begins
+    label jtconvo:
+
+        jo "We just have the leftover yarn from last semester’s event taking up so much space, I want to get rid of it."
+        th "Yes, but we can do that event at any time, being able to get everyone together for a gaming event will be harder if we wait until later in the semester when midterms kick off."
+        "Compared to the other two, this calm discussion is a welcome diversion."
+        jo "Oh, hey [name]. You can sit and set up your laptop if you want, there’s a power-strip under the table."
+        th "Don’t mind us, we’re just trying to organize some events for the club, both of us are eboard members."
+        pl "Oh eboard? That means you guys help run the club right?"
+        th "Correct. Jolee is the treasurer and I’m historian."
+        pl "I haven’t heard of ‘historian’ being a big position in a club before."
+        jo "The forum has a president, vice president and all that though, but we have some other positions to help run things."
+        jo "I wasn’t kidding in the spiel, we are one of the oldest clubs on campus!"
+        pl "That’s crazy honestly."
+        th "The story as to why is kind of funny, but we really should get this done before I start reciting old forum events."
+        jo "Right, right, sorry, I keep getting distracted…"
+        pl "What are you guys stuck on?"
+        th "We have an Events Coordinator who's usually supposed to handle it, but she’s…"
+        "Thomas looks over to Taylor who is currently laughing maniacally as she rips Alex’s cap off of his head and throws it on top of one of the cabinets."
+        pl "...I see the issue."
+        th "Yeah. So we have two events already planned out right now. A gaming night, and a crochet night, it’s just a matter of which to hold first."
+        jo "I just think having people crochet little hearts would be a bit more appropriate to Valentine’s Day than playing the Untitled Goose Game."
+        th "I don't care less about the holiday, I just want to see some geese creating chaos."
+        pl "You don’t strike me as the chaotic type Thomas."
+        th "I am a simple man who likes geese is all."
+        jo "I don’t enjoy the holiday either but it’s about what’s fitting."
+        th "...What if we have a crochet event for Saint Patrick’s day instead?"
+        jo "Thomas!"
+
+        menu:
+            "I think Jolee's right, crochet night is better.":
+                jump crochet
+
+            "I think Thomas's right, gaming night is better.":
+                jump gaming
+
+        label crochet:
+
+            $ updateHearts("JOLEE", 1)
+
+            pl "I think Jolee is right, a crochet night is more fitting for Valentine’s day."
+            pl "Being able to knit little hearts and presents for people sounds really nice."
+            "Jolee lights up with a surprised smile as she looks over at me."
+            jo "You really think so?"
+            pl "Yeah, definitely."
+            th "Yeah, I guess that does kind of trump my idea… what if I make the goose my valentine though-"
+            jo "Thomas."
+            th "Right, right, we can schedule it next month."
+
+            jump jtconvo2
+
+        label gaming:
+
+            $ updateHearts("THOMAS", 1)
+
+            pl "I think Thomas is right, a gaming night would be a nice break from all the lovey-dovey stuff."
+            pl "Not to mention he did say before that it’s harder to host this kind of event later because people will have midterms and such."
+            th "See, [name] agrees with my logic."
+            jo "I mean, if you both really think so then yeah, we can hold the gaming event now and the crochet event later."
+            "Jolee awkwardly gathers up her papers while Thomas grins over at me, nodding."
+            th "Does that mean I’ll see you there then? It’ll probably be held over the weekend through our discord."
+            pl "Oh, uh, totally, I just have to be invited to the discord."
+            th "Sure, just add me on discord. It’s Geesegun#0601."
+            pl "You.. really like geese huh?"
+            th "I said it once, I’ll say it a million times - I am just a simple man who likes geese."
+
+            jump jtconvo2
+
+# The Jolee-Thomas conversation continues post-choice
+    label jtconvo2:
+
+        jo "Thanks for the tie-breaker vote though [name]. Even if we don’t go full into arguments like the other two, we can get really stuck sometimes."
+        pl "It’s no sweat, I’ll happily break any others you have if you need me to."
+        pl "How come the other eboard members don’t help vote on things though?"
+        th "Well our president, RJ, is upstairs barking at the involvement fair."
+        jo "Our Vice President and Secretary, Ken and Angela, are both studying abroad together in Norway and timezones make it hard for them."
+        th "And like I said, our actual Coordinator…"
+        ta "I will fight this to the grave, I have nothing to live for anyway!"
+        al "Just give me the controller!"
+        jo "I’ll uh, go settle those two actually."
+        "Jolee goes over to the couch as Thomas shrugs."
+        th "Club’s a bit empty because of all this but, it’s home, y’know?"
+        pl "I definitely can see why people don’t stick around, but I can see plenty of reasons why I’d want to stick around though."
+        th "Heh, glad you’re enjoying our insanity."
+        ta "I will not yield!"
+        jo "I will buy you ramen if you do."
+        ta "...I have been bribed."
+        al "Really, you accept her bribes but not mine?!"
+        th "Care to watch the movie?"
+        pl "Huh?"
+        "I look away from the chaotic scene to look back over at Thomas who seems to be looking at me with an almost analytical eye."
+        th "Me and Jolee have to fill out the rest of this paperwork for the events, just thought you’d have a better view of the movie from on the couch."
+        pl "Oh uh, I guess. You guys don’t need any more help?"
+        th "Nah, once we get past our stubbornness, we can get things done pretty quickly around here."
+        pl "I’ll take your word for it."
+        "Jolee groans as she sits back down at the table."
+        jo "Children, all of you are children."
+        th "Yes, children who need to be advertised to if we plan on having either of these events be a success. Let’s get these event applications done."
+        jo "Right, right."
+        pl "I’ll talk to you guys later then."
+        jo "Oh, see ya [name]."
+        th "Later."
+        "I go over to the couch to join the movie screening."
+
+        scene forumalt
+
+        pl "Care for another viewer?"
+        ta "Nah, feel free to sit."
+        al "We’re finally watching Godzilla like I wanted."
+        ta "Oh hush nerd, you just got Jolee on your side."
+        al "And I’ll do it again. Godzilla time. [name] come join us."
+        ta "Shh, the stupid monster flick is starting."
+        "I sit between the two of them, leaning back on the couch as we all turn our attention to the movie."
+
+        jump endday1
+
+# Ending Scene of Day 1
+    label endday1:
+
+        scene timeskip
+        " "
+        scene forumalt
+
+        "As the movie’s credits roll, I look over to see Taylor asleep, hugging onto the blue couch pillow, while Alex is grinning, more awake than ever."
+        "Before he can say anything though, my phone’s alarm starts going off."
+        ta "Huh, what, morning already?"
+        al "Phone call?"
+        "I lean forward to check and my eyes bulge at the time."
+        pl "Shit, that’s my alarm for class, I should go."
+        al "Ah, definitely don’t want to be late for that, see you dude."
+        ta "Hmm.. yeah, bye…"
+        "I look away from Alex and the half-awake Taylor to wave to the still-working Jolee and Thomas."
+        pl "Bye guys!"
+        jo "Have fun in class!"
+        th "Later."
+        "I jog out of the forum… I might stop by again tomorrow."
+
+# Beginning of Day 2
+
+    label tuesday:
+
+        scene sbuoutside
+        with dissolve
+
+        "Dawn of the Second Day… or at least the afternoon of it."
+        "I walk out of the SAC cafeteria, stomach full of mediocre food and an hour left before my next class starts."
+        "As I go to leave the building, I pause for a moment."
+        "Rather than go sit in the library and play on my phone there is a different place I could go…"
+        "Turning away from the outside world, I head downstairs to the basement of the SAC, popping my head into the forum."
+
+        scene forummainclapcheeks
+        with dissolve
+
+        ta "...and then I’ll change his profile picture to a catgirl so if he wants to try and get his account access back from me, he’ll have to admit that his tinder account is the one advertising itself as a catgirl."
+        jo "...’owo’?"
+        ta "Yes, ‘owo’."
+        pl "Am I interrupting something?"
+        ta "Oh hey [name]! Nah, nothing besides the usual plans for world domination."
+        "Taylor and Jolee are sitting together at the back tables. Thomas silently looks up and nods to me while Alex waves from the couch."
+        al "Hey [name]!"
+        jo "Glad to see we didn’t scare you away."
+        pl "Nah, this seems like a nice place to hang out."
+        ta "It’s the aura of Valentine’s day, it causes single people to all congregate together."
+        al "What better place for us to all be than a basement?"
+        ta "Exactly! Let our lack of romantic luck flow through you!"
+        "I go over to the table, sitting down in one of the free chairs as I look at everyone."
+        pl "What, does this club have a singles curse?"
+        al "I mean, we are a bunch of weebs and nerds sitting in a basement."
+        th "The club does have a few curses, but being single isn’t one of them."
+        ta "I’m trying to curse some people this year, but only to buy me some discount chocolate."
+        jo "Of course you are Taylor."
+        ta "What? You don’t like V-day either."
+        al "I believe you mean National Singles day."
+        pl "Well I mean, I…"
+
+        menu:
+            "Hate it.":
+                jump vjolee
+
+            "Get depressed from it.":
+                jump valex
+
+            "Am hoping for love.":
+                jump vnone
+
+            "Don't care.":
+                jump vtom
+
+            "Can't  wait to buy discount chocolate.":
+                jump vtaylor
+
+    label vjolee:
+
+        $ updateHearts("JOLEE", 1)
+
+        pl "...I get depressed around this time every year honestly."
+        jo "Don’t enjoy being reminded about how single you are?"
+        ta "Well at least he doesn’t have to see Angela and Ken being lovey-dovey this time around, the lovebirds are studying abroad together!"
+        al "Don’t worry [name], I get you."
+        "I look over to find Alex completely turned on the couch, nodding to me with an understanding expression."
+        al "Valentine’s day has never exactly been the happiest time of the year for me either."
+        pl "Did something bad happen when you were younger?"
+        al "Ah… story for another time."
+        ta "Well, you can get the joys of experiencing it with us."
+        th "That isn’t exactly going to be making him any happy memories Taylor."
+        ta "Well it makes me happy to see you all suffer so I say we should open the forum on the weekend."
+        jo "You don’t get up before 3 on the weekend Taylor."
+        ta "When I said ‘we should open the forum’, I meant all of you do and I come watch later."
+        "I catch Alex’s eye as he looks from everyone else over to me from his spot on the couch. His usually tired expression seems to perk up for a moment as he grins at me before looking back at the others."
+        th "This is why you don’t have a room key."
+        ta "You all are just afraid of me growing too powerful."
+        al "Ah yes, that’s it and not you skipping every GBM meeting."
+        ta "GBM meeting is a redundant phrase so your point is invalid, hush."
+
+        jump prehistory
+
+    label valex:
+
+        $ updateHearts("ALEX", 1)
+
+        pl "...I get depressed around this time every year honestly."
+        jo "Don’t enjoy being reminded about how single you are?"
+        ta "Well at least he doesn’t have to see Angela and Ken being lovey-dovey this time around, the lovebirds are studying abroad together!"
+        al "Don’t worry [name], I get you."
+        "I look over to find Alex completely turned on the couch, nodding to me with an understanding expression."
+        al "Valentine’s day has never exactly been the happiest time of the year for me either."
+        pl "Did something bad happen when you were younger?"
+        al "Ah… story for another time."
+        ta "Well, you can get the joys of experiencing it with us."
+        th "That isn’t exactly going to be making him any happy memories Taylor."
+        ta "Well it makes me happy to see you all suffer so I say we should open the forum on the weekend."
+        jo "You don’t get up before 3 on the weekend Taylor."
+        ta "When I said ‘we should open the forum’, I meant all of you do and I come watch later."
+        "I catch Alex’s eye as he looks from everyone else over to me from his spot on the couch. His usually tired expression seems to perk up for a moment as he grins at me before looking back at the others."
+        th "This is why you don’t have a room key."
+        ta "You all are just afraid of me growing too powerful."
+        al "Ah yes, that’s it and not you skipping every GBM meeting."
+        ta "GBM meeting is a redundant phrase so your point is invalid, hush."
+
+        jump prehistory
+
+    label vnone:
+
+        pl "...I’m honestly hoping for love this year. I don’t know, I’m feeling optimistic."
+        th "Nothing wrong with optimism I guess."
+        ta "If you get crushed by whoever you plan on confessing to dude, I will happily take whatever chocolate you buy for them on their behalf."
+        "I look between everyone only to find that no one seems to agree with my perspective on this."
+        jo "It’s alright [Name], if you have someone you care about and want to confess to, I’d say get it over with and do it quickly."
+        jo "A lot of people have anxiety about it, but… I mean, it helps to not dwell on it."
+        ta "That’s too wholesome for me, change the channel on that one Jolee."
+        jo "Go grab the remote and put something on yourself."
+        ta "But laaaaazy."
+        jo "Not my problem."
+        "Taylor groans as she sinks into her chair, looking at her laptop screen."
+
+        jump prehistory
+
+    label vtom:
+
+        $ updateHearts("THOMAS", 1)
+
+        pl "...I don’t care to be completely honest."
+        pl "Not from a ‘oh it’s all about selling chocolate perspective’, but I just can’t find myself getting all worked up about a random day when you just have to confess to someone, or else."
+        th "I can agree with that view honestly."
+        "I look over to find Thomas looking over his now-closed laptop, nodding at me with the corners of his lips just slightly upturned."
+        th "I could care less about all this. I’ll accept the discounted chocolate and free candy, but beyond that I’m good."
+        jo "I can get that, but I’ve been stuck dealing with too many anniversary dinners to be so nonchalant."
+        al "Your parents anniversary?"
+        jo "Yup, they got married on Valentine’s day and it’s been haunting me my entire life."
+        ta "Look at the bright side, you technically won the adoption lottery by getting stuck with us."
+        jo "I did?"
+        al "Yeah, I’ll beg to differ on that one."
+        "Thomas and I both look back at each other as the others begin chatting about Jolee’s family."
+        "He offers me a shrug before smirking more prominently and turning to watch them once more."
+        jo "I mean, the food here is better in China, albeit not by much."
+        ta "Stony Brook is a province of China by some definitions, it’s like you never left!"
+        th "By the Urban Dictionary you mean."
+        ta "Close enough, it’s a dictionary."
+
+        jump prehistory
+
+    label vtaylor:
+
+        $ updateHearts("TAYLOR", 1)
+
+        pl "...I honestly just am waiting to buy some discount chocolate after all this."
+        ta "My dude!"
+        pl "I look over at Taylor immediately holds up her hand for a high-five towards me, smacking her hand on instinct as she laughs."
+        ta "Forget the romance, this is a holiday of sugar highs and money lows!"
+        al "Your money is always ‘low’."
+        ta "Hence why I’m currently figuring out how to blackmail RJ by holding his discord account ransom until he gives me some chocolate."
+        jo "Damn Taylor, if you want someone to confess to you that badly, there’s a whole anime club down the hall that would love to have a female member."
+        ta "Oh shut up, I’m in this for the food."
+        "Taylor’s cheeks turn slightly red as she turns away from Jolee to look at me."
+        ta "[name], you said you had a car right?"
+        pl "I do but I take the train to campus."
+        ta "Dammit! My quest for chocolate continues…"
+        "She turns to look at Thomas."
+        th "...No."
+        "She pouts and turns away."
+
+        jump prehistory
+
+# Conversation between Vday choice and Forum History Choice
+    label prehistory:
+
+        "The conversation falls into a lull for a moment as we all look back at our screens."
+        "I unlock my laptop and click through Blackboard, checking my class notifications."
+        "One of the chairs suddenly squeaks, and I look up to see Taylor standing up with a groan, dragging herself around the couch."
+        "She completely faceplants on it, flopping next to Alex who seems unbothered enough that this is probably normal."
+        jo "You okay there T?"
+        "Taylor gives a muffled response into a pillow."
+        al "Said she’s bored I think."
+        jo "Didn’t you have some homework due?"
+        "Her head appears over the back of the couch, looking over at us."
+        ta "Yeah, I have to interview people who can talk about what Stony Brook was like pre-2000."
+        pl "Interview?"
+        ta "I am the rare humanities major here, studying Journalism."
+        pl "Ah, yeah Stony Brook is a pretty STEM-focused school. Is everyone else here studying STEM courses?"
+        th "I’m physics, mostly astronomy-related stuff."
+        al "Same - on the physics part, not the astronomy one."
+        jo "And I’m biomedical engineering and loving it."
+        "Jolee’s deadpan expression hints to her sarcasm."
+        ta "[name], you’re new right? You haven’t heard any forum stories yet."
+        pl "What kind of stories?"
+        "Taylor grins as she looks over at Thomas. The boy seems to feel her gaze and sighs."
+        th "You can’t always use the club for all of our journalism articles Taylor."
+        ta "But hypothetically if you were to tell [name] some stories and I just happened to write it down as something I heard on campus…?"
+        al "Your ability to avoid doing work astonishes me sometimes,"
+        ta "You’ve known me for what, two years now? Why is this still surprising?"
+        "Taylor scrambles up from the couch and goes back to her laptop, rapidly typing as she looks expectantly at me and Thomas."
+        ta "Well?"
+        th "...[name], is there something that you want to know about the forum?"
+        pl "I don’t even know what kind of stories there are."
+        jo "You could just show him the museum Tom."
+        pl "You guys have a museum?"
+        al "We call it the museum, but it’s just this."
+        "Alex leans over the couch and gestures to the short cabinet resting against it."
+        th "I mean, it’s either that or the logbooks."
+        ta "The logbook we have out right now only has quotes and writings from like 2016, I need older stuff."
+        pl "You guys log events in stuff in a book?"
+        ta "It’s more like we just write down funny quotes that sound great out of context."
+        jo "And the moments when you all share a brain cell."
+        al "Emphasis on one brain cell."
+        "Thomas stands up during the conversation and gestures for me to follow, walking over to the cabinet and pointing out some of the items through the windowed door."
+        th "This is just a little museum of some of the more important relics. There’s the Fahrenheit 451 book from the fire, the lost book of the forum that was returned during the 50th-"
+        pl "Is that a wrapper from White Castle…?"
+        th "...Taylor."
+        "Thomas turns to look at Taylor who suddenly looks away whistling."
+        ta "Wonder how that got there. Well, I’m sure Sherman would love to know he’s being immortalized-"
+        th "This is a locked cabinet."
+        ta "...All the more reason to know it couldn’t have ever been me."
+        jo "Didn’t you offer to pick the lock on the door when we got locked out that one time?"
+        ta "HEY, Thomas, you can just talk about the GPA rock to [name] before they do something stupid like uncover it!"
+        pl "The GPA rock…?"
+        "I look over to Taylor and follow her pointing hand to see what looks like a giant pile of…"
+        "Battlestar Galactica keychains?"
+        "Moving closer I can see that the keychains have been woven together like chainmail and cover, indeed a giant boulder that’s just sitting next to the door."
+        pl "How did I never notice this?"
+        th "Most people don’t until it’s pointed out to them, don’t feel bad."
+        al "We have a lot of random stuff around here that’s usually more distracting."
+        ta "But come on, get on with the questioning! This article is due at midnight and I’d like to pretend that I didn’t wait until the last minute!"
+
+        th "So… what do you want to know about [name]?"
+
 
     # Nate testing ability to choose between two date options
     label finalChoices:
@@ -371,14 +872,14 @@ label start:
             choiceTwo = options[1].capitalize()
             # Show menu with options
             charChosen = renpy.display_menu([("[choiceOne]", options[0]), ("[choiceTwo]",options[1])])
-            # Jump to appropriate label 
+            # Jump to appropriate label
             jumpToDate(charChosen, "")
 
     # Beginning of after choice options
     label gpa_rock:
         rj "GPA Rock"
         jump after_choice
-    
+
     label alex:
         al "Alex"
         jump after_choice
@@ -390,11 +891,11 @@ label start:
     label taylor:
         ta "Taylor"
         jump after_choice
-    
+
     label thomas:
         th "Thomas"
         jump after_choice
-    
+
     label after_choice:
         "You made your choice"
 
@@ -405,15 +906,15 @@ label start:
 
     label alex_end:
         al "Alex"
-        return 
+        return
 
     label jolee_end:
         jo "Jolee"
-        return 
+        return
 
     label taylor_end:
         ta "Taylor"
-        return 
+        return
 
     label thomas_end:
         th "Thomas"
