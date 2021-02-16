@@ -114,7 +114,7 @@ init python:
 # The game starts here.
 label start:
 
-    scene sbu
+    scene sbuoutside
     with dissolve
 
     # Nates testing cheaty jump
@@ -260,7 +260,7 @@ label start:
 
         hide jolee
         hide thomas
-        show alex
+        show alex at right
 
         "A tall, tired-looking boy glares at the beanie-wearing girl before he brandishes a DVD case to her."
         al "I haven’t seen Splice and I don’t intend on changing that today!"
@@ -268,7 +268,7 @@ label start:
         "She suddenly looks over the boy’s shoulder and points to me, causing everyone’s attention to be redirected to me."
         pl "Uh… hi?"
 
-        show jolee at left
+        show jolee
 
         jo "Oh hello! Are you new?"
         pl "Yeah, I just heard some guy upstairs talking about this place."
@@ -276,9 +276,16 @@ label start:
         al "Who’s gonna give him the spiel?"
         pl "The spiel?"
         "I get my answer as the girl at the table suddenly launches into a prepared speech of sorts."
+
+        hide taylor
+        hide alex
+
         jo "Hello and welcome to the Science Fiction Forum!"
         jo "We are the largest free-lending library on the eastern seaboard with an array of books, board games and movies in the genres of science fiction, fantasy and horror."
         jo "We’re one of the oldest clubs on campus and-"
+
+        show taylor at left
+
         ta "We got netflix, you can take a nap and the room is basically open into the SAC closes at midnight, come take a load off."
 
         jump postspiel
@@ -1159,15 +1166,15 @@ label start:
         $ store_action(msg, taylor, "Lorem ipsum dolor sit amet,")
         $ store_action(msg, thomas, "consectetur adipiscing elit,")
         $ store_action(msg, jolee, "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-        $ store_action(scn, "bg hallwaysakura")
+        $ store_action(scn, "hallwaysakura")
         $ store_action(msg, alex, "Ut enim ad minim veniam,")
         $ store_action(msg, taylor, "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
         $ store_action(msg, thomas, "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.")
         $ store_action(msg, jolee, "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-        $ store_action(scn, "bg forumhallway")
+        $ store_action(scn, "forumhallway")
         if has_rewinded:
             jump exit
-            return 
+            return
         else:
             $ has_rewinded = True
             $ rewind()
