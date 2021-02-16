@@ -45,7 +45,7 @@ init python:
         # Iterate through keys in hearts to get the two options
         for name in hearts:
             if hearts[name] == heart_values[-1] or hearts[name] == heart_values[-2]:
-                res.append([name])
+                res.append(name)
         # sort result
         res.sort()
         # jump to appropriate label
@@ -134,7 +134,7 @@ label start:
     with dissolve
 
     # Nates testing cheaty jump
-    jump testing
+    jump dualScene
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
@@ -1067,7 +1067,7 @@ label start:
         pl "Taylor didn't write this yet because it's 2am and she should sleep."
 
     # Two choices code
-    label finalChoices:
+    label dualScene:
         $ updateHearts("THOMAS", 1)
         $ updateHearts("TAYLOR", 3)
         # Jump to label for appropriate scene
@@ -1075,28 +1075,26 @@ label start:
 
 
     # Beginning of after choice options
-    label gpa_rock:
-        rj "GPA Rock"
-        jump after_choice
-
-    label alex:
-        al "Alex"
-        jump after_choice
-
-    label jolee:
-        jo "Jolee"
-        jump after_choice
-
-    label taylor:
-        ta "Taylor"
-        jump after_choice
-
-    label thomas:
-        th "Thomas"
-        jump after_choice
-
-    label after_choice:
-        "You made your choice"
+    label ALEXJOLEE:
+        "Alex and Jolee"
+        jump after
+    label ALEXTAYLOR:
+        "Alex and Taylor"
+        jump after
+    label ALEXTHOMAS:
+        "Alex and Thomas"
+        jump after
+    label JOLEETAYLOR:
+        "Jolee and Taylor"
+        jump after
+    label JOLEETHOMAS:
+        "Jolee and Thomas"
+        jump after
+    label TAYLORTHOMAS:
+        "Taylor and Thomas"
+        jump after
+    label after:
+        "After dual scene"
 
     # Beginning of endings
     label gpa_rock_end:
