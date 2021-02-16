@@ -17,6 +17,8 @@ define thomas = "THOMAS"
 define jmp = "JMP"
 define msg = "MSG"
 define scn = "SCN"
+define shw = "SHW"
+define hde = "HDE"
 define has_rewinded = False
 
 # Heart levels to keep track of romance options
@@ -43,7 +45,11 @@ init python:
         # Iterate through keys in hearts to get the two options
         for name in hearts:
             if hearts[name] == heart_values[-1] or hearts[name] == heart_values[-2]:
-                res.append(name)
+                res.append([name])
+        # sort result
+        res.sort()
+        # jump to appropriate label
+        renpy.jump(res[0]+res[1])
         return res
 
     # Jump to appropriate label, gpa_rock if invalid input given
@@ -91,6 +97,13 @@ init python:
         elif action[0] == "SCN":
             renpy.scene()
             renpy.show(action[1])
+        elif action[0] == "SHW":
+#            if action[2]:
+#                renpy.show(action[1], action[2])
+#           else:
+            renpy.show(action[1])
+        elif action[0] == "HDE":
+            renpy.hide(action[1])
         elif action[0] == "JMP":
             renpy.jump(action[1])
     # Method to store messages in stack
@@ -1057,15 +1070,9 @@ label start:
     label finalChoices:
         $ updateHearts("THOMAS", 1)
         $ updateHearts("TAYLOR", 3)
-        python:
-            # Grab two options
-            options = findDates()
-            choiceOne = options[0].capitalize()
-            choiceTwo = options[1].capitalize()
-            # Show menu with options
-            charChosen = renpy.display_menu([("[choiceOne]", options[0]), ("[choiceTwo]",options[1])])
-            # Jump to appropriate label
-            jumpToDate(charChosen, "")
+        # Jump to label for appropriate scene
+        $ findDates()
+
 
     # Beginning of after choice options
     label gpa_rock:
@@ -1166,14 +1173,28 @@ label start:
 
     label testing:
         $ store_action(jmp, "exit")
+        $ store_action(shw, "taylor", ["right"])
         $ store_action(msg, taylor, "Lorem ipsum dolor sit amet,")
+        $ store_action(hde, "taylor")
+        $ store_action(shw, "thomas")
         $ store_action(msg, thomas, "consectetur adipiscing elit,")
+        $ store_action(hde, "thomas")
+        $ store_action(shw, "jolee")
         $ store_action(msg, jolee, "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+        $ store_action(hde, "jolee")
         $ store_action(scn, "hallwaysakura")
+        $ store_action(shw, "alex at x-align 0.0")
         $ store_action(msg, alex, "Ut enim ad minim veniam,")
+        $ store_action(shw, "taylor at x-align 1.0")
         $ store_action(msg, taylor, "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
+        $ store_action(shw, "thomas at right, x-align 0.5")
         $ store_action(msg, thomas, "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.")
+        $ store_action(shw, "jolee at left")
         $ store_action(msg, jolee, "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+        $ store_action(hde, jolee)
+        $ store_action(hde, thomas)
+        $ store_action(hde, taylor)
+        $ store_action(hde, alex)
         $ store_action(scn, "forumhallway")
         $ rewind()
 
