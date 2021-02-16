@@ -102,6 +102,9 @@ init python:
         # Do action before storing
         if len(stack) != 0:
             run_action(action)
+        # Add tags to text to speed up CPS 
+        if action[0] == "MSG":
+            action[2] = "{cps=100}" + action[2] + "{/cps}{nw}"
         # Add action to stack
         stack.append(action)
     # Method to rewind time
@@ -1162,7 +1165,7 @@ label start:
     "Ending B: Death of a GPA."
 
     label testing:
-        $ store_action(jmp, "testing")
+        $ store_action(jmp, "exit")
         $ store_action(msg, taylor, "Lorem ipsum dolor sit amet,")
         $ store_action(msg, thomas, "consectetur adipiscing elit,")
         $ store_action(msg, jolee, "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
@@ -1172,12 +1175,7 @@ label start:
         $ store_action(msg, thomas, "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.")
         $ store_action(msg, jolee, "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
         $ store_action(scn, "forumhallway")
-        if has_rewinded:
-            jump exit
-            return
-        else:
-            $ has_rewinded = True
-            $ rewind()
-            "Shouldn't reach this"
+        $ rewind()
+
     label exit:
         return
