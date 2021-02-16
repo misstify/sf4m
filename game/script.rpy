@@ -9,11 +9,15 @@ define pl = Character("[name]")
 define rj = Character('Egotistical Student', color="#FFFFFF")
 
 # Initialize placeholder values for characters for ease of use
-define gpa_rock = 0
-define alex = 1
-define jolee = 2
-define taylor = 3
-define thomas = 4
+define gpa_rock = "GPA_ROCK"
+define alex = "ALEX"
+define jolee = "JOLEE"
+define taylor = "TAYLOR"
+define thomas = "THOMAS"
+define jmp = "JMP"
+define msg = "MSG"
+define scn = "SCN"
+define has_rewinded = False
 
 # Heart levels to keep track of romance options
 init python:
@@ -75,25 +79,37 @@ define place1 = int(0) # placeholder "points" variable
 define place2 = int(0) # placeholder "points" variable
 
 # Go backwards wheeeee
-init python in rewind:
+init python:
     # Stack to store messages
     stack = []
-    # Method to initialize stack
-    def init_stack(lab):
-        stack.append(lab)
+
+    # Method to do action based on object type
+    def run_action(action):
+        # Check type of message stored
+        if action[0] == "MSG":
+            renpy.say(action[1], action[2])
+        elif action[0] == "SCN":
+            renpy.scene()
+            renpy.show(action[1])
+        elif action[0] == "JMP":
+            renpy.jump(action[1])
     # Method to store messages in stack
-    def store_msg(char_name, msg):
-        stack.append((char_name, msg))
+    def store_action(category, *args):
+        action = []
+        action.append(category)
+        for arg in args:
+            action.append(arg)
+        # Do action before storing
+        if len(stack) != 0:
+            run_action(action)
+        # Add action to stack
+        stack.append(action)
     # Method to rewind time
-    def rewind_msgs():
+    def rewind():
         while len(stack) != 0:
-            # if stack has reached bottom jump to label
-            if len(stack) == 1:
-                renpy.jump(stack[0])
-            # otherwise display message
-            else:
-                obj = stack[-1]
-                renpy.say(obj[0], obj[1])
+            # Grab last object on stack
+            obj = stack.pop()
+            run_action(obj)
 
 # The game starts here.
 label start:
@@ -102,7 +118,7 @@ label start:
     with dissolve
 
     # Nates testing cheaty jump
-    #jump finalChoices
+    jump testing
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
@@ -1027,7 +1043,7 @@ label start:
 
         pl "Taylor didn't write this yet because it's 2am and she should sleep."
 
-    # Nate testing ability to choose between two date options
+    # Two choices code
     label finalChoices:
         $ updateHearts("THOMAS", 1)
         $ updateHearts("TAYLOR", 3)
@@ -1137,3 +1153,24 @@ label start:
         "And maybe Jolee wasn’t wrong that its members were just agents of the rock."
 
     "Ending B: Death of a GPA."
+
+    label testing:
+        $ store_action(jmp, "testing")
+        $ store_action(msg, taylor, "Lorem ipsum dolor sit amet,")
+        $ store_action(msg, thomas, "consectetur adipiscing elit,")
+        $ store_action(msg, jolee, "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+        $ store_action(scn, "bg hallwaysakura")
+        $ store_action(msg, alex, "Ut enim ad minim veniam,")
+        $ store_action(msg, taylor, "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
+        $ store_action(msg, thomas, "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.")
+        $ store_action(msg, jolee, "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+        $ store_action(scn, "bg forumhallway")
+        if has_rewinded:
+            jump exit
+            return 
+        else:
+            $ has_rewinded = True
+            $ rewind()
+            "Shouldn't reach this"
+    label exit:
+        return
