@@ -82,11 +82,7 @@ init python:
                 if hearts[name] == max_romance:
                     jumpToDate(name)
 
-define place1 = int(0) # placeholder "points" variable
-define place2 = int(0) # placeholder "points" variable
-
 # Go backwards wheeeee
-init python:
     # Stack to store messages
     stack = []
 
@@ -94,7 +90,7 @@ init python:
     def run_action(action):
         # Check type of message stored
         if action[0] == "MSG":
-            renpy.say(action[1], action[2])
+            renpy.say(action[1].capitalize(), action[2])
         elif action[0] == "SCN":
             renpy.scene()
             renpy.show(action[1])
@@ -118,7 +114,7 @@ init python:
             run_action(action)
         # Add tags to text to speed up CPS
         if action[0] == "MSG":
-            action[2] = "{cps=100}" + action[2] + "{/cps}{nw}"
+            action[2] = "{cps=150}" + action[2] + "{/cps}{nw}"
         # Add action to stack
         stack.append(action)
     # Method to rewind time
@@ -135,7 +131,7 @@ label start:
     with dissolve
 
     # Nates testing cheaty jump
-    # jump dualScene
+    jump testing
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
@@ -1517,8 +1513,8 @@ label start:
 
     # Two choices code
     label dualScene:
-        $ updateHearts("THOMAS", 1)
-        $ updateHearts("TAYLOR", 3)
+        $ updateHearts(taylor, 3)
+        $ updateHearts(thomas, 4)
         # Jump to label for appropriate scene
         $ findDates()
 
@@ -1989,28 +1985,30 @@ label start:
 
     label testing:
         $ store_action(jmp, "exit")
-        $ store_action(shw, "taylor", ["right"])
+        scene bg hallwaysakura
+        show ta at right
         $ store_action(msg, taylor, "Lorem ipsum dolor sit amet,")
-        $ store_action(hde, "taylor")
-        $ store_action(shw, "thomas")
+        show th at center
         $ store_action(msg, thomas, "consectetur adipiscing elit,")
-        $ store_action(hde, "thomas")
-        $ store_action(shw, "jolee")
+        show jo at left
         $ store_action(msg, jolee, "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-        $ store_action(hde, "jolee")
+        hide ta
+        hide th 
+        hide jo 
         $ store_action(scn, "hallwaysakura")
-        $ store_action(shw, "alex at x-align 0.0")
+        scene bg forumhallway
+        show al
         $ store_action(msg, alex, "Ut enim ad minim veniam,")
-        $ store_action(shw, "taylor at x-align 1.0")
+        hide al 
+        show ta 
         $ store_action(msg, taylor, "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
-        $ store_action(shw, "thomas at right, x-align 0.5")
+        hide ta 
+        show th 
         $ store_action(msg, thomas, "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.")
-        $ store_action(shw, "jolee at left")
+        hide th 
+        show jo 
         $ store_action(msg, jolee, "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-        $ store_action(hde, jolee)
-        $ store_action(hde, thomas)
-        $ store_action(hde, taylor)
-        $ store_action(hde, alex)
+        hide jo 
         $ store_action(scn, "forumhallway")
         $ rewind()
 
