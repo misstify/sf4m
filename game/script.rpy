@@ -131,7 +131,7 @@ label start:
     with dissolve
 
     # Nates testing cheaty jump
-    jump dualScene 
+    jump endingb 
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
@@ -1400,9 +1400,7 @@ label start:
         scene forummainclapcheeks
 
         "The basement is surprisingly quiet as I approach, but it’s obviously why when I enter to find just Jolee, Thomas and Alex all sitting at the back table with their laptops."
-        show jolee at left
-        show thomas 
-        show alex at right 
+        show 4pspread
         "Jolee notices me first, giving me a wave."
         jo "Morning [name]."
         al "Heyo."
@@ -1417,8 +1415,6 @@ label start:
         al "It’d have to be a short one though if [name] has class, no Terraforming Mars or anything like that."
         jo "Yeah and I don’t feel like suffering through us attempting to play jenga again, even if Taylor isn’t here."
         "As if summoned by Jolee’s words, Taylor suddenly charges into the room with a laugh and brandishing something in her hands."
-        hide thomas 
-        show taylor 
         ta "Hey guys, look at what I just stol- I mean, recovered from the Anime club!"        
         "She holds up a small navy blue box that has the Bat symbol on it along with the words ‘Love Letter’."
         al "You got the game back from them!?"
@@ -1481,8 +1477,8 @@ label start:
 
         # J'accuse Taylor
         label lltaylor:
-            hide jolee 
-            hide alex 
+            hide 4pspread 
+            show taylor 
             "Taylor seems confident as she looks at me, it has to be her, right?"
             "I throw my batman card on the table and point to her."
             pl "Do you have the joker?"
@@ -1493,8 +1489,8 @@ label start:
 
         # J'accuse Jolee
         label lljolee:
-            hide taylor
-            hide alex 
+            hide 4pspread
+            show taylor 
             "Jolee seems nervous, it has to be her right?"
             "I throw my batman card on the table and point to her."
             pl "Do you have the joker?"
@@ -1506,9 +1502,7 @@ label start:
 
         # J'accuse Thomas
         label llthomas:
-            hide jolee 
-            hide alex 
-            hide taylor 
+            hide 4pspread 
             show thomas 
             "Thomas has a perfect poker face right now, maybe it’s him?"
             "I throw my batman card on the table and point to him."
@@ -1520,8 +1514,8 @@ label start:
 
         # J'accurse Alex
         label llalex:
-            hide jolee 
-            hide taylor 
+            hide 4pspread 
+            show alex  
             "Alex seems confused despite being so excited earlier. Maybe it’s him?"
             "I throw my batman card on the table and point to him."
             pl "Do you have the joker?"
@@ -1533,6 +1527,7 @@ label start:
 
         # If Alex isn't accused, proceeds to Taylor's turn
         label taylorturn:
+            hide 4pspread 
             show taylor 
             "Taylor draws a card happily."
             ta "My turn~!"
@@ -1542,22 +1537,19 @@ label start:
             "The two of them lean in, Alex letting her peek at his cards. Almost immediately, her expression grows as confused as him."
             jo "What is it?"
             ta "Alex, how the hell do you have two jokers?"
-
+            hide taylor 
             jump llcontinue
 
 # All the choices of the love letter game reconverge
     label llcontinue:
-        show alex at left 
+        show rpspread 
         al "I have no idea how this happened."
-        show thomas at right 
         th "Perhaps the anime club mixed some of the cards up when they took the game?"
         ta "I mean, this wasn’t me for once, so it probably would have to be them?"
         al "I’ll uh, just slide one of these to the side…"
         pl "Does this mean we’re starting over?"
         ta "It could be interesting to try to play this with two jokers in the deck. I mean, if you get one it’s great, if you get two, you’re screwed."
         th "Wouldn’t be the first time we try to break a game."
-        hide alex 
-        show jolee at left 
         jo "I’m fine with whatever honestly, so long as the games don’t take too long, some of us have class soon."
         "As everyone starts discussing the new game, I pause feeling a… strange sensation in my stomach."
         jo "You alright there [name]? Looking a bit green."
@@ -2123,9 +2115,6 @@ label start:
         pl "I feel like I’ve heard of gundam but I’m not positive. What’s it about?"
         "For a moment it seems like I opened the floodgates as Alex’s face lights like up like an evening sky in the countryside, nothing but hope and stars."
         al "Well you see…"
-    # NATE - Turn this following monologue up to like 500 characters per second and autoplay.
-    # This is being written in monologue mode so I don't have to write 'al "text"' a million times.
-
         al "{cps=150}Gundam is a massively popular giant robot franchise from Japan that's been running since the late 70s and defined the mecha genre as we know it with the original series Mobile Suit Gundam from 1979 which was a show that was hard science-fiction for the most part.{/cps}{nw}"
         al "{cps=150}It lasted 43 episodes and wasn't particularly successful at the time, facing cancellation but allowed to finish its story, it only became popular through the compilation film trilogy that succeeded it which trimmed about 10 hours of fat from the original series in total.{/cps}{nw}"
         al "{cps=150}Nowadays it's recognized, along with other Gundam series as phenomenal examples of anti-war narratives with shows that despite the spectacle of giant robots are about people, the hopes for the growth of humanity, and a reflection of the hell people are capable of.{/cps}{nw}"
@@ -2134,7 +2123,6 @@ label start:
         al "{cps=150}If you wanna see the upcoming Gundam movie, you'd have to watch a good amount of the 'Universal Century' timeline. Gundam has multiple different continuities and Universal Century is the largest one, it includes the original '79 series among others.{/cps}{nw}"
         al "{cps=150}To watch the new movie, you'd have to watch a bare minimum of Gundam '79, Zeta Gundam, Gundam ZZ, Gundam CCA, Gundam Unicorn, and maybe Gundam NT to get the big picture of what's going on in this movie.{/cps}{nw}"
         al "{cps=150}If you get really into the series, there's the plastic model kits based on robots from the show known as gunpla, which come in-{/cps}{nw}"
-
         "Alex stops suddenly, his face turning a fierce red as he shrinks in on himself, looking away from me."
         al "Sorry, I uh…"
         "So quickly he goes from rambling about Gundam to being at a loss for words."
@@ -2474,7 +2462,8 @@ label start:
 # Uncover the gpa rock
 
     label endingb:
-
+        $ name = "test"
+        show 4pspread
         pl "Well, it’s just a rock, it can’t actually be cursed right?"
         "I reach forward to pull off the chainmail as Thomas reels back. Alex completely stands up from the couch, moving further back into the room."
         "Pulling it off I’m just faced with… a rock."
