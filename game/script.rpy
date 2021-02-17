@@ -1524,25 +1524,395 @@ label start:
 
     # Beginning of after choice options
     label ALEXJOLEE:
-        "Alex and Jolee"
-        jump after
+        "I walk in to find Jolee and Alex sitting at the tables alone, each cutting shapes out of pink construction paper."
+        jo "Oh, hey [name]! You were gone so long we were getting a bit worried. You feeling alright?"
+        pl "...Yeah. Yeah I feel fine. Where’d Taylor and Thomas go?"
+        jo "Oh, you were gone for so long they had to leave for class."
+        al "Unfortunately they didn’t leave fast enough to avoid Taylor’s latest idea."
+        jo "It’s not that bad Alex."
+        pl "I assume all this paper is part of it?"
+        jo "Yeah. We were talking about manga and Taylor mentioned that it would be festive if there were cherry blossoms put up around the room."
+        al "But somehow it went from putting them up around the room to putting it up in the hallway to help draw people into the room."
+        pl "Do people come into the basement that often? I hadn’t had reason to come down here before I heard about you guys."
+        jo "The bank is down the hall and whenever the ATM upstairs breaks, people come to use the one down here. We usually get a lot of people stopping by when that happens."
+        al "I still think Taylor has purposefully broke that thing a few times somehow."
+        pl "How do you even break an ATM?"
+        jo "No idea, but I wouldn’t put it past her."
+        "I sit at the table, looking at the randomly cut pink paper."
+        pl "So, we’re cutting these out and what, taping it to the wall outside?"
+        al "Basically."
+        jo "If you want to help it’d be appreciated. There’s some spare scissors over there."
+        pl "It’d feel kind of wrong if I just watched you guys do all the work."
+        al "Definitely feels kind of ‘wrong’ with how sore my hands are already getting."
+        "Quiet music plays from the tv as we all sit there, working on this goofy project."
+        "After a bit, Jolee speaks up."
+        jo "Do you guys want to try and start taping some of this to the hallway?"
+        al "Yeah, we’re just making a mess of paper scraps right now to be honest."
+        pl "It’d probably be fastest if one person put them up and someone else continued cutting?"
+        jo "I’m too short to put up the top part of the tree without help honestly."
+        al "And my hand is getting sore from all this cutting honestly."
+        pl "You two could go in the hallway while I keep cutting?"
+        jo "It wouldn’t be right to make you do the rest of this on your own though."
+        al "I mean, I don’t see a problem with it-"
+        jo "Alex."
+        al "Yeah, yeah. [name] do you have a preference in all this?"
+
+        menu:
+            "I can help Jolee put up the tree in the hall.":
+                jump jahelpjolee
+
+            "I can put up the leaves with Alex.":
+                jump jahelpalex
+
+        # Help Jolee over Alex
+        label jahelpjolee:
+
+            "I kind of want to go out in the hall with Jolee to tape parts of this up. Hand’s kind of getting sore too."
+            "Alex lets out a groan but nods."
+            al "Yeah, alright, but we better swap places after a bit before my fingers fall off."
+            "Jolee looks up at me surprised for a moment before she nods."
+            jo "Alright, let’s gather all of these and head out there."
+            "Our arms are filled with paper and duct tape as we move out into the hallway."
+
+            jump joleehallway
+
+        # Help Alex over Jolee
+        label jahelpalex:
+
+            "I can just put up the leaves with Alex - his hands could use the rest and you don’t have to worry about trying to reach the hallway ceiling Jolee."
+            jo "I can agree to that, I definitely don’t feel like balancing on a stepstool right now."
+            "Alex gives me a grateful nod and puts down the scissors, gathering up paper instead."
+            al "This definitely seems less painful. Why do we only have child-sized scissors?"
+            jo "These are me-sized but yeah, not fun for you guys. We might allocate for bigger ones if we can’t find any of the other pairs."
+            "Arms full, I look at Alex and we both head out into the hallway to work."
+
+            jump alexhallway
+
     label ALEXTAYLOR:
-        "Alex and Taylor"
-        jump after
+        "I walk in to find Taylor brandishing duct tape and pink construction paper to Alex, grinning widely as she whirls around to look at me."
+        ta "[name] hey! I was wondering if you fell in and drowned or something. Feeling better?"
+        pl "...Yeah. Yeah I feel fine. Where’d Jolee and Thomas go?"
+        ta "Oh, you were gone for so long they had to leave for class."
+        al "Yes, and unfortunately I’ve been left in here alone with Taylor in the meantime."
+        ta "You say that like you don’t love this tree idea."
+        pl "Tree idea?"
+        al "She wants to put up a cherry blossom tree in the hallway with paper."
+        ta "Yup, there’s no better way to spend my time when I have homework due at midnight!"
+        al "...Taylor why."
+        ta "There’s no point in being grown up if you can’t act childish sometimes. Now take this duct tape, it’s sakura time."
+        al "Taylor, why do you have duct tape?"
+        ta "...The man who sleeps with a machete is a fool every night but one?"
+        pl "Now that one definitely was stolen from online."
+        ta "I am a bundle of references in a hoodie, yes, whatever, Sakura Time!"
+        "Taylor rushes around, pulling more paper and scissors off of the shelves."
+        ta "Come on you two, I think it would do us all good this year if we had a nice cherry blossom staring us in the face?"
+        pl "How did this even start?"
+        al "We were talking about a manga we’ve been reading together called Komi-san. It’s near Valentine’s day in the story’s timeline."
+        ta "Oda is moving the plot as slow as molasses though, so we suffer."
+        al "But yeah, the conversation just went from manga to Japan to cherry blossoms and now…"
+        "Alex gestures to the grinning Taylor as she dumps another stack of pink paper onto the table."
+        ta "You say that like my idea is a bad thing."
+        al "It’s a tiring one. These scissors are too small for my hands, they’re getting sore."
+        ta "Get smaller hands."
+        pl "Something tells me that’s not possible for him."
+        ta "I dunno, there’s a cosmetic surgery for everything these days. Grab some scissors [name], I’ll need the power to make up for Alex."
+        pl "I guess I’m helping."
+        "I sit at the table with them as music plays from the tv. All of us sitting there, working on this goofy project."
+        "After a bit, Taylor speaks up."
+        ta "Do you guys want to try and start taping some of this to the hallway?"
+        al "Yeah, we’re just making a mess of paper scraps right now to be honest."
+        pl "It’d probably be fastest if one person put them up and someone else continued cutting?"
+        ta "I dunno if I feel like getting up."
+        al "Well my hand is getting sore from all this cutting honestly."
+        pl "Alex can put it up while we keep cutting?"
+        ta "I don’t feel like cutting either though."
+        al "You have to do one or the other Taylor, this was all your idea."
+        ta "Fine, fine.. [name] what do you feel like doing?"
+
+        menu:
+            "I can go into the hall with Taylor to put up leaves.":
+                jump athelptaylor
+
+            "I can put up the leaves with Alex.":
+                jump athelpalex
+
+        # Help Taylor over Alex
+        label athelptaylor:
+
+            pl "I’ll go with you into the hallway Taylor, we can put up the leaves together."
+            "Alex lets out a groan but nods."
+            al "Yeah, alright, but we better swap places after a bit before my fingers fall off."
+            ta "Ooo teamwork? Sounds like my kind of game, you can do the taping and I’ll do the directing."
+            "Alex leans forward, stage-whispering to me."
+            al "Good luck."
+            "Taylor lightly smacks him upside the head before she walks past, a bundle of paper in her other arm."
+            ta "Let’s go dude, to the hall!"
+
+            jump taylorhallway
+
+        # Help Alex over Taylor
+        label athelpalex:
+
+            "I can just put up the leaves with Alex - his hands could use the rest and you can’t skimp out on doing anything then Taylor."
+            "Taylor lets out a groan of protest but grabs the scissors."
+            ta "Fine, fine, all in the name of hallway memes."
+            "Alex gives me a grateful nod and puts down the scissors, gathering up paper instead."
+            al "This definitely seems less painful. Why do we only have child-sized scissors?"
+            ta "I don’t know, ask Jolee. She buys these supplies and coincidentally these scissors are the perfect size for her hands!"
+            "Arms full, I look at Alex and we both head out into the hallway to work."
+
+            jump alexhallway
+
     label ALEXTHOMAS:
-        "Alex and Thomas"
-        jump after
+        "I walk in to find Jolee and Alex sitting at the tables alone, each cutting shapes out of pink construction paper."
+        th "Oh hey [name]. You took quite a bit in there, are you okay?"
+        pl "...Yeah. Yeah I feel fine. Where’d Taylor and Jolee go?"
+        al "You were gone for long enough that they had to go to class. You missed Jolee telling Taylor she wasn’t allowed to skip class again and dragging her away."
+        pl "Sounds like I missed quite the show then. What’s all this though?"
+        th "Before she was dragged off, she came up with the idea of creating a paper cherry blossom tree in the hallway."
+        pl "How’d the discussion go from Love Letter to that?"
+        al "Because we started talking about manga and no discussion here really stays on topic for long. And now my hands are being tortured from it."
+        th "To be honest, I’m just glad she’s trying to advertise our events for once."
+        pl "You guys want my help?"
+        al "Please."
+        "I walk, taking the scissors handed to me by Alex and sit at the table, joining them as I start cutting out nonsensical shapes from the construction paper."
+        "Quiet music plays from the tv as we all sit there, working on this goofy project before Thomas speaks up."
+        th "Do you guys want to try and start taping some of this to the hallway?"
+        al "Yeah, we’re just making a mess of paper scraps right now to be honest."
+        pl "It’d probably be fastest if one person put them up and someone else continued cutting?"
+        th "I’m too short to put up the top part of the tree without help honestly."
+        al "And my hand is getting sore from all this cutting honestly."
+        pl "You two could go in the hallway while I keep cutting?"
+        th "It wouldn’t be right to make you do the rest of this on your own though."
+        al "I mean, I don’t see a problem with it-"
+        th "Alex."
+        al "Yeah, yeah. [name] do you have a preference in all this?"
+
+        menu:
+            "I can set up the tree in the hall with Thomas.":
+                jump tahelpthomas
+
+            "I can put up the leaves with Alex.":
+                jump tahelpalex
+
+        label tahelpthomas:
+
+            "I think both of us should put up the tree in the hallway Thomas."
+            th "Really? I kind of thought… well alright."
+            "He seems almost taken aback for a moment before he just returns to his usual calm state."
+            "Alex lets out a groan, but nods in agreement as well."
+            al "One of you better swap with me before my fingers fall off though."
+            th "Don’t worry, we won’t leave you to die. Probably."
+            "Thomas has a sly grin as he gathers up some paper and tape, nodding his head to the hallway."
+            th "Shall we?"
+            pl "Let’s go."
+
+            jump thomashallway
+
+        label tahelpalex:
+
+            "I can just put up the leaves with Alex - his hands could use the rest and you don’t have to worry about trying to reach the hallway ceiling Thomas."
+            th "I can agree to that. I definitely don’t feel like balancing on a stepstool right now to try to reach the top part of the hallway anyway."
+            "Alex gives me a grateful nod and puts down the scissors, gathering up paper instead."
+            al "This definitely seems less painful. Why do we only have child-sized scissors?"
+            th "These are definitely better sized for me and Jolee rather than anyone else. We might allocate for bigger ones if we can’t find any of the other pairs."
+            "Arms full, I look at Alex and we both head out into the hallway to work."
+
+            jump alexhallway
+
     label JOLEETAYLOR:
-        "Jolee and Taylor"
-        jump after
+        "I walk in to find Taylor brandishing duct tape and pink construction paper to Jolee, grinning widely as she whirls around to look at me."
+        ta "[name] hey! I was wondering if you fell in and drowned or something. Feeling better?"
+        pl "...Yeah. Yeah I feel fine. Where’d Alex and Thomas go?"
+        ta "Oh, you were gone for so long they had to leave for class."
+        jo "And in the meantime, Taylor had… an idea."
+        ta "Why do you say like I just showed you a millipede from under a rock?"
+        pl "I assume all this paper is part of it?"
+        jo "Yeah. We were talking about manga and Taylor mentioned that it would be festive if there were cherry blossoms put up around the room."
+        ta "Yeah, but then I realized that if we put them up outside the room, that counts as advertising and that means I’m technically doing my job so they can’t oppose me!"
+        pl "Do people come into the basement that often? I hadn’t had reason to come down here before I heard about you guys."
+        jo "The bank is down the hall and whenever the ATM upstairs breaks, people come to use the one down here. We usually get a lot of people stopping by when that happens."
+        ta "And if the ATM just happens to break again after we put this up, I’ll have not only done my job, but I will have done it well."
+        pl "Taylor, have you broken the ATM before?"
+        jo "How do you even break an ATM?"
+        ta "Don’t worry about it. [name] come sit, less talky, more cutty."
+        "I sit at the table, looking at the randomly cut pink paper."
+        pl "So, we’re cutting these out and what, taping it to the wall outside?"
+        jo "Basically."
+        ta "Let’s go!"
+        "Quiet music plays from the tv as we all sit there, working on this goofy project."
+        "After a bit, Jolee speaks up."
+        jo "Do you guys want to try and start taping some of this to the hallway?"
+        ta "I mean we could, but I don’t feel like getting up."
+        jo "Well, I can’t really reach the ceiling of the hallway if I go start doing it."
+        pl "I could do that while both of you keep cutting?"
+        ta "I don’t feel like cutting either though."
+        jo "You have to do one or the other Taylor, this was all your idea."
+        ta "Fine, fine.. [name] what do you feel like doing?"
+
+        menu:
+            "I can go into the hall with Taylor to put up leaves.":
+                jump jothelptaylor
+
+             "I can help Jolee put up the tree in the hall.":
+                jump jothelpjolee
+
+        label jothelptaylor:
+
+            pl "I’ll go with you into the hallway Taylor, we can put up the leaves together."
+            jo "I can agree to that, I definitely don’t feel like balancing on a stepstool right now."
+            ta "Ooo teamwork? Sounds like my kind of game, you can do the taping and I’ll do the directing."
+            "Jolee leans forward, stage-whispering to me."
+            al "Good luck."
+            "Taylor waves Jolee off as she walks past me, a bundle of paper in her other arm."
+            ta "Let’s go dude, to the hall!"
+
+            jump taylorhallway
+
+        label jothelpjolee:
+
+            "I kind of want to go out in the hall with Jolee to tape parts of this up. Hand’s kind of getting sore too."
+            "Taylor lets out a groan of protest but grabs the scissors."
+            ta "Fine, fine, all in the name of hallway memes."
+            "Jolee looks up at me surprised for a moment before she nods."
+            jo "Alright, let’s gather all of these and head out there."
+            "Our arms are filled with paper and duct tape as we move out into the hallway."
+
+            jump taylorhallway
+
     label JOLEETHOMAS:
-        "Jolee and Thomas"
-        jump after
+        "I walk in to find Jolee and Thomas sitting at the tables alone, each cutting shapes out of pink construction paper."
+        jo "Oh, hey [name]! You were gone so long we were getting a bit worried. You feeling alright?"
+        pl "...Yeah. Yeah I feel fine. Where’d Taylor and Alex go?"
+        jo "Oh, you were gone for so long they had to leave for class. I had to yell at Taylor to not skip and stay to work on all this."
+        pl "Sounds like I missed quite the show then. What’s all this though?"
+        th "Before she was dragged off, she came up with the idea of creating a paper cherry blossom tree in the hallway."
+        pl "How’d the discussion go from Love Letter to that?"
+        jo "Because we started talking about manga and no discussion here really stays on topic for long."
+        th "To be honest, I’m just glad she’s trying to advertise our events for once."
+        pl "You guys want my help?"
+        th "It’d be appreciated."
+        "I walk, taking the scissors handed to me by Jolee and sit at the table, joining them as I start cutting out nonsensical shapes from the construction paper."
+        "Quiet music plays from the tv as we all sit there, working on this goofy project before Thomas speaks up."
+        th "Do you guys want to try and start taping some of this to the hallway?"
+        jo "Yeah, we’re just making a mess of paper scraps right now to be honest."
+        pl "It’d probably be fastest if one person put them up and someone else continued cutting?"
+        th "I’m too short to put up the top part of the tree without help honestly."
+        jo "I’m pretty much in the same boat."
+        pl "You two could stay here while I work in the hallway?"
+        th "It wouldn’t be right to make you do the rest of this on your own though."
+        jo "We’d probably end up cutting faster than you put them up and cut to much or end up helping you anyway."
+        pl "Then I suppose…"
+
+        menu:
+            "I can set up the tree in the hall with Thomas.":
+                jump tjohelpthomas
+
+             "I can help Jolee put up the tree in the hall.":
+                jump tjohelpjolee
+
+        label tjohelpthomas:
+
+            "I think both of us should put up the tree in the hallway Thomas."
+            th "Really? I kind of thought… well alright."
+            "He seems almost taken aback for a moment before he just returns to his usual calm state."
+            jo "I can agree to that, I definitely don’t feel like balancing on a stepstool right now."
+            th "Alright then, let’s head out there then."
+            "Thomas gathers up some of the paper and tape before nodding to me."
+            th "Shall we?"
+            pl "Let’s go."
+
+            jump thomashallway
+
+        label tjohelpjolee:
+
+            "I kind of want to go out in the hall with Jolee to tape parts of this up. Hand’s kind of getting sore anyway."
+            th "I’m fine with that, I’ll stay in here and cut and you guys can work out there."
+            "Jolee looks up at me surprised for a moment before she nods."
+            jo "Alright, let’s gather all of these and head out there."
+            "Our arms are filled with paper and duct tape as we move out into the hallway."
+
+            jump joleehallway
+
     label TAYLORTHOMAS:
-        "Taylor and Thomas"
-        jump after
-    label after:
-        "After dual scene"
+        "I walk in to find Taylor brandishing duct tape and pink construction paper to Thomas, grinning widely as she whirls around to look at me."
+        ta "[name] hey! I was wondering if you fell in and drowned or something. Feeling better?"
+        pl "...Yeah. Yeah I feel fine. Where’d Jolee and Alex go?"
+        ta "Oh, you were gone for so long they had to leave for class."
+        th "Taylor came up with this tree idea before they left though."
+        pl "Yeah, what is all this?"
+        ta "We’re making a tree!"
+        "Taylor starts bouncing up and down in place like an excited kid."
+        th "Taylor, you are quite literally running and bouncing with scissors in your hand."
+        ta "There’s no point in being grown up if you can’t act childish sometimes. Now take this duct tape, it’s sakura time."
+        pl "Why do you have duct tape?"
+        ta "...The man who sleeps with a machete is a fool every night but one?"
+        th "Now that one definitely was stolen from online."
+        ta "I am a bundle of references in a hoodie, yes, whatever, Sakura Time!"
+        "Taylor rushes around, pulling more paper and scissors off of the shelves."
+        ta "Come on you two, I think it would do us all good this year if we had a nice cherry blossom staring us in the face?"
+        pl "How did this even start? What happened to Love Letter?"
+        th "We were talking about manga because no discussion here really stays on topic for long. Manga led to talks about Japan, cherry blossoms and lo and behold, here we are."
+        ta "This is me doing my job advertising events so they can’t stop me."
+        th "To be honest, I’m just glad she’s trying to advertise our events for once."
+        pl "So, you guys want my help?"
+        th "It’d be appreciated."
+        "I walk, taking the scissors handed to me by Taylor and sit at the table, joining them as I start cutting out nonsensical shapes from the construction paper."
+        "Quiet music plays from the tv as we all sit there, working on this goofy project before Thomas speaks up."
+        th "Do you guys want to try and start taping some of this to the hallway?"
+        ta "I don’t feel like getting up."
+        th "I’m too short to put up the top part of the tree without help honestly."
+        pl "I could put it up while you two keep cutting?"
+        ta "I don’t feel like cutting either though."
+        th "You have to do one or the other Taylor, this was all your idea."
+        ta "Fine, fine.. [name] what do you feel like doing?"
+
+        menu:
+            "I can go into the hall with Taylor to put up leaves.":
+                jump tthelptaylor
+
+            "I can set up the tree in the hall with Thomas.":
+                jump tthelpthomas
+
+        label tthelptaylor:
+            pl "I’ll go with you into the hallway Taylor, we can put up the leaves together."
+            th "I can agree to that, I’ll keep cutting while you two are out there."
+            ta "Ooo teamwork? Sounds like my kind of game, you can do the taping and I’ll do the directing."
+            th "Just don’t let her make you do all the work."
+            pl "I think I’ll be fine."
+            "Taylor waves Thomas off as she walks past me, a bundle of paper in her other arm."
+            ta "Let’s go dude, to the hall!"
+
+            jump taylorhallway
+
+        label tthelpthomas
+            "I think both of us should put up the tree in the hallway Thomas."
+            th "Really? I kind of thought… well alright."
+            "He seems almost taken aback for a moment before he just returns to his usual calm state."
+            "Taylor lets out a groan of protest but grabs the scissors."
+            ta "Fine, fine, all in the name of hallway memes."
+            th "Alright then, let’s head out there then."
+            "Thomas gathers up some of the paper and tape before nodding to me."
+            th "Shall we?"
+            pl "Let’s go."
+
+            jump thomashallway
+
+    label joleehallway:
+        "jolee hallway"
+
+    label alexhallway:
+        "alex hallway"
+
+    label thomashallway:
+        "thomas hallway"
+
+    label taylorhallway:
+        "taylor hallway"
+
+    # Beginning of Thursday
+    label thursday:
+        "Yeet"
 
     # Beginning of endings
     label gpa_rock_end:
