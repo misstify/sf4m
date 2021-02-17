@@ -1609,8 +1609,8 @@ label start:
             if not name:
                 name="Samuel Stanley"
 
-        $ updateHearts(alex, 3)
-        $ updateHearts(jolee, 4)
+        $ updateHearts(taylor, 3)
+        $ updateHearts(thomas, 4)
         # Jump to label for appropriate scene
         $ findDates()
 
@@ -1758,7 +1758,7 @@ label start:
             jump alexhallway
 
     label ALEXTHOMAS:
-        "I walk in to find Jolee and Alex sitting at the tables alone, each cutting shapes out of pink construction paper."
+        "I walk in to find Alex and Thomas sitting at the tables alone, each cutting shapes out of pink construction paper."
         show alex at left 
         show thomas at right 
         th "Oh hey [name]. You took quite a bit in there, are you okay?"
