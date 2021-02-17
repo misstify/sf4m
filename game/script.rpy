@@ -131,7 +131,7 @@ label start:
     with dissolve
 
     # Nates testing cheaty jump
-    jump testing
+    # jump testing
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
@@ -371,7 +371,7 @@ label start:
             al "A-ha! Take that, 'nerd'!"
             "The tired boy seems invigorated as the girl gives me an annoyed glare before she just grabs a pillow off of the couch."
             ta "I'm hitting one of you with this, choose wisely fools."
-            al "Ha, I'll happily tae the blow to protect the new member actually being cultured."
+            al "Ha, I'll happily take the blow to protect the new member actually being cultured."
 
             hide alex
             hide taylor
@@ -406,19 +406,36 @@ label start:
     label split:
 
         "Taylor falls back on the couch, hugging onto a giant blue couch pillow as the boy at the table speaks up, waving a hand at me."
+
+        show thomas
+
         th "[name] was it? Nice to meet you. I’m Thomas."
+
+        show jolee at left
+
         jo "Oh, and I’m Jolee! Over there is Taylor and Alex."
+
+        show alex at right
+
         al "Hiya."
         pl "Nice to meet you all."
         jo "This is just an open room, so feel free to sit and relax or go and come back later."
         al "Maybe if you go and come back, there will actually be something on the TV by then."
         pl "It’s alright, I don’t have class for a bit anyway."
+
+        hide jolee
+        show taylor at left
+
         ta "Are you a resident or commuter?"
         pl "Commuter. Take the train here. Getting a car on campus seems like a lot honestly."
         th "Ah, it kind of is but if you need help I can walk you through it. I just moved my truck to one of the other parking lots earlier."
         pl "You had to move parking lots…?"
         th "Yeah, all in the name of not getting tickets."
         ta "Imagine not going into copious amounts of debt to stay in a dirty little room with someone else."
+
+        hide thomas
+        show jolee
+
         jo "You are here on basically full scholarship and you’re the reason our dorm is dirty."
         ta "...I plead the fifth."
         "As Taylor and Jolee begin to banter, I look and see Alex trying to lean over and take a controller off from the table."
@@ -428,6 +445,10 @@ label start:
         ta "That insinuates I respect your authority."
         "The two of them start bickering again, Jolee offering me an apologetic smile before she goes back to talking to Thomas about the papers they seem to be writing on."
         "Maybe I should go talk to one of these pairs."
+
+        hide jolee
+        hide taylor
+        hide alex
 
     menu:
         "Go over to Taylor and Alex":
@@ -442,6 +463,9 @@ label start:
 
         scene forumalt
         with dissolve
+
+        show taylor at left
+        show alex at right
 
         ta "I reject your reality and substitute my own."
         al "You are not even in this reality."
@@ -534,6 +558,9 @@ label start:
 # The Jolee-Thomas conversation begins
     label jtconvo:
 
+        show jolee at left
+        show thomas at right
+
         jo "We just have the leftover yarn from last semester’s event taking up so much space, I want to get rid of it."
         th "Yes, but we can do that event at any time, being able to get everyone together for a gaming event will be harder if we wait until later in the semester when midterms kick off."
         "Compared to the other two, this calm discussion is a welcome diversion."
@@ -611,14 +638,31 @@ label start:
         ta "I will fight this to the grave, I have nothing to live for anyway!"
         al "Just give me the controller!"
         jo "I’ll uh, go settle those two actually."
+
+        hide jolee
+        hide thomas
+        show thomas
+
         "Jolee goes over to the couch as Thomas shrugs."
         th "Club’s a bit empty because of all this but, it’s home, y’know?"
         pl "I definitely can see why people don’t stick around, but I can see plenty of reasons why I’d want to stick around though."
         th "Heh, glad you’re enjoying our insanity."
+
+        hide thomas
+        show taylor at left
+        show jolee
+        show alex at right
+
         ta "I will not yield!"
         jo "I will buy you ramen if you do."
         ta "...I have been bribed."
         al "Really, you accept her bribes but not mine?!"
+
+        hide taylor
+        hide jolee
+        hide alex
+        show thomas
+
         th "Care to watch the movie?"
         pl "Huh?"
         "I look away from the chaotic scene to look back over at Thomas who seems to be looking at me with an almost analytical eye."
@@ -627,6 +671,9 @@ label start:
         th "Nah, once we get past our stubbornness, we can get things done pretty quickly around here."
         pl "I’ll take your word for it."
         "Jolee groans as she sits back down at the table."
+
+        show jolee at left
+
         jo "Children, all of you are children."
         th "Yes, children who need to be advertised to if we plan on having either of these events be a success. Let’s get these event applications done."
         jo "Right, right."
@@ -635,7 +682,13 @@ label start:
         th "Later."
         "I go over to the couch to join the movie screening."
 
+        hide jolee
+        hide thomas
+
         scene forumalt
+
+        show taylor at left
+        show alex at right
 
         pl "Care for another viewer?"
         ta "Nah, feel free to sit."
@@ -656,7 +709,13 @@ label start:
 
         "As the movie’s credits roll, I look over to see Taylor asleep, hugging onto the blue couch pillow, while Alex is grinning, more awake than ever."
         "Before he can say anything though, my phone’s alarm starts going off."
+
+        show taylor at left
+
         ta "Huh, what, morning already?"
+
+        show alex at right
+
         al "Phone call?"
         "I lean forward to check and my eyes bulge at the time."
         pl "Shit, that’s my alarm for class, I should go."
@@ -664,6 +723,12 @@ label start:
         ta "Hmm.. yeah, bye…"
         "I look away from Alex and the half-awake Taylor to wave to the still-working Jolee and Thomas."
         pl "Bye guys!"
+
+        hide taylor
+        hide alex
+        show jolee at left
+        show thomas at right
+
         jo "Have fun in class!"
         th "Later."
         "I jog out of the forum… I might stop by again tomorrow."
@@ -684,12 +749,18 @@ label start:
         scene forummainclapcheeks
         with dissolve
 
+        show taylor at left
+        show jolee
+
         ta "...and then I’ll change his profile picture to a catgirl so if he wants to try and get his account access back from me, he’ll have to admit that his tinder account is the one advertising itself as a catgirl."
         jo "...’owo’?"
         ta "Yes, ‘owo’."
         pl "Am I interrupting something?"
         ta "Oh hey [name]! Nah, nothing besides the usual plans for world domination."
         "Taylor and Jolee are sitting together at the back tables. Thomas silently looks up and nods to me while Alex waves from the couch."
+
+        show alex at right
+
         al "Hey [name]!"
         jo "Glad to see we didn’t scare you away."
         pl "Nah, this seems like a nice place to hang out."
