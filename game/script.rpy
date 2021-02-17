@@ -1503,6 +1503,9 @@ label start:
         mv "Go."
         mv "GO!"
         "I feel a force knock into my back and find myself grabbing onto the sink for balance once more before my head bashes into the mirror."
+
+        scene fallenmirror
+
         "But when I look up again the mirror is… gone."
         "There’s just a brown outline on the wall where it would have been."
         pl "...What kind of fumes are in this bathroom?"
@@ -1750,7 +1753,7 @@ label start:
             "I can go into the hall with Taylor to put up leaves.":
                 jump jothelptaylor
 
-             "I can help Jolee put up the tree in the hall.":
+            "I can help Jolee put up the tree in the hall.":
                 jump jothelpjolee
 
         label jothelptaylor:
@@ -1804,7 +1807,7 @@ label start:
             "I can set up the tree in the hall with Thomas.":
                 jump tjohelpthomas
 
-             "I can help Jolee put up the tree in the hall.":
+            "I can help Jolee put up the tree in the hall.":
                 jump tjohelpjolee
 
         label tjohelpthomas:
@@ -1881,7 +1884,7 @@ label start:
 
             jump taylorhallway
 
-        label tthelpthomas
+        label tthelpthomas:
             "I think both of us should put up the tree in the hallway Thomas."
             th "Really? I kind of thought… well alright."
             "He seems almost taken aback for a moment before he just returns to his usual calm state."
@@ -1895,19 +1898,424 @@ label start:
             jump thomashallway
 
     label joleehallway:
-        "jolee hallway"
+
+        scene forumhallway
+
+        "Out in the hall, both of us drop the supplies on the ground, Jolee groaning as she stands back up. Her back audibly cracks."
+        pl "That sounded pleasant."
+        jo "It feels better than it sounds promise."
+        pl "Here, how about I pass you the materials for now so you don’t have to keep leaning down?"
+        jo "That’d be great thanks."
+        "I sit on the ground, grabbing paper and attaching pieces of tape to them before passing them up to Jolee. I pause on one of them, holding it up to her to show off the detailed flower that’s been drawn on it."
+        pl "Hey, this one has a doodle on it."
+        "She looks back and seems embarrassed for a moment."
+        jo "Oh sorry, that’s mine! I was drawing on the papers earlier before you came back."
+        pl "It’s really good honestly."
+        jo "Nah, I just make trash honestly."
+        "Taking them from me, our hands brush against each other before she turns to press the pink scraps to the wall."
+        pl "So… how come your back is so noisy? Is it just backpack trauma?"
+        "She lets out a light laugh. Her voice reminds me of a piano for a moment, a nice melody reaching my ears."
+        jo "Noisy is one way to describe it. I just hunch over a lot, there’s not really any chronic issues that I know of."
+        jo "I don’t have the medical history to really go off of y’know?"
+        pl "Why not?"
+        jo "Oh we may not have mentioned it, but I’m adopted. Born in china, abandoned at a factory and brought over here when I was a baby."
+        pl "If you did I forgot sorry. But that’s…neat?"
+        jo "It’s not a fun story, I’m not offended if you call it awful or anything. It’s just what happens over there. They want sons, not daughters. Especially not blind, half-deaf daughters like me."
+        pl "You shouldn’t be so hard on yourself!"
+        jo "It’s not even exaggeration, I’m actually legally blind. No idea how I got a license. "
+        pl "For someone who’s half-blind, you’re a really good artist."
+        jo "I’m not that good honestly…"
+
+        menu:
+            "You really shouldn’t be so hard on yourself.":
+                jump joleepos
+
+            "You shouldn’t have such low standards.":
+                jump joleeneg
+
+
+        label joleepos:
+
+            $ updateHearts("JOLEE", 1)
+
+            jo "I mean I-"
+            pl "No, I mean it. You’re being way too harsh on yourself when you’re obviously doing a lot."
+            pl "You make this great art despite being half blind, you’re helping run this club and studying biomedical engineering on top of all this, probably one of the hardest majors taught here."
+            jo "I…"
+            "Jolee stands there as if frozen for a moment, her arm still mid-motion of sticking the paper to the wall."
+            "I feel almost embarrassed myself just from the second-hand strength of the feeling."
+            pl "I’m sorry if I-"
+            jo "No, no, no, I’m sorry, you’re fine!"
+            jo "That just.. took me off guard. Thank you though."
+            "She smiles at me and I almost instantly return one."
+            jo "Let’s get these papers up though. Thomas will start to wonder what we’re doing out here."
+
+            jump joleehallwayend
+
+        label joleeneg:
+
+            jo "I’ve had to deal with shitty things my entire life. And at some point, I accepted that I couldn’t change it, so I stopped caring."
+            "She looks almost annoyed for a moment before she continues."
+            jo "..sorry that came out ruder than I intended it."
+            pl "No, it’s alright, I sort of overstepped myself I guess."
+            jo "Let’s just put up the rest of this paper."
+
+            jump joleehallwayend
+
+# Ending scene for Jolee in the Hallway
+    label joleehallwayend:
+
+        "Both of us fall into a comfortable silence as well as a nice rhythm of me attaching tape to the papers as well as her putting them on the walls."
+        "Jolee starts humming a song I can’t quite place."
+        pl "Drawing and singing. Are you a triple threat and going to start dancing to?"
+        "She stops and cracks another smile."
+        jo "I did a lot of dancing when I was younger. I did ballet, a bit of jazz, I did gymnastics a bunch as well."
+        pl "Damn, you really are a triple threat then!"
+        jo "Don’t do anymore and definitely can’t stand en pointe anymore, but I’m still pretty flexible."
+        "I go to respond and hand her another piece of paper but stop as I realize we’ve exhausted the entire pile."
+        pl "Oh, we’re out. Guess we should get more from Thomas."
+        "I go to stand up and dust myself off when I feel Jolee suddenly grab my sleeve, tugging on it for a moment."
+        pl "What is it?"
+        jo "Before I forget - would it be alright if I got your phone number? I have most people’s numbers in the forum and if you’re going to be hanging around…"
+        "She trails off but I nod and pull out my phone."
+        pl "Sure, no problem. You can put your number in mine and text yourself."
+        jo "That works, thanks."
+        "She pulls the screen close, squinting at it before she slowly types in her name and number in the open contact."
+        "Afterwards she hands it back to me."
+        jo "Thanks again."
+        pl "Heh, it’s no big deal, honest."
+        "Jolee lingers for a moment before she rushes past me back into the room."
+        "I follow her inside and we get more paper to complete the ‘art’ piece…."
+
+        jump thursdayjolee
+
 
     label alexhallway:
-        "alex hallway"
+        scene forumhallway
+
+        "Alex groans as we dump the supplies on the ground, flexing his hands."
+        pl "Those scissors really did a number on you, huh?"
+        al "Yeah, probably should’ve stopped sooner."
+        pl "Why didn’t you?"
+        "I lean down to grab some paper and tape, beginning the process pressing them into the wall."
+        al "Well even if it’s just another crazy Taylor idea, I do want to help. I may not be an eboard member right now, but I still try to do my part."
+        pl "Yeah, I can understand that. Want to contribute like everyone else and all that."
+        al "Exactly. Rather do something besides watch tv and read comics."
+        pl "You know for the ‘biggest library on the seaboard’ or whatever it was, I haven’t seen a lot of reading go on."
+        al "Heh, yeah it’s an on-going joke pretty much, the old librarian was said to have never learned how to read."
+        pl "I mean, if he’s made it this far, no reason to learn now!"
+        pl "So what kind of comics do you read?"
+        al "I was looking for some recommendations honestly. Thinking about breaking out a new manga series just because I’ve been in a bit of a lull. No one on the discord can really give me something new though."
+        pl "Discord?"
+        al "Oh right, you’re new. Yeah, the forum has a discord server. I can add you if you want?"
+        pl "I’d like that, yeah."
+        al "Here, you can put your discord information in my phone."
+        "Alex holds out his phone, the discord app opened and add-friend tab selected. I put in my information and send the request."
+        pl "Cool, I’ll accept it later and you can send me the invite."
+        al "Awesome then. You can see me fill up the japan channel with memes."
+        pl "You like anime and manga a lot?"
+        al "Yeah I’m one of the official weebs of the forum."
+        pl "What’s your favorite?"
+        al "Gundam, without a doubt."
+        pl "I feel like I’ve heard of gundam but I’m not positive. What’s it about?"
+        "For a moment it seems like I opened the floodgates as Alex’s face lights like up like an evening sky in the countryside, nothing but hope and stars."
+        al "Well you see…"
+    # NATE - Turn this following monologue up to like 500 characters per second and autoplay.
+    # This is being written in monologue mode so I don't have to write 'al "text"' a million times.
+
+        al """
+        Gundam is a massively popular giant robot franchise from Japan that's been running since the late 70s and defined the mecha genre as we know it with the original series Mobile Suit Gundam from 1979 which was a show that was hard science-fiction for the most part. It lasted 43 episodes and wasn't particularly successful at the time, facing cancellation but allowed to finish its story, it only became popular through the compilation film trilogy that succeeded it which trimmed about 10 hours of fat from the original series in total. Nowadays it's recognized, along with other Gundam series as phenomenal examples of anti-war narratives with shows that despite the spectacle of giant robots are about people, the hopes for the growth of humanity, and a reflection of the hell people are capable of. Getting into an old anime series is rough for a lot of people, and the '79 TV series has definite signs of aging, so I wouldn't recommend it for newcomers. I'd personally suggest Mobile Suit Gundam: Iron-Blooded Orphans from 2015, which is the series I started with. It's a complete standalone so you don't need to worry about any of the other Gundam works to be released over the years. Also, as a franchise over 40 years old now, it's a franchise that's been highly malleable, whether you want hard sci-fi anti-war or basically Street Fighter with robots like Mobile Fighter G Gundam, Gundam has something for you. If you wanna see the upcoming Gundam movie, you'd have to watch a good amount of the 'Universal Century' timeline. Gundam has multiple different continuities and Universal Century is the largest one, it includes the original '79 series among others. To watch the new movie, you'd have to watch a bare minimum of Gundam '79, Zeta Gundam, Gundam ZZ, Gundam CCA, Gundam Unicorn, and maybe Gundam NT to get the big picture of what's going on in this movie. If you get really into the series, there's the plastic model kits based on robots from the show known as gunpla, which come in-
+        """
+
+        "Alex stops suddenly, his face turning a fierce red as he shrinks in on himself, looking away from me."
+        al "Sorry, I uh…"
+        "So quickly he goes from rambling about Gundam to being at a loss for words."
+
+        menu:
+            "I'm listening to you Alex.":
+                jump alexpos
+
+            "Look me in the eyes Alex.":
+                jump alexneg
+
+        label alexpos:
+
+            $ updateHearts("ALEX", 1)
+
+            pl "It’s alright, I’m listening to you Alex."
+            "He comes out of the turtle shell that he’s turned his jacket into, nodding slightly as he gives me a sheepish grin."
+            al "I just uh…"
+            pl "Really like gundam?"
+            al "Yeah. There aren’t a lot of people in the forum who are into it."
+            pl "I don’t think any of them could compare to your dedication."
+            al "Ah, I don’t think that’s really a good thing honestly."
+            pl "Why not?"
+            al "Well.. hyperfixating and all that, y’know? Sometimes I don’t do the best when it comes to listening as well as talking."
+            pl "Don’t worry Alex, I’ll let you know if I ever need you to stop and listen - but it would be wrong if I didn’t give you the same courtesy. Even if you do have a lot to say."
+            "There’s a twinkle of something in his eye as he seems to relax a bit more, nodding once more."
+            al "Yeah… alright."
+
+            jump alexhallwayend
+
+        label alexneg:
+
+            pl "Come on, look me in the eyes Alex."
+            "He seems to almost retreat even further into his jacket like a turtle into its shell, looking at my eyes for a moment before they flicker away once more before he can even finish a sentence."
+            al "I-I-I’m sorry, it’s just…"
+            pl "Just what?"
+            al "Eye contact can get a bit… uncomfortable for me."
+            pl "Oh. My bad then."
+            al "It’s, It’s cool. I’ll just. Shut up now."
+            "We both fall into an uncomfortable silence for a moment, the only sounds in the hall being the rustle of papers and the faint beeping of the ATM from down the hall."
+
+            jump alexhallwayend
+
+    label alexhallwayend:
+
+        "After a bit of work on the tree, Alex speaks up again, pointing to the empty space between us."
+        al "Ah, we ran out of paper."
+        pl "I can go grab some more from inside?"
+        al "Actually, I should probably head out soon. I have to catch an earlier train to get home. Doctor’s appointment."
+        pl "Oh, alright then…"
+        al "Well, I mean, we’ll probably still be working on this tomorrow honestly, I doubt we can make this thing in one night."
+        pl "You’re not wrong."
+        al "I’ll see you tomorrow then [name]."
+        "Alex gives a wave before he heads inside the clubroom, leaving me a moment to myself in the hallway to look at the half-finished creation before I follow him in."
+
+        jump thursdayalex
 
     label thomashallway:
-        "thomas hallway"
+
+        scene forumhallway
+
+        "Both of us come out into the hall, dropping our shared piles of materials as Thomas examines the wall for a moment."
+        th "Hm, maybe we should outline it before we get started?"
+        pl "Sure, but how do we do that?"
+        "Thomas pulls out his phone and takes a picture of the wall."
+        "I lean over his shoulder curiously as he opens the photo in an editing app and begins drawing out how the tree could be shaped on the wall."
+        th "Hmm… we could probably have the trunk go like this, it can curve with these branches… and the rest can just be pink."
+        "Even if it ‘s just a sketch for planning, he seems pretty skilled for someone just drawing with their finger."
+        pl "Can you send me that?"
+        th "Send you-?"
+        "He turns to look at me and we both flinch back, realizing how close together we had been. Thomas reaches a hand up to push his glasses up on his nose."
+        th "Ahem. Sorry, you just… startled me."
+        pl "I was just looking at the plan!"
+        th "No, it’s alright. Here, you can put your number in my phone if you want me to send it."
+        "Thomas looks away from me as he holds his phone out, an empty contact on the screen."
+        "I take it from him, quickly entering my name and number, sending a message so I could save his number later."
+        "By habit I hit the home button and find myself faced with the homescreen of the usual array of apps - groupme, blackboard, reddit - with a photo of a goose in a pond as the background."
+        pl "You really like your geese huh?"
+        th "Yes, yes I do."
+        "Thomas takes his phone back and goes to pick up some of the paper scraps, putting tape on the backs of them."
+        th "I have a soft spot I guess for them. Things like the Untitled Goose Game just gave me more reason to appreciate them."
+        pl "The game where you just tried to cause chaos?"
+        th "I relate to it."
+        "Thomas has a sly smile on his face again as he slaps another piece of paper to the wall."
+        pl "Is this related or unrelated to that hoodie of yours?"
+        th "Heh, a lot of people comment on it sooner."
+        pl "So who is SBUgeese?"
+        th "All I can say to that is… honk."
+        pl "...honk?"
+        th "Honk."
+        pl "Alright then, I won’t question you."
+        th "I won’t kill you if you do question me."
+        pl "Why do you go straight to death?"
+        th "I dunno."
+
+        menu:
+            "You seem like you meme a lot.":
+                jump thomaspos
+
+            "Why are you so serious?":
+                jump thomasneg
+
+        label thomaspos:
+
+            $ updateHearts("THOMAS", 1)
+
+            pl "To be honest Tom, you seem like you like to meme a lot."
+            th "Well… yeah."
+            "He shrugs as he keeps adding things to the wall."
+            th "I do a lot of stupid random stuff on campus. I wear shorts in the snow. I find quiet spots to take naps and be alone."
+            pl "You sit in a basement, putting paper trees on walls."
+            th "Ha, yes and that. But, I just like saying, making and being memes a lot of times."
+            pl "You didn’t come across like that in the beginning."
+            th "Well… a lot of people aren’t who they seem to be, no? That’s why there’s the whole ‘don’t just a book’ by its cover saying."
+            th "It’s just a matter of being lucky enough to learn about other sides of them."
+            pl "That’s… kind of deep honestly."
+            th "Better out than in I always say."
+            pl "...Was that a Shrek reference."
+            "He doesn’t respond right away, just widening his grin."
+            th "So… pass me that paper?"
+
+            jump thomashallwayend
+
+        label thomasneg:
+
+            th "Serious?"
+            pl "Yeah you seem just really serious to me. Hard to read almost."
+            th "That’s not how I really try to come off. I don’t think I’m that serious a person."
+            pl "Maybe I’ve just misunderstood you then sorry."
+            th "I…hm."
+            "He stops for a moment and I turn to see him pensively looking down at one of the papers."
+            pl "What is it?"
+            th "I’m trying to figure out how to best explain this, like… people are like onions."
+            pl "Right…"
+            th "People have layers."
+            pl "Is… is this a Shrek reference right now?"
+            th "That’ll do [name], that’ll do."
+
+            jump thomashallwayend
+
+    label thomashallwayend:
+
+        "I hand Thomas another taped piece of paper and he presses it to the wall before stepping back to look at our progress."
+        th "I think this is good for now. We can probably finish it after the others come back from class, or maybe in the morning."
+        pl "You sure you want to leave it here?"
+        "He looks at me for a moment and shrugs."
+        th "Eh, there’s always tomorrow right?"
+        pl "I guess you’re right."
+        "With a calm grin, Thomas waves for me to follow him and we both head inside the forum."
+
+        jump thursdaythomas
 
     label taylorhallway:
-        "taylor hallway"
 
-    # Beginning of Thursday
-    label thursday:
+        "I follow Taylor out into the hall and watch as she immediately dumps all our materials to the ground and claps her hands together."
+        ta "Alright let’s make something of all this. [name], quick, start taping things to the wall!"
+        pl "You mean we, right?"
+        ta "Come on, fuel my laziness for just a little bit?"
+        pl "This was your idea wasn’t it?"
+        "Taylor groans, melodramatically shaking her arms around for a moment before she kneels down, grabbing some of the paper and putting it on the wall."
+        ta "Fine, fine, whatever, I guess."
+        pl "You really have a lazy streak don’t you?"
+        ta "Me? Lazy? Never."
+        "She smirks through her sarcasm before her expression clears for a moment and she speaks a bit more seriously."
+        ta "I’m honestly better than coming up with ideas than executing them."
+        pl "The others made it sound more like you…"
+        ta "Skip out on my responsibilities?"
+        pl "Yeah."
+        ta "Ha, I don’t blame them. I do make big deal out of things like never attending meeting or doing my job in the laziness way or refusing to get two-factor authentication on my discord account-"
+        pl "I mean it is safer isn’t isn’t it?"
+        ta "I will die on this hill, hush."
+        ta "But I do.. Do things? I just, kind of, don’t like doing them so obviously if that makes sense."
+        pl "You won’t attend the meeting but you’ll spend your evening making a tree in the hallway just to bring in new members."
+        "She swings her head around to look at me almost suspiciously before she cracks a smile."
+        ta "Be careful Mr. [name], I’ll have to take you out if you learn any more of my game so easily."
+        "We put up more and more of the pink petals before Taylor turns to look at me suddenly."
+        ta "Hey, would you rather be the last person on earth or permanently invisible?"
+        pl "That’s an… odd question?"
+        ta "Yes, it is a question. What’s your answer?"
+        pl "Well why do you ask?"
+        ta "Because I want to know if it’s like mine."
+        pl "Then which would you prefer?"
+        ta "That just makes it easier for you to know which to say now doesn’t it? That’s not how the game should be played."
+        pl "This is a game now?"
+        ta "Always has been. Now pick nerd."
+
+        menu:
+            "Permanently invisible.":
+                jump taylorhw1
+
+            "The Last Person on Earth.":
+                jump taylorhw2
+
+        label taylorhw1:
+
+            pl "Then I guess I’d rather be permanently invisible."
+            ta "Why?"
+            pl "I dunno,  just think that would be the better choice than not having anyone else around me."
+            ta "I see…"
+
+            jump taylorhwcontinue
+
+        label taylorhw2:
+
+            pl "Then I guess I’d rather be the last person on earth."
+            ta "Why?"
+            pl "I dunno, just think that would be the better choice than not being able to ever be seen again."
+            ta "I see.."
+
+            jump taylorhwcontinue
+
+    label taylorhwcontinue:
+
+        "We work in silence for a few moments before Taylor speaks up."
+        ta "Not going to ask for my answer?"
+        pl "I figured that you would share it if you wanted to."
+        ta "Touche."
+        ta "To be honest, I won’t hold your choice against you, I honestly wouldn’t like either of those. You probably weren’t sure which to pick anyway."
+        ta "I can’t stand being alone. But I definitely wouldn’t survive being invisible either."
+        pl "I figure you’d go around pranking people if you were invisible."
+        ta "Heh, yeah I give off those vibes don’t I?"
+        "I look over to Taylor and she’s still smiling but she doesn’t meet my gaze for a moment."
+        ta "What kind of person do you think I am [name]?"
+        pl "What kind of person?"
+        ta "Yeah. You’re new, you don’t have any baggage or crazy memories or anything like that with me to affect your opinion. I want the freshest answer I can get. What kind of person do you think I am?"
+
+        menu:
+            "You seem like you love your friends.":
+                jump taylorpos
+
+            "You seem like you want to have fun.":
+                jump taylorneg
+
+        label taylorpos:
+
+            $ updateHearts("TAYLOR", 1)
+
+            pl "You seem like you really care about your friends."
+            ta "Really?"
+            "She looks over at me and there’s genuine surprise in her expression. The corners of her lips upturn though, as if the shock is a happy one."
+            ta "Huh. I… alright."
+            pl "What is it?"
+            ta "Heh, nothing. I just like the way you think dude."
+            "Taylor seems to have perked up a bit more, if that was even possible, bouncing slightly on her heels before she suddenly turns to me with a more mischievous look."
+
+            jump taylorhallwayend
+
+        label taylorneg:
+
+            pl "You seem like you just want to have fun."
+            ta "A fun-lover, eh?"
+            pl "Yeah, I wouldn’t want to get between you and your latest plan."
+            ta "Huh… alright."
+            "I look over at her again and for a moment I feel like there’s disappointment in her eyes before she looks at me with a bright expression, the previous emotions wiped away in an instant."
+
+            jump taylorhallwayend
+
+    label taylorhallwayend:
+
+        ta "Hey [name], care to do me a favor?"
+        pl "What exactly does this favor entail?"
+        ta "Give me your phone number."
+        pl "You...want my number?"
+        ta "Well… hypothetically speaking, when you left your phone plugged into the charging station I may have been messing with it and took a funny picture of Alex."
+        ta "So moreso, I want to give you my number for photo sending purposes."
+        pl "Wait, when were you-"
+        ta "Don’t sweat the details dude, just let your next words be 'Here’s my phone, put in your contact information Taylor…'"
+        "For all her bravado, her hoodie pocket keeps twitching like she’s fidgeting her hands."
+        "I sigh but take out my phone, shielding it as I put in the code before handing it to her with a blank contact up on the screen."
+        pl "Alright, here you go. I’ll send you the photo after I get to class."
+        "Her grin widens as she snatches the phone and rapidly puts the details."
+        ta "Awesome! I won’t make you late for class though, see ya [name]!"
+        "Taylor haphazardly tosses my phone back to me, but I’m thankfully able to catch it, though she’s already back in the clubroom before I can say anything else."
+        "Looking down, I can see, indeed, a number is there, and she put her name as ‘Forum Knight’... I’ll assume there’s a story behind that one."
+        "Saving the questions for later, I tuck my phone away and follow her inside."
+
+        jump thursdaytaylor
+
+    # Beginning of Thursday - Different Version for each route
+    label thursdayjolee:
+        "Yeet"
+
+    label thursdayalex:
+        "Yeet"
+
+    label thursdaythomas:
+        "Yeet"
+
+    label thursdaytaylor:
         "Yeet"
 
     # Beginning of endings
@@ -1993,22 +2401,22 @@ label start:
         show jo at left
         $ store_action(msg, jolee, "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
         hide ta
-        hide th 
-        hide jo 
+        hide th
+        hide jo
         $ store_action(scn, "hallwaysakura")
         scene bg forumhallway
         show al
         $ store_action(msg, alex, "Ut enim ad minim veniam,")
-        hide al 
-        show ta 
+        hide al
+        show ta
         $ store_action(msg, taylor, "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
-        hide ta 
-        show th 
+        hide ta
+        show th
         $ store_action(msg, thomas, "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.")
-        hide th 
-        show jo 
+        hide th
+        show jo
         $ store_action(msg, jolee, "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-        hide jo 
+        hide jo
         $ store_action(scn, "forumhallway")
         $ rewind()
 
