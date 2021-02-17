@@ -9,6 +9,9 @@ define pl = Character("[name]")
 define rj = Character('Egotistical Student', color="#FFFFFF")
 define mv = Character('Mysterious Voice', color="#FFFFFF")
 
+#Main menu music
+define config.main_menu_music = "music/mainmenu.oga"
+
 # Initialize placeholder values for characters for ease of use
 define gpa_rock = "GPA_ROCK"
 define alex = "ALEX"
@@ -129,9 +132,10 @@ label start:
 
     scene sbuoutside
     with dissolve
+    play music "<loop 22.4833>music/sbu.oga"
 
     # Nates testing cheaty jump
-    jump endingb 
+    jump endingb
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
@@ -199,6 +203,7 @@ label start:
 
         scene forummainclapcheeks
         with dissolve
+        play music "<loop 26.766>music/forum.oga"
 
         "Inside I see a bunch of students. A tall pair of students are bickering in front of a television, the beanie’d girl brandishing a playstation controller while a tired-looking boy gestures to a DVD case in his hands."
         "A couch separates them from another guy-girl pair who sit at the table, chatting more calmly… albeit they seem to be eyeing the loud pair."
@@ -739,6 +744,7 @@ label start:
 
         scene sbuoutside
         with dissolve
+        play music "<loop 22.4833>music/sbu.oga"
 
         "Dawn of the Second Day… or at least the afternoon of it."
         "I walk out of the SAC cafeteria, stomach full of mediocre food and an hour left before my next class starts."
@@ -748,6 +754,7 @@ label start:
 
         scene forummainclapcheeks
         with dissolve
+        play music "<loop 26.766>music/forum.oga"
 
         show taylor at left
         show jolee
@@ -1175,6 +1182,8 @@ label start:
 
         scene sbuoutside
         show jolee
+        play music "<loop 10.0>music/jolee.oga"
+
         "Alex gives us a wave as he heads left and we head right. I slow my pace a bit for Jolee as we both move in silence for a moment."
         jo "So.. you enjoying the club [name]?"
         pl "Yeah, everyone is pretty nice, even if I don’t know you all that well yet."
@@ -1284,8 +1293,10 @@ label start:
             jump wednesday
 
     label alexwalk:
-        scene sbuoutside 
-        show alex 
+        scene sbuoutside
+        show alex
+        play music "<loop 10.0>music/alex.oga"
+
         "Me and Alex walk in silence for a moment after Jolee gives a wave and heads off on her own trek across campus."
         al "So…"
         pl "So…"
@@ -1389,6 +1400,7 @@ label start:
 # Beginning of Day 3
     label wednesday:
 
+        stop music fadeout 1.0
         scene timeskip
 
         "The night passes..."
@@ -1398,6 +1410,7 @@ label start:
         "Wednesday is here, and after sleeping on the long train ride onto campus, I make my way towards the Student Activities Center."
 
         scene forummainclapcheeks
+        play music "<loop 26.766>music/forum.oga"
 
         "The basement is surprisingly quiet as I approach, but it’s obviously why when I enter to find just Jolee, Thomas and Alex all sitting at the back table with their laptops."
         show 4pspread
@@ -1415,7 +1428,7 @@ label start:
         al "It’d have to be a short one though if [name] has class, no Terraforming Mars or anything like that."
         jo "Yeah and I don’t feel like suffering through us attempting to play jenga again, even if Taylor isn’t here."
         "As if summoned by Jolee’s words, Taylor suddenly charges into the room with a laugh and brandishing something in her hands."
-        ta "Hey guys, look at what I just stol- I mean, recovered from the Anime club!"        
+        ta "Hey guys, look at what I just stol- I mean, recovered from the Anime club!"
         "She holds up a small navy blue box that has the Bat symbol on it along with the words ‘Love Letter’."
         al "You got the game back from them!?"
         jo "I’m more concerned about how exactly she got it back from them."
@@ -1477,58 +1490,58 @@ label start:
 
         # J'accuse Taylor
         label lltaylor:
-            hide 4pspread 
-            show taylor 
+            hide 4pspread
+            show taylor
             "Taylor seems confident as she looks at me, it has to be her, right?"
             "I throw my batman card on the table and point to her."
             pl "Do you have the joker?"
             "She cackles and shakes her head."
             ta "Nah, I was just baiting you to waste your cards honestly."
-            hide taylor 
+            hide taylor
             jump taylorturn
 
         # J'accuse Jolee
         label lljolee:
             hide 4pspread
-            show taylor 
+            show taylor
             "Jolee seems nervous, it has to be her right?"
             "I throw my batman card on the table and point to her."
             pl "Do you have the joker?"
             jo "Huh? Me? Oh no, sorry."
             pl "Dang, you looked like you were worried about something."
             jo "Oh I’m just always stressed like this, don’t mind it."
-            hide jolee 
+            hide jolee
             jump taylorturn
 
         # J'accuse Thomas
         label llthomas:
-            hide 4pspread 
-            show thomas 
+            hide 4pspread
+            show thomas
             "Thomas has a perfect poker face right now, maybe it’s him?"
             "I throw my batman card on the table and point to him."
             pl "Do you have the joker?"
             th "Nah."
             "He just shrugs at me and I sigh, letting my extended arm fall."
-            hide thomas 
+            hide thomas
             jump taylorturn
 
         # J'accurse Alex
         label llalex:
-            hide 4pspread 
-            show alex  
+            hide 4pspread
+            show alex
             "Alex seems confused despite being so excited earlier. Maybe it’s him?"
             "I throw my batman card on the table and point to him."
             pl "Do you have the joker?"
             al "I uh.. I do."
             pl "Nice!"
             al "But I somehow have two of them."
-            hide alex 
+            hide alex
             jump llcontinue
 
         # If Alex isn't accused, proceeds to Taylor's turn
         label taylorturn:
-            hide 4pspread 
-            show taylor 
+            hide 4pspread
+            show taylor
             "Taylor draws a card happily."
             ta "My turn~!"
             "She looks between all of us for a moment before suddenly pointing at Alex."
@@ -1537,12 +1550,12 @@ label start:
             "The two of them lean in, Alex letting her peek at his cards. Almost immediately, her expression grows as confused as him."
             jo "What is it?"
             ta "Alex, how the hell do you have two jokers?"
-            hide taylor 
+            hide taylor
             jump llcontinue
 
 # All the choices of the love letter game reconverge
     label llcontinue:
-        show rpspread 
+        show rpspread
         al "I have no idea how this happened."
         th "Perhaps the anime club mixed some of the cards up when they took the game?"
         ta "I mean, this wasn’t me for once, so it probably would have to be them?"
@@ -1565,6 +1578,7 @@ label start:
         "Pushing open the door to the bathroom, I cough, gripping the edges of the sink."
 
         scene mirror
+        play music "<loop 3.5>music/spooky.oga"
 
         "Nausea, this is definitely some really strong nausea."
         "Looking up at the mirror however, I stop."
@@ -1589,8 +1603,9 @@ label start:
         pl "...What kind of fumes are in this bathroom?"
         "Feeling the wall, there’s definitely no mirror and looking around I can’t see anyone else here, or even any kind of microphone they could use to speak in here so clearly."
         "Unsure of what else to do and the nausea having passed, I make my way back down the hall and to the forum."
-        return 
+        return
         scene forummainclapcheeks
+        play music "<loop 26.766>music/forum.oga"
 
     # Two choices code
     label dualScene:
@@ -1609,8 +1624,8 @@ label start:
     # Beginning of after choice options
     label ALEXJOLEE:
         "I walk in to find Jolee and Alex sitting at the tables alone, each cutting shapes out of pink construction paper."
-        show jolee at left 
-        show alex at right 
+        show jolee at left
+        show alex at right
         jo "Oh, hey [name]! You were gone so long we were getting a bit worried. You feeling alright?"
         pl "...Yeah. Yeah I feel fine. Where’d Taylor and Thomas go?"
         jo "Oh, you were gone for so long they had to leave for class."
@@ -1675,7 +1690,7 @@ label start:
     label ALEXTAYLOR:
         "I walk in to find Taylor brandishing duct tape and pink construction paper to Alex, grinning widely as she whirls around to look at me."
         show alex at left
-        show taylor at right 
+        show taylor at right
         ta "[name] hey! I was wondering if you fell in and drowned or something. Feeling better?"
         pl "...Yeah. Yeah I feel fine. Where’d Jolee and Thomas go?"
         ta "Oh, you were gone for so long they had to leave for class."
@@ -1751,8 +1766,8 @@ label start:
 
     label ALEXTHOMAS:
         "I walk in to find Alex and Thomas sitting at the tables alone, each cutting shapes out of pink construction paper."
-        show alex at left 
-        show thomas at right 
+        show alex at left
+        show thomas at right
         th "Oh hey [name]. You took quite a bit in there, are you okay?"
         pl "...Yeah. Yeah I feel fine. Where’d Taylor and Jolee go?"
         al "You were gone for long enough that they had to go to class. You missed Jolee telling Taylor she wasn’t allowed to skip class again and dragging her away."
@@ -1810,8 +1825,8 @@ label start:
 
     label JOLEETAYLOR:
         "I walk in to find Taylor brandishing duct tape and pink construction paper to Jolee, grinning widely as she whirls around to look at me."
-        show jolee at right 
-        show taylor at left 
+        show jolee at right
+        show taylor at left
         ta "[name] hey! I was wondering if you fell in and drowned or something. Feeling better?"
         pl "...Yeah. Yeah I feel fine. Where’d Alex and Thomas go?"
         ta "Oh, you were gone for so long they had to leave for class."
@@ -1872,8 +1887,8 @@ label start:
 
     label JOLEETHOMAS:
         "I walk in to find Jolee and Thomas sitting at the tables alone, each cutting shapes out of pink construction paper."
-        show jolee at left 
-        show thomas at right 
+        show jolee at left
+        show thomas at right
         jo "Oh, hey [name]! You were gone so long we were getting a bit worried. You feeling alright?"
         pl "...Yeah. Yeah I feel fine. Where’d Taylor and Alex go?"
         jo "Oh, you were gone for so long they had to leave for class. I had to yell at Taylor to not skip and stay to work on all this."
@@ -1928,8 +1943,8 @@ label start:
 
     label TAYLORTHOMAS:
         "I walk in to find Taylor brandishing duct tape and pink construction paper to Thomas, grinning widely as she whirls around to look at me."
-        show taylor at right 
-        show thomas at left 
+        show taylor at right
+        show thomas at left
         ta "[name] hey! I was wondering if you fell in and drowned or something. Feeling better?"
         pl "...Yeah. Yeah I feel fine. Where’d Jolee and Alex go?"
         ta "Oh, you were gone for so long they had to leave for class."
@@ -1995,7 +2010,9 @@ label start:
     label joleehallway:
 
         scene forumhallway
-        show jolee 
+        show jolee
+        play music "<loop 4.0>music/jolee.oga"
+
         "Out in the hall, both of us drop the supplies on the ground, Jolee groaning as she stands back up. Her back audibly cracks."
         pl "That sounded pleasant."
         jo "It feels better than it sounds promise."
@@ -2081,13 +2098,15 @@ label start:
         pl "Heh, it’s no big deal, honest."
         "Jolee lingers for a moment before she rushes past me back into the room."
         "I follow her inside and we get more paper to complete the ‘art’ piece…."
-        hide jolee 
+        hide jolee
         jump thursdayjolee
 
 
     label alexhallway:
         scene forumhallway
-        show alex 
+        show alex
+        play music "<loop 10.0>music/alex.oga"
+
         "Alex groans as we dump the supplies on the ground, flexing his hands."
         pl "Those scissors really did a number on you, huh?"
         al "Yeah, probably should’ve stopped sooner."
@@ -2177,13 +2196,15 @@ label start:
         pl "You’re not wrong."
         al "I’ll see you tomorrow then [name]."
         "Alex gives a wave before he heads inside the clubroom, leaving me a moment to myself in the hallway to look at the half-finished creation before I follow him in."
-        hide alex 
+        hide alex
         jump thursdayalex
 
     label thomashallway:
 
         scene forumhallway
-        show thomas 
+        show thomas
+        play music "<loop 0.5>music/thomas.oga"
+
         "Both of us come out into the hall, dropping our shared piles of materials as Thomas examines the wall for a moment."
         th "Hm, maybe we should outline it before we get started?"
         pl "Sure, but how do we do that?"
@@ -2272,12 +2293,14 @@ label start:
         th "Eh, there’s always tomorrow right?"
         pl "I guess you’re right."
         "With a calm grin, Thomas waves for me to follow him and we both head inside the forum."
-        hide thomas 
+        hide thomas
         jump thursdaythomas
 
     label taylorhallway:
-        scene forumhallway 
-        show taylor 
+        scene forumhallway
+        show taylor
+        play music "<loop 6.5>music/taylor.oga"
+
         "I follow Taylor out into the hall and watch as she immediately dumps all our materials to the ground and claps her hands together."
         ta "Alright let’s make something of all this. [name], quick, start taping things to the wall!"
         pl "You mean we, right?"
@@ -2399,7 +2422,7 @@ label start:
         "Taylor haphazardly tosses my phone back to me, but I’m thankfully able to catch it, though she’s already back in the clubroom before I can say anything else."
         "Looking down, I can see, indeed, a number is there, and she put her name as ‘Forum Knight’... I’ll assume there’s a story behind that one."
         "Saving the questions for later, I tuck my phone away and follow her inside."
-        hide taylor 
+        hide taylor
         jump thursdaytaylor
 
     # Beginning of Thursday - Different Version for each route
@@ -2418,6 +2441,8 @@ label start:
     # Beginning of endings
     label gpa_rock_end:
         rj "GPA ROCK"
+
+        play music "<loop 3.5>music/spooky.oga"
 
         "Ending C: Unlucky Valentine."
         return
@@ -2487,6 +2512,7 @@ label start:
         "I learned how to play Ascension that day."
 
         scene sbuoutside
+        play music "<loop 3.5>music/spooky.oga"
 
         "We played and played and played until I realized I had missed class and almost was going to miss the train home."
         "Thomas thankfully drove me to the station so I’d get there in time, but it was the first of many days like that."
@@ -2498,7 +2524,7 @@ label start:
         "And maybe Jolee wasn’t wrong that its members were just agents of the rock."
 
         "Ending B: Death of a GPA."
-        return 
+        return
 
     label testing:
         $ store_action(jmp, "exit")
