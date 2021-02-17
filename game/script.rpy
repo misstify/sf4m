@@ -7,6 +7,7 @@ define ta = Character('Taylor', color="#E50000")
 define th = Character('Thomas', color="#66B2FF")
 define pl = Character("[name]")
 define rj = Character('Egotistical Student', color="#FFFFFF")
+define mv = Character('Mysterious Voice', color="#FFFFFF")
 
 # Initialize placeholder values for characters for ease of use
 define gpa_rock = "GPA_ROCK"
@@ -115,7 +116,7 @@ init python:
         # Do action before storing
         if len(stack) != 0:
             run_action(action)
-        # Add tags to text to speed up CPS 
+        # Add tags to text to speed up CPS
         if action[0] == "MSG":
             action[2] = "{cps=100}" + action[2] + "{/cps}{nw}"
         # Add action to stack
@@ -134,7 +135,7 @@ label start:
     with dissolve
 
     # Nates testing cheaty jump
-    jump dualScene
+    # jump dualScene
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
@@ -1057,14 +1058,462 @@ label start:
             "I'd rather make history.":
                 jump neatchad
 
-# Bookmark for where taylor left off the dialogue work
+# Opinion on History
     label neatnerd:
 
-        pl "I guess History is just... pretty neat?"
+        pl "I guess History is just… pretty neat?"
+        pl "I like learning about all this, not really sure how to elaborate on it besides that."
+        "Thomas nods approvingly as he pats the cabinet."
+        th "I can appreciate it, it’s fun to learn about all these different things."
+        ta "You can learn about me when I do something like rob fort knox and end up in your textbooks."
+
+        jump classwalkja
 
     label neatchad:
 
-        pl "Taylor didn't write this yet because it's 2am and she should sleep."
+        pl "History is cool and all, but I’d rather make history than learn it."
+        ta "Oh? Do I hear the sounds of a getaway driver?"
+        "Taylor perks up and looks at me with an expression that concerns me and my jail-less life."
+        pl "Not trying to become the next Billy the Kid."
+        ta "Boo, no fun. You’ll be the alibi then though."
+
+        jump classwalkja
+
+# Leaving for Class with Jolee and Alex
+
+    label classwalkja:
+
+        "I stop as my phone begins to go off, forming a chorus as Jolee and Alex’s ping along as well."
+        ta "Oh, all of you have class now, neat. Guess I’m in charge!"
+        th "No, I’m staying in here as well."
+        ta "Damn, worth a try."
+        jo "Come on you two, let’s grab our stuff, doesn’t help to be late. Taylor, no killing Thomas."
+        ta "No promises!"
+        "We all stand, putting away our laptops and grabbing our backpacks."
+        "Taylor and Thomas wave as we head out of the room and up the stairs, pausing as we reach the door outside."
+        al "[name], which way are you heading? I’m going by Harriman, Jolee is going near Life Sciences."
+
+        menu:
+            "Jolee is going my way.":
+                jump joleewalk
+
+            "Alex is going my way.":
+                jump alexwalk
+
+    label joleewalk:
+
+        pl "Oh, I’m going Jolee’s way then."
+        jo "Nice, let’s walk together!"
+        al "Alright, then I’ll catch you two later."
+
+        scene sbuoutside
+
+        "Alex gives us a wave as he heads left and we head right. I slow my pace a bit for Jolee as we both move in silence for a moment."
+        jo "So.. you enjoying the club [name]?"
+        pl "Yeah, everyone is pretty nice, even if I don’t know you all that well yet."
+        jo "Ah, well is there something specific you want to know?"
+        pl "About the club?"
+        jo "The club, everyone in it, whatever. Could probably answer something before we get across campus."
+
+        menu:
+            "What's up with Thomas?":
+                jump jothopinion
+
+            "What's Taylor like?":
+                jump jotaopinion
+
+            "What kind of person is Alex?":
+                jump joalopinion
+
+            "I want to know more about you.":
+                jump jojoopinion
+
+        # Jolee's opinion of Thomas
+        label jothopinion:
+
+            jo "Thomas?"
+            pl "Yeah, he strikes me as a bit… I don’t know."
+            jo "Tom’s honestly a pretty chill guy. He’s just a giant meme lord."
+            pl "Really?"
+            jo "He runs some meme reddit accounts or discords or whatever, hard to pin down what he’s focusing on sometimes."
+            jo "But, even if he doesn’t always listen, he’s got a good sense of right and wrong."
+            jo "Oh, and he takes the best nature photos!"
+            pl "He likes photography?"
+            jo "He’s a hobbyist I guess. Lots of times he takes photos of animals on campus. Mostly geese, but sometimes he gets pictures of the deer or raccoons that you see around."
+            pl "And he’s studying astronomy, yeah?"
+            jo "Yeah, for a STEM major, he does have the artsy vibes at heart just a little bit."
+            jo "I appreciate what he does for the club though, it’s nice to have someone to just talk to in the mornings when it’s calm, or when we close up the club at night to just walk across campus with."
+            jo "If you ever need to talk, he probably could offer an ear and some sound advice."
+
+            jump jowalkbye
+
+        # Jolee's opinion of Taylor
+        label jotaopinion:
+
+            jo "Oh Taylor?"
+            jo "Well, we’re roommates in Hamilton together, so I guess I do kind of know her the best."
+            pl "How’s living with her? She is a bit…"
+            jo "A bit much?"
+            "Jolee laughs, shrugging slightly as we walk."
+            jo "She’s super lazy but if you ever ask her for help she'll do everything she can for you."
+            jo "Don’t tell her I told you this, but she’s actually in a ton of discord servers just to give advice to people."
+            pl "Like what, a ‘Dear Abby’ type thing, where people confess their woes?"
+            jo "Nah, she just frequents a lot of discord support servers. Like, whenever there’s one made for freshman, she always jumps in and spends a lot of her free time reading through every question she can."
+            pl "That’s pretty dedicated."
+            jo "She definitely has that air of someone who doesn’t care, but she does… only about a select few things though."
+            jo "To be honest though, both of us pretty much spend all our time in two places - our dorms or the forum."
+            pl "Do you guys not like any parts of campus?"
+            jo "I know Taylor goes out for walks sometimes just to clear her head or explore a new area, but I prefer sticking in the comfort zone. She calls me though if she finds something crazy though, or sends me pictures."
+
+            jump jowalkbye
+
+        # Jolee's opinion of Alex
+        label joalopinion:
+
+            jo "Alex? Which Alex?"
+            pl "There’s more than one?"
+            jo "Oh wait, there’s only one in this game, sorry."
+            jo "Yeah, Alex is a bigger weeb than me and there’s no better way of describing him. I say this as someone who colors manga pages in her free time."
+            pl "I guess that falls in line with him wanting to watch Godzilla so badly."
+            jo "Yeah, we can’t put on anime during the main hours in the forum, but him and a lot of people prefer us to the anime club."
+            pl "So, he just puts on similar stuff until late?"
+            jo "Well he has other tastes of course, but he’s even learning Japanese for his language requirement."
+            jo "I applaud his dedication. Though, if I needed to take a language course, I probably would’ve done the same."
+            pl "Do you know anything else about him?"
+            jo "Honestly… not really."
+            jo "Don’t get me wrong, it’s not like being a weeb is his only character trait - I just don’t know him that well."
+            jo "He’s a bit awkward at times and it’s the type to really be the conversation starter y’know?"
+            jo "I’m not much different so we just… don’t talk a lot. We vibe though, when it’s just us and I pop on some lofi music, there’s no better time to do homework or unwind."
+
+            jump jowalkbye
+
+        # Jolee's opinion of herself
+        label jojoopinion:
+
+            jo "Me?"
+            "Jolee seems taken aback for a moment, looking away from me to the path ahead of us."
+            jo "Oh well uh… I guess I’m just the responsible one."
+            jo "Not the best at anything, but I try my best at everything, you know?"
+            pl "You do have that ‘mom friend’ vibe."
+            jo "Ha, yeah. The club is basically the local kindergarten so it’s a good fit."
+            jo "I just want everyone to be happy here or at least comfortable."
+            pl "Are you happy here?"
+            jo "Am… I happy?"
+            pl "Yeah. It goes both ways after all."
+            "She seems to look away from me even more pointedly and I see her cheek redden a bit more prominently."
+            jo "Ah, well… I guess I am pretty happy in the club lately. Don’t worry too much about me [name], make sure you take care of yourself."
+
+            jump jowalkbye
+
+        # Jolee Walk End Scene
+        label jowalkbye:
+
+            "She stops as she nods to the nearby building."
+            jo "This is my stop. See you around?"
+            pl "Yeah - see ya!"
+            "I wave as she turns to head to her class, hustling off to mine immediately after."
+            "Maybe I could put this knowledge to good use?"
+
+            jump wednesday
+
+    label alexwalk:
+
+        "Me and Alex walk in silence for a moment after Jolee gives a wave and heads off on her own trek across campus."
+        al "So…"
+        pl "So…"
+        "He chuckles, reaching to rub the back of his neck."
+        al "Sorry. I’m not the best at one-on-one conversation."
+        pl "It’s alright, I’m still the ‘new person’ after all."
+        al "Are you enjoying the club so far at least? I know we can be a bit… ‘much’ for some people."
+        pl "No worries, I think you all are pretty fun honestly, even if I don’t know you all that well yet."
+        al "Was there someone or something you wanted to know more about? We got another minute before we get there."
+
+        menu:
+            "What's up with Thomas?":
+                jump althopinion
+
+            "What do you think of Taylor?":
+                jump altaopinion
+
+            "What kind of person is Jolee?":
+                jump aljoopinion
+
+            "Tell me about yourself.":
+                jump alalopinion
+
+        # Alex opinion on Thomas
+        label althopinion:
+
+            al "Thomas? Bit of a wild card I guess. I can’t always get a good read on him."
+            al "To be perfectly honest, I’m not certain what he thinks of me at times, but I’d like to be better friends."
+            pl "I’m not the best at reading him either, but he seems like a cool guy."
+            al "Yeah, he’s pretty smart and definitely can be very passionate about his interests. Especially geese."
+            pl "What is up with the geese thing?"
+            al "He just really likes nature I guess. I mean, he’s studying physics like me but he’s focusing on astronomy, spends his free time taking pictures of animals on campus…"
+            al "Tom even tried to organize a whole club around watching nature on campus at some point I think. Don’t know if it ever went anywhere though."
+            pl "Wow, sounds like passionate definitely is the best way to describe him then."
+            al "Without a doubt."
+
+            jump alwalkbye
+
+        # Alex opinion on Taylor
+        label altaopinion:
+
+            al "Taylor?"
+            al "Taylor’s a mischievous imp at times, but if you need her, she’ll come through without a doubt."
+            pl "Yeah, she definitely seems to like messing with you guys."
+            al "That’s just who she is honestly. Sometimes she may push it too far but she usually tries to apologize in her own way and make up for it."
+            al "Plus, she honestly is fun to talk with. Like, outside of the jokes and banter, she’s pretty engaging when she chills out."
+            al "I lose track of the time sometimes when talking with her."
+            pl "It’s always really nice when you can find someone like that, to just let the hours go by when you talk with them."
+            "Alex looks at me for a moment before he laughs and shakes his head slightly."
+            al "Sounds like you’d like to experience it for yourself."
+            pl "Oh, well I-I mean, I just meant-"
+            al "No, no, I’m not here to judge. Just… good luck with that."
+
+            jump alwalkbye
+
+        # Alex opinion on Jolee
+        label aljoopinion:
+
+            al "Jolee? Group mom, simple as that."
+            al "She is the closest thing to a group mom the forum has, even if she is a bit soft on all of us sometimes."
+            pl "She definitely seems like she has to reign you guys in now and then."
+            al "Jolee’s just a super supportive person who wants the best for us. You can tell she loves to help out."
+            al "I do hope she takes care of herself enough though."
+            pl "Does she not sometimes?"
+            al "Well I mean, I can relate to the whole idea of forgetting to focus on self-care now and then, and she’s the type to put others before herself."
+            al "Like if you’re stepping on her foot, she’ll just sit there and let it happen then tell you sorry when you notice and try to apologize."
+
+            jump alwalkbye
+
+        # Alex opinion on himself
+        label alalopinion:
+
+            al "About me…?"
+            "He seems confused for a moment before he shrugs a bit with a sigh, not saying anything right away."
+            pl "Don’t like talking about yourself?"
+            al "To be honest, I’m not very good at talking at all."
+            pl "You didn’t really strike me as that type in the forum."
+            al "Well yeah, everyone in there is a friend of mine to some extent and you honestly surprised me with how easy I find it to talk to you [name]."
+            "Alex gives me a tired smile for a moment before his face falls, looking forward as we keep walking."
+            al "I don’t know I just… feel like I’m the living embodiment of min-maxing?"
+            pl "Like in games?"
+            al "Yeah, I’m just all or nothing with the things I do. I can hyperfixate on things I care about with ease, but on the flip side I forget to eat or just utterly fail at understanding social cues."
+            pl "Did you eat today?"
+            al "Ha, don’t worry. Between Jolee mothering all of us and Taylor harassing me to eat, it’s hard to forget when I come to campus."
+            pl "Well, even if you think you’re bad at all this social stuff, I’m happy to still try to be your friend."
+            al "Heh, thanks [name]. Maybe we can talk more later."
+
+            jump alwalkbye
+
+        # Alex Walking Scene End
+        label alwalkbye:
+
+            "He stops as he nods to the nearby building."
+            al "This is my stop. See you around?"
+            pl "Yeah - see ya!"
+            "I wave as he turns to head to his class, hustling off to mine immediately after."
+            "Maybe I could put this knowledge to good use?"
+
+            jump wednesday
+
+# Beginning of Day 3
+    label wednesday:
+
+        scene timeskip
+
+        "The night passes..."
+
+        scene forumhallway
+
+        "Wednesday is here, and after sleeping on the long train ride onto campus, I make my way towards the Student Activities Center."
+
+        scene forummainclapcheeks
+
+        "The basement is surprisingly quiet as I approach, but it’s obviously why when I enter to find just Jolee, Thomas and Alex all sitting at the back table with their laptops."
+        "Jolee notices me first, giving me a wave."
+        jo "Morning [name]."
+        al "Heyo."
+        th "Just got on campus?"
+        pl "Hey guys. And yeah, I have a few hours to kill before class so I figured it’d be more fun to spend it here than just sitting in silence upstairs."
+        al "Good choice, you can enjoy the peace and quiet of the morning forum."
+        pl "Yeah, I think this is the first time I've seen a 'calm' forum."
+        "I sit down at the table with them, pulling my own laptop out to boot it up."
+        th "Well, we do have four people here now."
+        pl "Is there a special thing you guys do for four people in the room…?"
+        th "Nah, it just means we could probably play a board game to kill time."
+        al "It’d have to be a short one though if [name] has class, no Terraforming Mars or anything like that."
+        jo "Yeah and I don’t feel like suffering through us attempting to play jenga again, even if Taylor isn’t here."
+        "As if summoned by Jolee’s words, Taylor suddenly charges into the room with a laugh and brandishing something in her hands."
+        ta "Hey guys, look at what I just stol- I mean, recovered from the Anime club!"
+        "She holds up a small navy blue box that has the Bat symbol on it along with the words ‘Love Letter’."
+        al "You got the game back from them!?"
+        jo "I’m more concerned about how exactly she got it back from them."
+        "Taylor just leans back and kicks the door stand up, the door swinging shut just as an angry voice from down the hall can be heard."
+        ta "Don’t worry about it - hey [name] want to play Love Letter?"
+
+        menu:
+            "Sure, I've played Love Letter before.":
+                jump noinstruct
+
+            "I haven't played Love Letter before.":
+                jump yesinstruct
+
+    label noinstruct:
+
+        pl "Sure, I’ve played before, I know how the game works."
+        ta "Sweetness, let’s go nerds. This is Batman edition so instead of calling them ‘guard’ cards or whatever, we have Batman, Robin and the rogues gallery."
+        th "I guess this is what we’re doing then."
+        al "Hell yeah, you guys are going down."
+        "Taylor quickly deals out the cards and I pick up mine, carefully looking at the others."
+
+        jump loveletter
+
+    label yesinstruct:
+
+        pl "I’d be up for it, but I haven’t played it before."
+        ta "Eh, you’ll learn as you go."
+        jo "We can just explain it to him."
+        ta "Fine, fine, but explain quickly, you nerds are going to have to leave for class in like, 40 minutes or whatever."
+        jo "It’s really simple [name]. This one just happens to be fashioned after Batman characters but basically, there’s a bunch of different cards, each with a different value and role."
+        jo "We each get dealt a card at random, and then on our turns we draw a second one. We choose to either play our old or our new card. Every card has its instructions written on it-"
+        ta "Taking too loooong~"
+        "As Jolee tries to explain, Taylor’s already taken the cards out and begun dealing them."
+        "Jolee sighs and Alex leans over to me."
+        al "Just read the instructions on the cards, if you get the batman one try to guess what cards people have, and the goal is to end the round with the highest value card. It’s really easy to pick up!"
+        "He offers me a reassuring smile and I nod as I pick up the card I was dealt."
+
+        jump loveletter
+
+    # Love Letter Game commences
+    label loveletter:
+
+        "I sigh as I pick up two batmans - the guard card, all I can do is try to guess what cards other people have."
+        "I could just go for a hail mary and hope that one of them already has a joker, the highest-value card."
+        "But who could be holding it?"
+
+        menu:
+            "Taylor, smirking as she meets your eye.":
+                jump lltaylor
+
+            "Jolee, anxiously looking at everyone.":
+                jump lljolee
+
+            "Thomas, fiddling calmly with his cards.":
+                jump llthomas
+
+            "Alex, who seems confused as he looks at his cards.":
+                jump llalex
+
+        # J'accuse Taylor
+        label lltaylor:
+
+            "Taylor seems confident as she looks at me, it has to be her, right?"
+            "I throw my batman card on the table and point to her."
+            pl "Do you have the joker?"
+            "She cackles and shakes her head."
+            ta "Nah, I was just baiting you to waste your cards honestly."
+
+            jump taylorturn
+
+        # J'accuse Jolee
+        label lljolee:
+
+            "Jolee seems nervous, it has to be her right?"
+            "I throw my batman card on the table and point to her."
+            pl "Do you have the joker?"
+            jo "Huh? Me? Oh no, sorry."
+            pl "Dang, you looked like you were worried about something."
+            jo "Oh I’m just always stressed like this, don’t mind it."
+
+            jump taylorturn
+
+        # J'accuse Thomas
+        label llthomas:
+
+            "Thomas has a perfect poker face right now, maybe it’s him?"
+            "I throw my batman card on the table and point to him."
+            pl "Do you have the joker?"
+            th "Nah."
+            "He just shrugs at me and I sigh, letting my extended arm fall."
+
+            jump taylorturn
+
+        # J'accurse Alex
+        label llalex:
+
+            "Alex seems confused despite being so excited earlier. Maybe it’s him?"
+            "I throw my batman card on the table and point to him."
+            pl "Do you have the joker?"
+            al "I uh.. I do."
+            pl "Nice!"
+            al "But I somehow have two of them."
+
+            jump llcontinue
+
+        # If Alex isn't accused, proceeds to Taylor's turn
+        label taylorturn:
+
+            "Taylor draws a card happily."
+            ta "My turn~!"
+            "She looks between all of us for a moment before suddenly pointing at Alex."
+            ta "I play Catwoman, let me look at your cards nerd."
+            al "If you insist."
+            "The two of them lean in, Alex letting her peek at his cards. Almost immediately, her expression grows as confused as him."
+            jo "What is it?"
+            ta "Alex, how the hell do you have two jokers?"
+
+            jump llcontinue
+
+# All the choices of the love letter game reconverge
+    label llcontinue:
+
+        al "I have no idea how this happened."
+        th "Perhaps the anime club mixed some of the cards up when they took the game?"
+        ta "I mean, this wasn’t me for once, so it probably would have to be them?"
+        al "I’ll uh, just slide one of these to the side…"
+        pl "Does this mean we’re starting over?"
+        ta "It could be interesting to try to play this with two jokers in the deck. I mean, if you get one it’s great, if you get two, you’re screwed."
+        th "Wouldn’t be the first time we try to break a game."
+        jo "I’m fine with whatever honestly, so long as the games don’t take too long, some of us have class soon."
+        "As everyone starts discussing the new game, I pause feeling a… strange sensation in my stomach."
+        jo "You alright there [name]? Looking a bit green."
+        ta "Oh gods, don’t puke on the table please."
+        pl "I’m fine just… where’s the bathroom?"
+        th "Down the hall to the right."
+        pl "Thanks, excuse me."
+
+        scene forumhallway
+
+        "I excuse myself, holding my stomach as I stumble down the hallway."
+        "I just felt fine before - did I accidentally eat some undercooked chicken from the cafeteria or something?"
+        "Pushing open the door to the bathroom, I cough, gripping the edges of the sink."
+
+        scene mirror
+
+        "Nausea, this is definitely some really strong nausea."
+        "Looking up at the mirror however, I stop."
+        pl "...the fuck?"
+        "I have no reflection."
+        "There’s nothing there at all but the rest of the room."
+        "For a moment I wonder if it’s a trick image but reaching over to flick the paper towels, I can see their reflection move as normal."
+        mv "Just go…"
+        "I jump back from the mirror."
+        pl "Hello? What the hell is going on?"
+        mv "Stop this… this pain…"
+        mv "You’re ruining it, all of it."
+        mv "Just go."
+        mv "Go."
+        mv "GO!"
+        "I feel a force knock into my back and find myself grabbing onto the sink for balance once more before my head bashes into the mirror."
+        "But when I look up again the mirror is… gone."
+        "There’s just a brown outline on the wall where it would have been."
+        pl "...What kind of fumes are in this bathroom?"
+        "Feeling the wall, there’s definitely no mirror and looking around I can’t see anyone else here, or even any kind of microphone they could use to speak in here so clearly."
+        "Unsure of what else to do and the nausea having passed, I make my way back down the hall and to the forum."
+
+        scene forummainclapcheeks
 
     # Two choices code
     label dualScene:
@@ -1072,7 +1521,6 @@ label start:
         $ updateHearts("TAYLOR", 3)
         # Jump to label for appropriate scene
         $ findDates()
-
 
     # Beginning of after choice options
     label ALEXJOLEE:
@@ -1167,7 +1615,7 @@ label start:
         "Maybe that rock was cursed."
         "And maybe Jolee wasn’t wrong that its members were just agents of the rock."
 
-    "Ending B: Death of a GPA."
+        "Ending B: Death of a GPA."
 
     label testing:
         $ store_action(jmp, "exit")
