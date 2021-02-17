@@ -1750,7 +1750,7 @@ label start:
             "I can go into the hall with Taylor to put up leaves.":
                 jump jothelptaylor
 
-             "I can help Jolee put up the tree in the hall.":
+            "I can help Jolee put up the tree in the hall.":
                 jump jothelpjolee
 
         label jothelptaylor:
@@ -1804,7 +1804,7 @@ label start:
             "I can set up the tree in the hall with Thomas.":
                 jump tjohelpthomas
 
-             "I can help Jolee put up the tree in the hall.":
+            "I can help Jolee put up the tree in the hall.":
                 jump tjohelpjolee
 
         label tjohelpthomas:
@@ -1881,7 +1881,7 @@ label start:
 
             jump taylorhallway
 
-        label tthelpthomas
+        label tthelpthomas:
             "I think both of us should put up the tree in the hallway Thomas."
             th "Really? I kind of thought… well alright."
             "He seems almost taken aback for a moment before he just returns to his usual calm state."
@@ -1986,29 +1986,29 @@ label start:
     label testing:
         $ store_action(jmp, "exit")
         scene bg hallwaysakura
-        show ta at right
+        show taylor at right
         $ store_action(msg, taylor, "Lorem ipsum dolor sit amet,")
-        show th at center
+        show thomas at center
         $ store_action(msg, thomas, "consectetur adipiscing elit,")
-        show jo at left
+        show jolee at left
         $ store_action(msg, jolee, "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-        hide ta
-        hide th 
-        hide jo 
+        hide taylor
+        hide thomas 
+        hide jolee
         $ store_action(scn, "hallwaysakura")
         scene bg forumhallway
-        show al
+        show alex
         $ store_action(msg, alex, "Ut enim ad minim veniam,")
-        hide al 
-        show ta 
+        hide alex
+        show taylor
         $ store_action(msg, taylor, "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
-        hide ta 
-        show th 
+        hide taylor
+        show thomas
         $ store_action(msg, thomas, "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.")
-        hide th 
-        show jo 
+        hide thomas
+        show jolee
         $ store_action(msg, jolee, "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-        hide jo 
+        hide jolee
         $ store_action(scn, "forumhallway")
         $ rewind()
 
