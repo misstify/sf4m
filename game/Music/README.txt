@@ -12,7 +12,8 @@ alex 6.1
 taylor 4.2
 thomas 1.0
 forum 14.3
-
+sbu 12.19
+spooky 1.3
 The ending requires the noloop clause since it doesnt loop
 
 Finally use define config.main_menu_music = "music/mainmenu.oga" to make the start screen have music
