@@ -1985,7 +1985,7 @@ label start:
 
     label testing:
         $ store_action(jmp, "exit")
-        scene bg hallwaysakura
+        scene hallwaysakura
         show taylor at right
         $ store_action(msg, taylor, "Lorem ipsum dolor sit amet,")
         show thomas at center
@@ -1996,7 +1996,7 @@ label start:
         hide thomas 
         hide jolee
         $ store_action(scn, "hallwaysakura")
-        scene bg forumhallway
+        scene forumhallway
         show alex
         $ store_action(msg, alex, "Ut enim ad minim veniam,")
         hide alex
