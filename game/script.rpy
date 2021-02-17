@@ -2321,22 +2321,32 @@ label start:
     # Beginning of endings
     label gpa_rock_end:
         rj "GPA ROCK"
+
+        "Ending C: Unlucky Valentine."
         return
 
     label alex_end:
         al "Alex"
+
+        "Ending D: Gun-DAMN."
         return
 
     label jolee_end:
         jo "Jolee"
+
+        "Ending E: Blinded by Love."
         return
 
     label taylor_end:
         ta "Taylor"
+
+        "Ending F: Love Hurts."
         return
 
     label thomas_end:
         th "Thomas"
+
+        "Ending G: Honk if you're in love."
         return
 
 # This ends the game.
