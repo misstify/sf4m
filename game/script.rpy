@@ -131,7 +131,7 @@ label start:
     with dissolve
 
     # Nates testing cheaty jump
-    jump classwalkja
+    jump dualScene 
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
@@ -1149,12 +1149,6 @@ label start:
 # Leaving for Class with Jolee and Alex
 
     label classwalkja:
-        python:
-            name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
-            name = name.strip()
-
-            if not name:
-                name="Samuel Stanley"
 
         "I stop as my phone begins to go off, forming a chorus as Jolee and Alex’s ping along as well."
         ta "Oh, all of you have class now, neat. Guess I’m in charge!"
@@ -1406,6 +1400,9 @@ label start:
         scene forummainclapcheeks
 
         "The basement is surprisingly quiet as I approach, but it’s obviously why when I enter to find just Jolee, Thomas and Alex all sitting at the back table with their laptops."
+        show jolee at left
+        show thomas 
+        show alex at right 
         "Jolee notices me first, giving me a wave."
         jo "Morning [name]."
         al "Heyo."
@@ -1420,7 +1417,9 @@ label start:
         al "It’d have to be a short one though if [name] has class, no Terraforming Mars or anything like that."
         jo "Yeah and I don’t feel like suffering through us attempting to play jenga again, even if Taylor isn’t here."
         "As if summoned by Jolee’s words, Taylor suddenly charges into the room with a laugh and brandishing something in her hands."
-        ta "Hey guys, look at what I just stol- I mean, recovered from the Anime club!"
+        hide thomas 
+        show taylor 
+        ta "Hey guys, look at what I just stol- I mean, recovered from the Anime club!"        
         "She holds up a small navy blue box that has the Bat symbol on it along with the words ‘Love Letter’."
         al "You got the game back from them!?"
         jo "I’m more concerned about how exactly she got it back from them."
@@ -1482,53 +1481,59 @@ label start:
 
         # J'accuse Taylor
         label lltaylor:
-
+            hide jolee 
+            hide alex 
             "Taylor seems confident as she looks at me, it has to be her, right?"
             "I throw my batman card on the table and point to her."
             pl "Do you have the joker?"
             "She cackles and shakes her head."
             ta "Nah, I was just baiting you to waste your cards honestly."
-
+            hide taylor 
             jump taylorturn
 
         # J'accuse Jolee
         label lljolee:
-
+            hide taylor
+            hide alex 
             "Jolee seems nervous, it has to be her right?"
             "I throw my batman card on the table and point to her."
             pl "Do you have the joker?"
             jo "Huh? Me? Oh no, sorry."
             pl "Dang, you looked like you were worried about something."
             jo "Oh I’m just always stressed like this, don’t mind it."
-
+            hide jolee 
             jump taylorturn
 
         # J'accuse Thomas
         label llthomas:
-
+            hide jolee 
+            hide alex 
+            hide taylor 
+            show thomas 
             "Thomas has a perfect poker face right now, maybe it’s him?"
             "I throw my batman card on the table and point to him."
             pl "Do you have the joker?"
             th "Nah."
             "He just shrugs at me and I sigh, letting my extended arm fall."
-
+            hide thomas 
             jump taylorturn
 
         # J'accurse Alex
         label llalex:
-
+            hide jolee 
+            hide taylor 
             "Alex seems confused despite being so excited earlier. Maybe it’s him?"
             "I throw my batman card on the table and point to him."
             pl "Do you have the joker?"
             al "I uh.. I do."
             pl "Nice!"
             al "But I somehow have two of them."
-
+            hide alex 
             jump llcontinue
 
         # If Alex isn't accused, proceeds to Taylor's turn
         label taylorturn:
-
+            show taylor 
             "Taylor draws a card happily."
             ta "My turn~!"
             "She looks between all of us for a moment before suddenly pointing at Alex."
@@ -1542,14 +1547,17 @@ label start:
 
 # All the choices of the love letter game reconverge
     label llcontinue:
-
+        show alex at left 
         al "I have no idea how this happened."
+        show thomas at right 
         th "Perhaps the anime club mixed some of the cards up when they took the game?"
         ta "I mean, this wasn’t me for once, so it probably would have to be them?"
         al "I’ll uh, just slide one of these to the side…"
         pl "Does this mean we’re starting over?"
         ta "It could be interesting to try to play this with two jokers in the deck. I mean, if you get one it’s great, if you get two, you’re screwed."
         th "Wouldn’t be the first time we try to break a game."
+        hide alex 
+        show jolee at left 
         jo "I’m fine with whatever honestly, so long as the games don’t take too long, some of us have class soon."
         "As everyone starts discussing the new game, I pause feeling a… strange sensation in my stomach."
         jo "You alright there [name]? Looking a bit green."
@@ -1589,19 +1597,28 @@ label start:
         pl "...What kind of fumes are in this bathroom?"
         "Feeling the wall, there’s definitely no mirror and looking around I can’t see anyone else here, or even any kind of microphone they could use to speak in here so clearly."
         "Unsure of what else to do and the nausea having passed, I make my way back down the hall and to the forum."
-
+        return 
         scene forummainclapcheeks
 
     # Two choices code
     label dualScene:
-        $ updateHearts(taylor, 3)
-        $ updateHearts(thomas, 4)
+        python:
+            name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
+            name = name.strip()
+
+            if not name:
+                name="Samuel Stanley"
+
+        $ updateHearts(alex, 3)
+        $ updateHearts(jolee, 4)
         # Jump to label for appropriate scene
         $ findDates()
 
     # Beginning of after choice options
     label ALEXJOLEE:
         "I walk in to find Jolee and Alex sitting at the tables alone, each cutting shapes out of pink construction paper."
+        show jolee at left 
+        show alex at right 
         jo "Oh, hey [name]! You were gone so long we were getting a bit worried. You feeling alright?"
         pl "...Yeah. Yeah I feel fine. Where’d Taylor and Thomas go?"
         jo "Oh, you were gone for so long they had to leave for class."
@@ -1643,8 +1660,7 @@ label start:
 
         # Help Jolee over Alex
         label jahelpjolee:
-
-            "I kind of want to go out in the hall with Jolee to tape parts of this up. Hand’s kind of getting sore too."
+            pl "I kind of want to go out in the hall with Jolee to tape parts of this up. Hand’s kind of getting sore too."
             "Alex lets out a groan but nods."
             al "Yeah, alright, but we better swap places after a bit before my fingers fall off."
             "Jolee looks up at me surprised for a moment before she nods."
@@ -1655,7 +1671,6 @@ label start:
 
         # Help Alex over Jolee
         label jahelpalex:
-
             "I can just put up the leaves with Alex - his hands could use the rest and you don’t have to worry about trying to reach the hallway ceiling Jolee."
             jo "I can agree to that, I definitely don’t feel like balancing on a stepstool right now."
             "Alex gives me a grateful nod and puts down the scissors, gathering up paper instead."
@@ -1667,6 +1682,8 @@ label start:
 
     label ALEXTAYLOR:
         "I walk in to find Taylor brandishing duct tape and pink construction paper to Alex, grinning widely as she whirls around to look at me."
+        show alex at left
+        show taylor at right 
         ta "[name] hey! I was wondering if you fell in and drowned or something. Feeling better?"
         pl "...Yeah. Yeah I feel fine. Where’d Jolee and Thomas go?"
         ta "Oh, you were gone for so long they had to leave for class."
@@ -1742,6 +1759,8 @@ label start:
 
     label ALEXTHOMAS:
         "I walk in to find Jolee and Alex sitting at the tables alone, each cutting shapes out of pink construction paper."
+        show alex at left 
+        show thomas at right 
         th "Oh hey [name]. You took quite a bit in there, are you okay?"
         pl "...Yeah. Yeah I feel fine. Where’d Taylor and Jolee go?"
         al "You were gone for long enough that they had to go to class. You missed Jolee telling Taylor she wasn’t allowed to skip class again and dragging her away."
@@ -1799,6 +1818,8 @@ label start:
 
     label JOLEETAYLOR:
         "I walk in to find Taylor brandishing duct tape and pink construction paper to Jolee, grinning widely as she whirls around to look at me."
+        show jolee at right 
+        show taylor at left 
         ta "[name] hey! I was wondering if you fell in and drowned or something. Feeling better?"
         pl "...Yeah. Yeah I feel fine. Where’d Alex and Thomas go?"
         ta "Oh, you were gone for so long they had to leave for class."
@@ -1859,6 +1880,8 @@ label start:
 
     label JOLEETHOMAS:
         "I walk in to find Jolee and Thomas sitting at the tables alone, each cutting shapes out of pink construction paper."
+        show jolee at left 
+        show thomas at right 
         jo "Oh, hey [name]! You were gone so long we were getting a bit worried. You feeling alright?"
         pl "...Yeah. Yeah I feel fine. Where’d Taylor and Alex go?"
         jo "Oh, you were gone for so long they had to leave for class. I had to yell at Taylor to not skip and stay to work on all this."
@@ -1913,6 +1936,8 @@ label start:
 
     label TAYLORTHOMAS:
         "I walk in to find Taylor brandishing duct tape and pink construction paper to Thomas, grinning widely as she whirls around to look at me."
+        show taylor at right 
+        show thomas at left 
         ta "[name] hey! I was wondering if you fell in and drowned or something. Feeling better?"
         pl "...Yeah. Yeah I feel fine. Where’d Jolee and Alex go?"
         ta "Oh, you were gone for so long they had to leave for class."
@@ -1978,7 +2003,7 @@ label start:
     label joleehallway:
 
         scene forumhallway
-
+        show jolee 
         "Out in the hall, both of us drop the supplies on the ground, Jolee groaning as she stands back up. Her back audibly cracks."
         pl "That sounded pleasant."
         jo "It feels better than it sounds promise."
@@ -2064,13 +2089,13 @@ label start:
         pl "Heh, it’s no big deal, honest."
         "Jolee lingers for a moment before she rushes past me back into the room."
         "I follow her inside and we get more paper to complete the ‘art’ piece…."
-
+        hide jolee 
         jump thursdayjolee
 
 
     label alexhallway:
         scene forumhallway
-
+        show alex 
         "Alex groans as we dump the supplies on the ground, flexing his hands."
         pl "Those scissors really did a number on you, huh?"
         al "Yeah, probably should’ve stopped sooner."
@@ -2101,9 +2126,14 @@ label start:
     # NATE - Turn this following monologue up to like 500 characters per second and autoplay.
     # This is being written in monologue mode so I don't have to write 'al "text"' a million times.
 
-        al """
-        Gundam is a massively popular giant robot franchise from Japan that's been running since the late 70s and defined the mecha genre as we know it with the original series Mobile Suit Gundam from 1979 which was a show that was hard science-fiction for the most part. It lasted 43 episodes and wasn't particularly successful at the time, facing cancellation but allowed to finish its story, it only became popular through the compilation film trilogy that succeeded it which trimmed about 10 hours of fat from the original series in total. Nowadays it's recognized, along with other Gundam series as phenomenal examples of anti-war narratives with shows that despite the spectacle of giant robots are about people, the hopes for the growth of humanity, and a reflection of the hell people are capable of. Getting into an old anime series is rough for a lot of people, and the '79 TV series has definite signs of aging, so I wouldn't recommend it for newcomers. I'd personally suggest Mobile Suit Gundam: Iron-Blooded Orphans from 2015, which is the series I started with. It's a complete standalone so you don't need to worry about any of the other Gundam works to be released over the years. Also, as a franchise over 40 years old now, it's a franchise that's been highly malleable, whether you want hard sci-fi anti-war or basically Street Fighter with robots like Mobile Fighter G Gundam, Gundam has something for you. If you wanna see the upcoming Gundam movie, you'd have to watch a good amount of the 'Universal Century' timeline. Gundam has multiple different continuities and Universal Century is the largest one, it includes the original '79 series among others. To watch the new movie, you'd have to watch a bare minimum of Gundam '79, Zeta Gundam, Gundam ZZ, Gundam CCA, Gundam Unicorn, and maybe Gundam NT to get the big picture of what's going on in this movie. If you get really into the series, there's the plastic model kits based on robots from the show known as gunpla, which come in-
-        """
+        al "{cps=150}Gundam is a massively popular giant robot franchise from Japan that's been running since the late 70s and defined the mecha genre as we know it with the original series Mobile Suit Gundam from 1979 which was a show that was hard science-fiction for the most part.{/cps}{nw}"
+        al "{cps=150}It lasted 43 episodes and wasn't particularly successful at the time, facing cancellation but allowed to finish its story, it only became popular through the compilation film trilogy that succeeded it which trimmed about 10 hours of fat from the original series in total.{/cps}{nw}"
+        al "{cps=150}Nowadays it's recognized, along with other Gundam series as phenomenal examples of anti-war narratives with shows that despite the spectacle of giant robots are about people, the hopes for the growth of humanity, and a reflection of the hell people are capable of.{/cps}{nw}"
+        al "{cps=150}Getting into an old anime series is rough for a lot of people, and the '79 TV series has definite signs of aging, so I wouldn't recommend it for newcomers. I'd personally suggest Mobile Suit Gundam: Iron-Blooded Orphans from 2015, which is the series I started with.{/cps}{nw}"
+        al "{cps=150}It's a complete standalone so you don't need to worry about any of the other Gundam works to be released over the years. Also, as a franchise over 40 years old now, it's a franchise that's been highly malleable, whether you want hard sci-fi anti-war or basically Street Fighter with robots like Mobile Fighter G Gundam, Gundam has something for you.{/cps}{nw}"
+        al "{cps=150}If you wanna see the upcoming Gundam movie, you'd have to watch a good amount of the 'Universal Century' timeline. Gundam has multiple different continuities and Universal Century is the largest one, it includes the original '79 series among others.{/cps}{nw}"
+        al "{cps=150}To watch the new movie, you'd have to watch a bare minimum of Gundam '79, Zeta Gundam, Gundam ZZ, Gundam CCA, Gundam Unicorn, and maybe Gundam NT to get the big picture of what's going on in this movie.{/cps}{nw}"
+        al "{cps=150}If you get really into the series, there's the plastic model kits based on robots from the show known as gunpla, which come in-{/cps}{nw}"
 
         "Alex stops suddenly, his face turning a fierce red as he shrinks in on himself, looking away from me."
         al "Sorry, I uh…"
@@ -2159,13 +2189,13 @@ label start:
         pl "You’re not wrong."
         al "I’ll see you tomorrow then [name]."
         "Alex gives a wave before he heads inside the clubroom, leaving me a moment to myself in the hallway to look at the half-finished creation before I follow him in."
-
+        hide alex 
         jump thursdayalex
 
     label thomashallway:
 
         scene forumhallway
-
+        show thomas 
         "Both of us come out into the hall, dropping our shared piles of materials as Thomas examines the wall for a moment."
         th "Hm, maybe we should outline it before we get started?"
         pl "Sure, but how do we do that?"
@@ -2254,11 +2284,12 @@ label start:
         th "Eh, there’s always tomorrow right?"
         pl "I guess you’re right."
         "With a calm grin, Thomas waves for me to follow him and we both head inside the forum."
-
+        hide thomas 
         jump thursdaythomas
 
     label taylorhallway:
-
+        scene forumhallway 
+        show taylor 
         "I follow Taylor out into the hall and watch as she immediately dumps all our materials to the ground and claps her hands together."
         ta "Alright let’s make something of all this. [name], quick, start taping things to the wall!"
         pl "You mean we, right?"
@@ -2380,7 +2411,7 @@ label start:
         "Taylor haphazardly tosses my phone back to me, but I’m thankfully able to catch it, though she’s already back in the clubroom before I can say anything else."
         "Looking down, I can see, indeed, a number is there, and she put her name as ‘Forum Knight’... I’ll assume there’s a story behind that one."
         "Saving the questions for later, I tuck my phone away and follow her inside."
-
+        hide taylor 
         jump thursdaytaylor
 
     # Beginning of Thursday - Different Version for each route
@@ -2478,6 +2509,7 @@ label start:
         "And maybe Jolee wasn’t wrong that its members were just agents of the rock."
 
         "Ending B: Death of a GPA."
+        return 
 
     label testing:
         $ store_action(jmp, "exit")
