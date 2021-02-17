@@ -131,7 +131,7 @@ label start:
     with dissolve
 
     # Nates testing cheaty jump
-    # jump testing
+    jump classwalkja
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
@@ -1149,6 +1149,12 @@ label start:
 # Leaving for Class with Jolee and Alex
 
     label classwalkja:
+        python:
+            name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
+            name = name.strip()
+
+            if not name:
+                name="Samuel Stanley"
 
         "I stop as my phone begins to go off, forming a chorus as Jolee and Alex’s ping along as well."
         ta "Oh, all of you have class now, neat. Guess I’m in charge!"
@@ -1174,7 +1180,7 @@ label start:
         al "Alright, then I’ll catch you two later."
 
         scene sbuoutside
-
+        show jolee
         "Alex gives us a wave as he heads left and we head right. I slow my pace a bit for Jolee as we both move in silence for a moment."
         jo "So.. you enjoying the club [name]?"
         pl "Yeah, everyone is pretty nice, even if I don’t know you all that well yet."
@@ -1284,7 +1290,8 @@ label start:
             jump wednesday
 
     label alexwalk:
-
+        scene sbuoutside 
+        show alex 
         "Me and Alex walk in silence for a moment after Jolee gives a wave and heads off on her own trek across campus."
         al "So…"
         pl "So…"
