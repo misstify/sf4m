@@ -3631,25 +3631,25 @@ label start:
 
         #Rewind One Starts
         scene bwhallwaysakura
-        pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
-        jo "Y-you what?"
-        pl "I like you."
-        jo "What is it [name]?"
+        pl "{cps=200}I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?{/cps}{nw}"
+        jo "{cps=200}Y-you what?{/cps}{nw}"
+        pl "{cps=200}I like you.{/cps}{nw}"
+        jo "{cps=200}What is it [name]?{/cps}{nw}"
 
         scene bwforummainclapcheeks
 
-        jo "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
-        pl "Can I… talk to you for a minute? Alone?"
-        jo "Yeah, what’s up?"
-        pl "Hey wait up Jolee!"
-        th "As normal as physics could be considered."
-        ta "Me and Jolee are in the same SBC! The other two nerds have normal classes though."
-        al "Yeah, somehow all our schedules lined up to have class after meeting."
-        pl "All of you have class now?"
-        th "Touche. Come on, let’s get our stuff, we got class."
-        ta "Dare you involve yourself with my answer?"
-        th "Dare I ask if you were involved?"
-        ta "What a shame that only one bone broke."
+        jo "{cps=200}Oh uh, sure. You guys can go ahead without me, I’ll catch up.{/cps}{nw}"
+        pl "{cps=200}Can I… talk to you for a minute? Alone?{/cps}{nw}"
+        jo "{cps=200}Yeah, what’s up?{/cps}{nw}"
+        pl "{cps=200}Hey wait up Jolee!{/cps}{nw}"
+        th "{cps=200}As normal as physics could be considered.{/cps}{nw}"
+        ta "{cps=200}Me and Jolee are in the same SBC! The other two nerds have normal classes though.{/cps}{nw}"
+        al "{cps=200}Yeah, somehow all our schedules lined up to have class after meeting.{/cps}{nw}"
+        pl "{cps=200}All of you have class now?{/cps}{nw}"
+        th "{cps=200}Touche. Come on, let’s get our stuff, we got class.{/cps}{nw}"
+        ta "{cps=200}Dare you involve yourself with my answer?{/cps}{nw}"
+        th "{cps=200}Dare I ask if you were involved?{/cps}{nw}"
+        ta "{cps=200}What a shame that only one bone broke.{/cps}{nw}"
         #Rewind One Ends
 
         scene forummainclapcheeks
@@ -3696,19 +3696,19 @@ label start:
 
         scene bwforummainclapcheeks
 
-        pl "Hey wait up-!"
-        pl "You uh.. Mentioned it before."
-        ta "Yeah, how’d you guess?"
-        pl "In the same SBC."
-        ta "Me and Jolee are in-"
-        al "Yeah, somehow all our schedules lined up to have class after meeting."
-        pl "You guys all have class together…"
-        th "Touche. Come on, let’s get our stuff, we got class."
-        ta "Dare you involve yourself with my answer?"
-        th "Dare I ask if you were involved?"
-        ta "More like what a shame that only one bone broke."
-        ta "What the what?"
-        pl "What the…"
+        pl "{cps=200}Hey wait up-!{/cps}{nw}"
+        pl "{cps=200}You uh.. Mentioned it before.{/cps}{nw}"
+        ta "{cps=200}Yeah, how’d you guess?{/cps}{nw}"
+        pl "{cps=200}In the same SBC.{/cps}{nw}"
+        ta "{cps=200}Me and Jolee are in-{/cps}{nw}"
+        al "{cps=200}Yeah, somehow all our schedules lined up to have class after meeting.{/cps}{nw}"
+        pl "{cps=200}You guys all have class together…{/cps}{nw}"
+        th "{cps=200}Touche. Come on, let’s get our stuff, we got class.{/cps}{nw}"
+        ta "{cps=200}Dare you involve yourself with my answer?{/cps}{nw}"
+        th "{cps=200}Dare I ask if you were involved?{/cps}{nw}"
+        ta "{cps=200}More like what a shame that only one bone broke.{/cps}{nw}"
+        ta "{cps=200}What the what?{/cps}{nw}"
+        pl "{cps=200}What the…{/cps}{nw}"
 
         # Rewind Two Ends
 
@@ -3864,25 +3864,25 @@ label start:
 
         scene bwhallwaysakura
 
-        pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
-        ta "Y-you what?"
-        pl "I like you."
-        ta "What is it [name]?"
+        pl "{cps=150}I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?{/cps}{nw}"
+        ta "{cps=150}Y-you what?{/cps}{nw}"
+        pl "{cps=150}I like you.{/cps}{nw}"
+        ta "{cps=150}What is it [name]?{/cps}{nw}"
 
         scene bwforummainclapcheeks
 
-        ta "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
-        pl "Can I… talk to you for a minute? Alone?"
-        ta "Yeah, what’s up?"
-        pl "Hey wait up Taylor!"
-        th "As normal as physics could be considered."
-        ta "Me and Jolee are in the same SBC! The other two nerds have normal classes though."
-        al "Yeah, somehow all our schedules lined up to have class after meeting."
-        pl "All of you have class now?"
-        th "Touche. Come on, let’s get our stuff, we got class."
-        ta "Dare you involve yourself with my answer?"
-        th "Dare I ask if you were involved?"
-        ta "What a shame that only one bone broke."
+        ta "{cps=150}Oh uh, sure. You guys can go ahead without me, I’ll catch up.{/cps}{nw}"
+        pl "{cps=150}Can I… talk to you for a minute? Alone?{/cps}{nw}"
+        ta "{cps=150}Yeah, what’s up?{/cps}{nw}"
+        pl "{cps=150}Hey wait up Taylor!{/cps}{nw}"
+        th "{cps=150}As normal as physics could be considered.{/cps}{nw}"
+        ta "{cps=150}Me and Jolee are in the same SBC! The other two nerds have normal classes though.{/cps}{nw}"
+        al "{cps=150}Yeah, somehow all our schedules lined up to have class after meeting.{/cps}{nw}"
+        pl "{cps=150}All of you have class now?{/cps}{nw}"
+        th "{cps=150}Touche. Come on, let’s get our stuff, we got class.{/cps}{nw}"
+        ta "{cps=150}Dare you involve yourself with my answer?{/cps}{nw}"
+        th "{cps=150}Dare I ask if you were involved?{/cps}{nw}"
+        ta "{cps=150}What a shame that only one bone broke.{/cps}{nw}"
 
         #Rewind One Ends
 
@@ -3930,19 +3930,19 @@ label start:
 
         scene bwforummainclapcheeks
 
-        pl "Hey wait up-!"
-        pl "You uh.. Mentioned it before."
-        ta "Yeah, how’d you guess?"
-        pl "In the same SBC."
-        ta "Me and Jolee are in-"
-        al "Yeah, somehow all our schedules lined up to have class after meeting."
-        pl "You guys all have class together…"
-        th "Touche. Come on, let’s get our stuff, we got class."
-        ta "Dare you involve yourself with my answer?"
-        th "Dare I ask if you were involved?"
-        ta "More like what a shame that only one bone broke."
-        ta "What the what?"
-        pl "What the…"
+        pl "{cps=200}Hey wait up-!{/cps}{nw}"
+        pl "{cps=200}You uh.. Mentioned it before.{/cps}{nw}"
+        ta "{cps=200}Yeah, how’d you guess?{/cps}{nw}"
+        pl "{cps=200}In the same SBC.{/cps}{nw}"
+        ta "{cps=200}Me and Jolee are in-{/cps}{nw}"
+        al "{cps=200}Yeah, somehow all our schedules lined up to have class after meeting.{/cps}{nw}"
+        pl "{cps=200}You guys all have class together…{/cps}{nw}"
+        th "{cps=200}Touche. Come on, let’s get our stuff, we got class.{/cps}{nw}"
+        ta "{cps=200}Dare you involve yourself with my answer?{/cps}{nw}"
+        th "{cps=200}Dare I ask if you were involved?{/cps}{nw}"
+        ta "{cps=200}More like what a shame that only one bone broke.{/cps}{nw}"
+        ta "{cps=200}What the what?{/cps}{nw}"
+        pl "{cps=200}What the…{/cps}{nw}"
 
         # Rewind Two Ends
 
@@ -4086,26 +4086,27 @@ label start:
 
             scene bwhallwaysakura
 
-            pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
-            th "Y-you what?"
-            pl "I like you."
-            th "What is it [name]?"
+            pl "{cps=200}I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?{/cps}{nw}"
+            th "{cps=200}Y-you what?{/cps}{nw}"
+            pl "{cps=200}I like you.{/cps}{nw}"
+            th "{cps=200}What is it [name]?{/cps}{nw}"
 
             scene bwforummainclapcheeks
 
-            th "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
-            pl "Can I… talk to you for a minute? Alone?"
-            th "Yeah, what’s up?"
-            pl "Hey wait up Thomas!"
-            th "As normal as physics could be considered."
-            ta "Me and Jolee are in the same SBC! The other two nerds have normal classes though."
-            al "Yeah, somehow all our schedules lined up to have class after meeting."
-            pl "All of you have class now?"
-            th "Touche. Come on, let’s get our stuff, we got class."
-            ta "Dare you involve yourself with my answer?"
-            th "Dare I ask if you were involved?"
-            ta "What a shame that only one bone broke."
+            th "{cps=200}Oh uh, sure. You guys can go ahead without me, I’ll catch up.{/cps}{nw}"
+            pl "{cps=200}Can I… talk to you for a minute? Alone?{/cps}{nw}"
+            th "{cps=200}Yeah, what’s up?{/cps}{nw}"
+            pl "{cps=200}Hey wait up Thomas!{/cps}{nw}"
+            th "{cps=200}As normal as physics could be considered.{/cps}{nw}"
+            ta "{cps=200}Me and Jolee are in the same SBC! The other two nerds have normal classes though.{/cps}{nw}"
+            al "{cps=200}Yeah, somehow all our schedules lined up to have class after meeting.{/cps}{nw}"
+            pl "{cps=200}All of you have class now?{/cps}{nw}"
+            th "{cps=200}Touche. Come on, let’s get our stuff, we got class.{/cps}{nw}"
+            ta "{cps=200}Dare you involve yourself with my answer?{/cps}{nw}"
+            th "{cps=200}Dare I ask if you were involved?{/cps}{nw}"
+            ta "{cps=200}What a shame that only one bone broke.{/cps}{nw}"
 
+            
             #Rewind One Ends
 
             scene forummainclapcheeks
@@ -4152,19 +4153,19 @@ label start:
 
             scene bwforummainclapcheeks
 
-            pl "Hey wait up-!"
-            pl "You uh.. Mentioned it before."
-            ta "Yeah, how’d you guess?"
-            pl "In the same SBC."
-            ta "Me and Jolee are in-"
-            al "Yeah, somehow all our schedules lined up to have class after meeting."
-            pl "You guys all have class together…"
-            th "Touche. Come on, let’s get our stuff, we got class."
-            ta "Dare you involve yourself with my answer?"
-            th "Dare I ask if you were involved?"
-            ta "More like what a shame that only one bone broke."
-            ta "What the what?"
-            pl "What the…"
+            pl "{cps=200}Hey wait up-!{/cps}{nw}"
+            pl "{cps=200}You uh.. Mentioned it before.{/cps}{nw}"
+            ta "{cps=200}Yeah, how’d you guess?{/cps}{nw}"
+            pl "{cps=200}In the same SBC.{/cps}{nw}"
+            ta "{cps=200}Me and Jolee are in-{/cps}{nw}"
+            al "{cps=200}Yeah, somehow all our schedules lined up to have class after meeting.{/cps}{nw}"
+            pl "{cps=200}You guys all have class together…{/cps}{nw}"
+            th "{cps=200}Touche. Come on, let’s get our stuff, we got class.{/cps}{nw}"
+            ta "{cps=200}Dare you involve yourself with my answer?{/cps}{nw}"
+            th "{cps=200}Dare I ask if you were involved?{/cps}{nw}"
+            ta "{cps=200}More like what a shame that only one bone broke.{/cps}{nw}"
+            ta "{cps=200}What the what?{/cps}{nw}"
+            pl "{cps=200}What the…{/cps}{nw}"
 
             # Rewind Two Ends
 
@@ -4333,35 +4334,6 @@ label start:
 
         "Ending B: Death of a GPA."
         return
-
-    label testing:
-        $ store_action(jmp, "exit")
-        scene bg hallwaysakura
-        show ta at right
-        $ store_action(msg, taylor, "Lorem ipsum dolor sit amet,")
-        show th at center
-        $ store_action(msg, thomas, "consectetur adipiscing elit,")
-        show jo at left
-        $ store_action(msg, jolee, "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-        hide ta
-        hide th
-        hide jo
-        $ store_action(scn, "hallwaysakura")
-        scene bg forumhallway
-        show al
-        $ store_action(msg, alex, "Ut enim ad minim veniam,")
-        hide al
-        show ta
-        $ store_action(msg, taylor, "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
-        hide ta
-        show th
-        $ store_action(msg, thomas, "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.")
-        hide th
-        show jo
-        $ store_action(msg, jolee, "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-        hide jo
-        $ store_action(scn, "forumhallway")
-        $ rewind()
 
     label exit:
         return
