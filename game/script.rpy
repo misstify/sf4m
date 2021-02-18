@@ -1586,7 +1586,7 @@ label start:
 
 # All the choices of the love letter game reconverge
     label llcontinue:
-        show rpspread
+        show 4pspread
         al "I have no idea how this happened."
         th "Perhaps the anime club mixed some of the cards up when they took the game?"
         ta "I mean, this wasn’t me for once, so it probably would have to be them?"
