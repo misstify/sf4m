@@ -3184,6 +3184,7 @@ label start:
 
     # Beginning of endings
     label alex_gpa_rock_end:
+        show alex 
         pl "Hey wait up Alex!"
         "Alex pauses, looking back at me curiously."
         al "Yeah, what’s up?"
@@ -3208,7 +3209,7 @@ label start:
             al "I got to go to class...later."
             pl "Later."
             "I stand there in dejected silence as Alex heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it."
-
+            hide alex
             show gpa_rock
             play music "<loop 3.5>music/spooky.oga"
 
@@ -3229,6 +3230,7 @@ label start:
             return
 
     label jolee_gpa_rock_end:
+        show jolee 
         pl "Hey wait up Jolee!"
         "Jolee pauses, looking back at me curiously."
         jo "Yeah, what’s up?"
@@ -3253,7 +3255,7 @@ label start:
             jo "I got to go to class...later."
             pl "Later."
             "I stand there in dejected silence as Jolee heads up joe stairs and out of joe basement, unsure of what to do next. joen suddenly I hear it."
-
+            hide jolee 
             show gpa_rock
             play music "<loop 3.5>music/spooky.oga"
 
@@ -3274,7 +3276,7 @@ label start:
             return
 
     label taylor_gpa_rock_end:
-
+        show taylor 
         pl "Hey wait up Taylor!"
         "Taylor pauses, looking back at me curiously."
         ta "Yeah, what’s up?"
@@ -3298,7 +3300,7 @@ label start:
             ta "I got to go to class...later."
             pl "Later."
             "I stand there in dejected silence as Taylor heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it."
-
+            hide taylor 
             show gpa_rock
             play music "<loop 3.5>music/spooky.oga"
 
@@ -3319,6 +3321,7 @@ label start:
             return
 
     label thomas_gpa_rock_end:
+        show thomas 
         pl "Hey wait up Thomas!"
         "Thomas pauses, looking back at me curiously."
         th "Yeah, what’s up?"
@@ -3343,7 +3346,7 @@ label start:
             th "I got to go to class...later."
             pl "Later."
             "I stand there in dejected silence as Thomas heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it."
-
+            hide thomas 
             show gpa_rock
             play music "<loop 3.5>music/spooky.oga"
 
