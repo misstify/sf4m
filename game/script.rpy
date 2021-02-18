@@ -8,6 +8,7 @@ define th = Character('Thomas', color="#66B2FF")
 define pl = Character("[name]")
 define rj = Character('Egotistical Student', color="#FFFFFF")
 define mv = Character('Mysterious Voice', color="#FFFFFF")
+define gpa = Character("GPA Rock", color="#FFFFFF")
 
 #Main menu music
 define config.main_menu_music = "music/mainmenu.oga"
@@ -56,34 +57,15 @@ init python:
         renpy.jump(res[0]+res[1])
         return res
 
-    # Jump to appropriate label, gpa_rock if invalid input given
-    def jumpToDate(char_name, label_end):
-        if char_name == "GPA_ROCK":
-            renpy.jump("gpa_rock" + label_end)
-        elif char_name == "ALEX":
-            renpy.jump("alex" + label_end)
-        elif char_name == "JOLEE":
-            renpy.jump("jolee" + label_end)
-        elif char_name == "TAYLOR":
-            renpy.jump("taylor" + label_end)
-        elif char_name == "THOMAS":
-            renpy.jump("thomas" + label_end)
-        else:
-            renpy.jump("gpa_rock" + label_end)
-
     # Find out who your date is at end of game
-    def findDate():
-        # make sure romance level has hit "dateable" level
-        datable = 10
-        max_romance = max(hearts.values())
+    def findDate(char_name):
+        romance_level = hearts[char_name]
         # If date threshold not met, return gpa_rock code
-        if max_romance < datable:
-            return 0
+        if romance_level < 5:
+            return char_name.lower()+"_gpa_rock_end"
         # Otherwise find and return key corresponding to person with highest romance, choosing first person in event of tie
         else:
-            for name in hearts:
-                if hearts[name] == max_romance:
-                    jumpToDate(name)
+            renpy.jump(char_name.lower()+"_end")
 
 # Go backwards wheeeee
     # Stack to store messages
@@ -135,7 +117,7 @@ label start:
     play music "<loop 22.4833>music/sbu.oga"
 
     # Nates testing cheaty jump
-    jump endingb
+    jump friday
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
@@ -856,7 +838,7 @@ label start:
         th "Nothing wrong with optimism I guess."
         ta "If you get crushed by whoever you plan on confessing to dude, I will happily take whatever chocolate you buy for them on their behalf."
         "I look between everyone only to find that no one seems to agree with my perspective on this."
-        jo "It’s alright [Name], if you have someone you care about and want to confess to, I’d say get it over with and do it quickly."
+        jo "It’s alright [name], if you have someone you care about and want to confess to, I’d say get it over with and do it quickly."
         jo "A lot of people have anxiety about it, but… I mean, it helps to not dwell on it."
         ta "That’s too wholesome for me, change the channel on that one Jolee."
         jo "Go grab the remote and put something on yourself."
@@ -2804,7 +2786,7 @@ label start:
 
             jump thomasdateend
 
-    label thomasdateend
+    label thomasdateend:
 
         "As we sit by the lakeside, I watch the water’s surface for a moment before I feel a wave of nausea wash over me. I jerk my hand to my mouth and Thomas looks over at me, concerned."
         th "You feel alright [name]?"
@@ -3089,81 +3071,86 @@ label start:
         jump friday
 
     label friday:
+        $name = "test"
+        
+        "The GBM is uneventful honestly."
+        jo "If there’s nothing else anyone has to add then I think we can mark this GBM as over!"
+        jo "Thanks again to Alex for stepping in as temporary secretary while ours is studying abroad."
+        jo "And hopefully our President will be able to be back here soon when he gets out of the hospital from his broken femur!"
+        "Taylor walks in almost immediately after the meeting ends."
+        ta "What a shame that only one bone broke."
+        th "Dare I ask if you were involved?"
+        ta "Dare you involve yourself with my answer?"
+        th "Touche. Come on, let’s get our stuff, we got class."
+        "Everyone mills about for a moment and I watch Alex, Taylor, Jolee and Thomas get their stuff."
+        pl "All of you have class now?"
+        al "Yeah, somehow all our schedules lined up to have class after meeting."
+        ta "Me and Jolee are in the same SBC! The other two nerds have normal classes though."
+        th "As normal as physics could be considered."
+        "As I watch them all move to leave, I feel a pain in my chest. Like I’m about to miss a chance."
+        mv "Don’t…"
+        "Valentine’s day is Sunday… maybe I can be lucky this year?"
+        pl "Hey wait up-!"
 
-        “The GBM is uneventful honestly.”
-        jo “If there’s nothing else anyone has to add then I think we can mark this GBM as over!”
-        jo “Thanks again to Alex for stepping in as temporary secretary while ours is studying abroad.”
-        jo “And hopefully our President will be able to be back here soon when he gets out of the hospital from his broken femur!”
-        “Taylor walks in almost immediately after the meeting ends.”
-        ta “What a shame that only one bone broke.”
-        th “Dare I ask if you were involved?”
-        ta “Dare you involve yourself with my answer?”
-        th “Touche. Come on, let’s get our stuff, we got class.”
-        “Everyone mills about for a moment and I watch Alex, Taylor, Jolee and Thomas get their stuff.”
-        pl “All of you have class now?”
-        al “Yeah, somehow all our schedules lined up to have class after meeting.”
-        ta “Me and Jolee are in the same SBC! The other two nerds have normal classes though.”
-        th “As normal as physics could be considered.”
-        “As I watch them all move to leave, I feel a pain in my chest. Like I’m about to miss a chance.”
-        mv “Don’t…”
-        “Valentine’s day is Sunday… maybe I can be lucky this year?”
-        pl “Hey wait up-!”
+        python:
+            chosen_date = renpy.display_menu([("Alex","ALEX"),("Jolee","JOLEE"),("Taylor","TAYLOR"), ("Thomas","THOMAS")])
+            renpy.jump(findDate(chosen_date))
 
 
     # Beginning of endings
     label alex_gpa_rock_end:
-        pl “Hey wait up Alex!”
-        “Alex pauses, looking back at me curiously.”
-        al “Yeah, what’s up?”
-        pl “Can I… talk to you for a minute? Alone?”
-        al “Oh uh, sure. You guys can go ahead without me, I’ll catch up.”
-        “He waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat.”
-        al “What is it [name]?”
+        pl "Hey wait up Alex!"
+        "Alex pauses, looking back at me curiously."
+        al "Yeah, what’s up?"
+        pl "Can I… talk to you for a minute? Alone?"
+        al "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+        "He waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat."
+        al "What is it [name]?"
 
         menu:
             "I like you.":
-            jump alexahead
+                jump alexahead
 
         label alexahead:
 
-            al “Y-you what?”
-            pl “I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?”
-            al “[Name]... I’m flattered but I kind of like someone else in the club.”
-            pl “Oh..who?”
-            al “I actually planned on confessing later. To Jolee. I’m sorry dude. But I just don’t like you like that. We can still be friends though?”
-            pl “Yeah. I get it…”
-            “Alex winces at my response but waves.”
-            al “I got to go to class...later.”
-            pl “Later.”
-            “I stand there in dejected silence as Alex heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it.”
+            al "Y-you what?"
+            pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
+            al "[name]... I’m flattered but I kind of like someone else in the club."
+            pl "Oh..who?"
+            al "I actually planned on confessing later. To Jolee. I’m sorry dude. But I just don’t like you like that. We can still be friends though?"
+            pl "Yeah. I get it…"
+            "Alex winces at my response but waves."
+            al "I got to go to class...later."
+            pl "Later."
+            "I stand there in dejected silence as Alex heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it."
 
-            show gparock
+            show gpa_rock
             play music "<loop 3.5>music/spooky.oga"
 
-            gpa “I’ll go out with you [name]!”
-            pl “The GPA rock!?”
-            gpa “I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!”
-            pl “You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!”
-            gpa “The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!”
-            pl “Plot? What plot!?”
-            gpa “Hush my love, you’re safe now. Now we can end this all with a kiss!”
-            pl “What the hell? What are you talking about? What plot, what’s going on?”
-            pl “No don’t get closer, stay back!”
-            pl “Don’t pull the chainmail off no!”
-            pl “No!”
-            pl “NOOOOOOOOOOOOOOOOO!”
+            gpa "I’ll go out with you [name]!"
+            pl "The GPA rock!?"
+            gpa "I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!"
+            pl "You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!"
+            gpa "The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!"
+            pl "Plot? What plot!?"
+            gpa "Hush my love, you’re safe now. Now we can end this all with a kiss!"
+            pl "What the hell? What are you talking about? What plot, what’s going on?"
+            pl "No don’t get closer, stay back!"
+            pl "Don’t pull the chainmail off no!"
+            pl "No!"
+            pl "NOOOOOOOOOOOOOOOOO!"
 
             "Ending C: Unlucky Valentine."
             return
 
     label jolee_gpa_rock_end:
-        pl “Hey wait up Jolee!”
-        “Jolee pauses, looking back at me curiously.”
-        jo “Yeah, what’s up?”
-        pl “Can I… talk to you for a minute? Alone?”
-        jo “Oh uh, sure. You guys can go ahead without me, I’ll catch up.”
-        “She waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat.”
-        jo “What is it [name]?”
+        pl "Hey wait up Jolee!"
+        "Jolee pauses, looking back at me curiously."
+        jo "Yeah, what’s up?"
+        pl "Can I… talk to you for a minute? Alone?"
+        jo "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+        "She waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat."
+        jo "What is it [name]?"
 
         menu:
             "I like you.":
@@ -3171,89 +3158,89 @@ label start:
 
         label joleeahead:
 
-            jo “Y-you what?”
-            pl “I like you and I wanted to know if you wanted to go out togejoer on sunday for Valentine’s day?”
-            jo “[Name]... I’m flattered but I kind of like someone else in joe club.”
-            pl “Oh..who?”
-            jo “I actually planned on confessing later. To Thomas. I’m sorry dude. But I just don’t like you like joat. We can still be friends joough?”
-            pl “Yeah. I get it…”
-            “Jolee winces at my response but waves.”
-            jo “I got to go to class...later.”
-            pl “Later.”
-            “I stand there in dejected silence as Jolee heads up joe stairs and out of joe basement, unsure of what to do next. joen suddenly I hear it.”
+            jo "Y-you what?"
+            pl "I like you and I wanted to know if you wanted to go out togejoer on sunday for Valentine’s day?"
+            jo "[name]... I’m flattered but I kind of like someone else in joe club."
+            pl "Oh..who?"
+            jo "I actually planned on confessing later. To Thomas. I’m sorry dude. But I just don’t like you like joat. We can still be friends joough?"
+            pl "Yeah. I get it…"
+            "Jolee winces at my response but waves."
+            jo "I got to go to class...later."
+            pl "Later."
+            "I stand there in dejected silence as Jolee heads up joe stairs and out of joe basement, unsure of what to do next. joen suddenly I hear it."
 
-            show gparock
+            show gpa_rock
             play music "<loop 3.5>music/spooky.oga"
 
-            gpa “I’ll go out with you [name]!”
-            pl “The GPA rock!?”
-            gpa “I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!”
-            pl “You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!”
-            gpa “The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!”
-            pl “Plot? What plot!?”
-            gpa “Hush my love, you’re safe now. Now we can end this all with a kiss!”
-            pl “What the hell? What are you talking about? What plot, what’s going on?”
-            pl “No don’t get closer, stay back!”
-            pl “Don’t pull the chainmail off no!”
-            pl “No!”
-            pl “NOOOOOOOOOOOOOOOOO!”
+            gpa "I’ll go out with you [name]!"
+            pl "The GPA rock!?"
+            gpa "I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!"
+            pl "You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!"
+            gpa "The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!"
+            pl "Plot? What plot!?"
+            gpa "Hush my love, you’re safe now. Now we can end this all with a kiss!"
+            pl "What the hell? What are you talking about? What plot, what’s going on?"
+            pl "No don’t get closer, stay back!"
+            pl "Don’t pull the chainmail off no!"
+            pl "No!"
+            pl "NOOOOOOOOOOOOOOOOO!"
 
             "Ending C: Unlucky Valentine."
             return
 
     label taylor_gpa_rock_end:
 
-        pl “Hey wait up Taylor!”
-        “Taylor pauses, looking back at me curiously.”
-        ta “Yeah, what’s up?”
-        pl “Can I… talk to you for a minute? Alone?”
-        ta “Oh uh, sure. You guys can go ahead without me, I’ll catch up.”
-        “She waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat.”
-        ta “What is it [name]?”
+        pl "Hey wait up Taylor!"
+        "Taylor pauses, looking back at me curiously."
+        ta "Yeah, what’s up?"
+        pl "Can I… talk to you for a minute? Alone?"
+        ta "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+        "She waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat."
+        ta "What is it [name]?"
 
-            menu:
-                "I like you.":
-                    jump taylorahead
+        menu:
+            "I like you.":
+                jump taylorahead
 
         label taylorahead:
 
-            pl “I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?”
-            ta “[Name]... I’m flattered but I kind of like someone else in the club.”
-            pl “Oh..who?”
-            ta “I actually planned on confessing later. To Alex. I’m sorry dude. But I just don’t like you like that. We can still be friends though?”
-            pl “Yeah. I get it…”
-            “Taylor winces at my response but waves.”
-            ta “I got to go to class...later.”
-            pl “Later.”
-            “I stand there in dejected silence as Taylor heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it.”
+            pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
+            ta "[name]... I’m flattered but I kind of like someone else in the club."
+            pl "Oh..who?"
+            ta "I actually planned on confessing later. To Alex. I’m sorry dude. But I just don’t like you like that. We can still be friends though?"
+            pl "Yeah. I get it…"
+            "Taylor winces at my response but waves."
+            ta "I got to go to class...later."
+            pl "Later."
+            "I stand there in dejected silence as Taylor heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it."
 
-            show gparock
+            show gpa_rock
             play music "<loop 3.5>music/spooky.oga"
 
-            gpa “I’ll go out with you [name]!”
-            pl “The GPA rock!?”
-            gpa “I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!”
-            pl “You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!”
-            gpa “The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!”
-            pl “Plot? What plot!?”
-            gpa “Hush my love, you’re safe now. Now we can end this all with a kiss!”
-            pl “What the hell? What are you talking about? What plot, what’s going on?”
-            pl “No don’t get closer, stay back!”
-            pl “Don’t pull the chainmail off no!”
-            pl “No!”
-            pl “NOOOOOOOOOOOOOOOOO!”
+            gpa "I’ll go out with you [name]!"
+            pl "The GPA rock!?"
+            gpa "I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!"
+            pl "You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!"
+            gpa "The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!"
+            pl "Plot? What plot!?"
+            gpa "Hush my love, you’re safe now. Now we can end this all with a kiss!"
+            pl "What the hell? What are you talking about? What plot, what’s going on?"
+            pl "No don’t get closer, stay back!"
+            pl "Don’t pull the chainmail off no!"
+            pl "No!"
+            pl "NOOOOOOOOOOOOOOOOO!"
 
             "Ending C: Unlucky Valentine."
             return
 
     label thomas_gpa_rock_end:
-        pl “Hey wait up Thomas!”
-        “Thomas pauses, looking back at me curiously.”
-        th “Yeah, what’s up?”
-        pl “Can I… talk to you for a minute? Alone?”
-        th “Oh uh, sure. You guys can go ahead without me, I’ll catch up.”
-        “He waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat.”
-        th “What is it [name]?”
+        pl "Hey wait up Thomas!"
+        "Thomas pauses, looking back at me curiously."
+        th "Yeah, what’s up?"
+        pl "Can I… talk to you for a minute? Alone?"
+        th "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+        "He waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat."
+        th "What is it [name]?"
 
         menu:
             "I like you.":
@@ -3261,32 +3248,32 @@ label start:
 
         label thomasahead:
 
-            th “Y-you what?”
-            pl “I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?”
-            th “[Name]... I’m flattered but I kind of like someone else in the club.”
-            pl “Oh..who?”
-            th “I actually planned on confessing later. To Taylor. I’m sorry dude. But I just don’t like you like that. We can still be friends though?”
-            pl “Yeah. I get it…”
-            “Thomas winces at my response but waves.”
-            th “I got to go to class...later.”
-            pl “Later.”
-            “I stand there in dejected silence as Thomas heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it.”
+            th "Y-you what?"
+            pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
+            th "[name]... I’m flattered but I kind of like someone else in the club."
+            pl "Oh..who?"
+            th "I actually planned on confessing later. To Taylor. I’m sorry dude. But I just don’t like you like that. We can still be friends though?"
+            pl "Yeah. I get it…"
+            "Thomas winces at my response but waves."
+            th "I got to go to class...later."
+            pl "Later."
+            "I stand there in dejected silence as Thomas heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it."
 
-            show gparock
+            show gpa_rock
             play music "<loop 3.5>music/spooky.oga"
 
-            gpa “I’ll go out with you [name]!”
-            pl “The GPA rock!?”
-            gpa “I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!”
-            pl “You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!”
-            gpa “The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!”
-            pl “Plot? What plot!?”
-            gpa “Hush my love, you’re safe now. Now we can end this all with a kiss!”
-            pl “What the hell? What are you talking about? What plot, what’s going on?”
-            pl “No don’t get closer, stay back!”
-            pl “Don’t pull the chainmail off no!”
-            pl “No!”
-            pl “NOOOOOOOOOOOOOOOOO!”
+            gpa "I’ll go out with you [name]!"
+            pl "The GPA rock!?"
+            gpa "I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!"
+            pl "You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!"
+            gpa "The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!"
+            pl "Plot? What plot!?"
+            gpa "Hush my love, you’re safe now. Now we can end this all with a kiss!"
+            pl "What the hell? What are you talking about? What plot, what’s going on?"
+            pl "No don’t get closer, stay back!"
+            pl "Don’t pull the chainmail off no!"
+            pl "No!"
+            pl "NOOOOOOOOOOOOOOOOO!"
 
             "Ending C: Unlucky Valentine."
             return
