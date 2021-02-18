@@ -114,7 +114,7 @@ label start:
 
     scene sbuoutside
     with dissolve
-    play music "<loop 22.4833>music/sbu.oga"
+    play music "<loop 22.4833>music/sbu.oga" volume 0.6
 
     # Nates testing cheaty jump
     #$ name = "test"
@@ -186,7 +186,7 @@ label start:
 
         scene forummainclapcheeks
         with dissolve
-        play music "<loop 26.766>music/forum.oga"
+        play music "<loop 26.766>music/forum.oga" volume 0.6
 
         "Inside I see a bunch of students. A tall pair of students are bickering in front of a television, the beanie’d girl brandishing a playstation controller while a tired-looking boy gestures to a DVD case in his hands."
         "A couch separates them from another guy-girl pair who sit at the table, chatting more calmly… albeit they seem to be eyeing the loud pair."
@@ -240,7 +240,7 @@ label start:
     label inside:
         scene forummainclapcheeks
         with dissolve
-        play music "<loop 26.766>music/forum.oga"
+        play music "<loop 26.766>music/forum.oga" volume 0.6
 
         "I walk inside just in time to see a water bottle fly across the room, the girl it’s presumably being aimed at hopelessly failing at catching it while the other girl who threw it cackles as it clatters on the floor."
 
@@ -729,7 +729,7 @@ label start:
 
         scene sbuoutside
         with dissolve
-        play music "<loop 22.4833>music/sbu.oga"
+        play music "<loop 22.4833>music/sbu.oga" volume 0.6
 
         "Dawn of the Second Day… or at least the afternoon of it."
         "I walk out of the SAC cafeteria, stomach full of mediocre food and an hour left before my next class starts."
@@ -739,7 +739,7 @@ label start:
 
         scene forummainclapcheeks
         with dissolve
-        play music "<loop 26.766>music/forum.oga"
+        play music "<loop 26.766>music/forum.oga" volume 0.6
 
         show taylor at left
         show jolee
@@ -1195,7 +1195,7 @@ label start:
 
         scene sbuoutside
         show jolee
-        play music "<loop 10.0>music/jolee.oga"
+        play music "<loop 10.0>music/jolee.oga" volume 0.6
 
         "Alex gives us a wave as he heads left and we head right. I slow my pace a bit for Jolee as we both move in silence for a moment."
         jo "So.. you enjoying the club [name]?"
@@ -1316,7 +1316,7 @@ label start:
     label alexwalk:
         scene sbuoutside
         show alex
-        play music "<loop 10.0>music/alex.oga"
+        play music "<loop 10.0>music/alex.oga" volume 0.6
 
         $ updateHearts("ALEX", 1)
 
@@ -1441,7 +1441,7 @@ label start:
         "Wednesday is here, and after sleeping on the long train ride onto campus, I make my way towards the Student Activities Center."
 
         scene forummainclapcheeks
-        play music "<loop 26.766>music/forum.oga"
+        play music "<loop 26.766>music/forum.oga" volume 0.6
 
         "The basement is surprisingly quiet as I approach, but it’s obviously why when I enter to find just Jolee, Thomas and Alex all sitting at the back table with their laptops."
         show 4pspread
@@ -1609,7 +1609,7 @@ label start:
         "Pushing open the door to the bathroom, I cough, gripping the edges of the sink."
 
         scene mirror
-        play music "<loop 3.5>music/spooky.oga"
+        play music "<loop 3.5>music/spooky.oga" volume 0.6
 
         "Nausea, this is definitely some really strong nausea."
         "Looking up at the mirror however, I stop."
@@ -1635,7 +1635,7 @@ label start:
         "Feeling the wall, there’s definitely no mirror and looking around I can’t see anyone else here, or even any kind of microphone they could use to speak in here so clearly."
         "Unsure of what else to do and the nausea having passed, I make my way back down the hall and to the forum."
         scene forummainclapcheeks
-        play music "<loop 26.766>music/forum.oga"
+        play music "<loop 26.766>music/forum.oga" volume 0.6
 
     # Two choices code
     label dualScene:
@@ -2032,7 +2032,7 @@ label start:
 
         scene forumhallway
         show jolee
-        play music "<loop 4.0>music/jolee.oga"
+        play music "<loop 4.0>music/jolee.oga" volume 0.6
 
         "Out in the hall, both of us drop the supplies on the ground, Jolee groaning as she stands back up. Her back audibly cracks."
         pl "That sounded pleasant."
@@ -2126,7 +2126,7 @@ label start:
     label alexhallway:
         scene forumhallway
         show alex
-        play music "<loop 10.0>music/alex.oga"
+        play music "<loop 10.0>music/alex.oga" volume 0.6
 
         "Alex groans as we dump the supplies on the ground, flexing his hands."
         pl "Those scissors really did a number on you, huh?"
@@ -2224,7 +2224,7 @@ label start:
 
         scene forumhallway
         show thomas
-        play music "<loop 0.5>music/thomas.oga"
+        play music "<loop 0.5>music/thomas.oga" volume 0.6
 
         "Both of us come out into the hall, dropping our shared piles of materials as Thomas examines the wall for a moment."
         th "Hm, maybe we should outline it before we get started?"
@@ -2320,7 +2320,7 @@ label start:
     label taylorhallway:
         scene forumhallway
         show taylor
-        play music "<loop 6.5>music/taylor.oga"
+        play music "<loop 6.5>music/taylor.oga" volume 0.6
 
         "I follow Taylor out into the hall and watch as she immediately dumps all our materials to the ground and claps her hands together."
         ta "Alright let’s make something of all this. [name], quick, start taping things to the wall!"
@@ -3174,7 +3174,7 @@ label start:
 
     # Beginning of endings
     label alex_gpa_rock_end:
-        show alex 
+        show alex
         pl "Hey wait up Alex!"
         "Alex pauses, looking back at me curiously."
         al "Yeah, what’s up?"
@@ -3201,7 +3201,7 @@ label start:
             "I stand there in dejected silence as Alex heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it."
             hide alex
             show gpa_rock
-            play music "<loop 3.5>music/spooky.oga"
+            play music "<loop 3.5>music/spooky.oga" volume 0.6
 
             gpa "I’ll go out with you [name]!"
             pl "The GPA rock!?"
@@ -3220,7 +3220,7 @@ label start:
             return
 
     label jolee_gpa_rock_end:
-        show jolee 
+        show jolee
         pl "Hey wait up Jolee!"
         "Jolee pauses, looking back at me curiously."
         jo "Yeah, what’s up?"
@@ -3245,9 +3245,9 @@ label start:
             jo "I got to go to class...later."
             pl "Later."
             "I stand there in dejected silence as Jolee heads up joe stairs and out of joe basement, unsure of what to do next. joen suddenly I hear it."
-            hide jolee 
+            hide jolee
             show gpa_rock
-            play music "<loop 3.5>music/spooky.oga"
+            play music "<loop 3.5>music/spooky.oga" volume 0.6
 
             gpa "I’ll go out with you [name]!"
             pl "The GPA rock!?"
@@ -3266,7 +3266,7 @@ label start:
             return
 
     label taylor_gpa_rock_end:
-        show taylor 
+        show taylor
         pl "Hey wait up Taylor!"
         "Taylor pauses, looking back at me curiously."
         ta "Yeah, what’s up?"
@@ -3290,9 +3290,9 @@ label start:
             ta "I got to go to class...later."
             pl "Later."
             "I stand there in dejected silence as Taylor heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it."
-            hide taylor 
+            hide taylor
             show gpa_rock
-            play music "<loop 3.5>music/spooky.oga"
+            play music "<loop 3.5>music/spooky.oga" volume 0.6
 
             gpa "I’ll go out with you [name]!"
             pl "The GPA rock!?"
@@ -3311,7 +3311,7 @@ label start:
             return
 
     label thomas_gpa_rock_end:
-        show thomas 
+        show thomas
         pl "Hey wait up Thomas!"
         "Thomas pauses, looking back at me curiously."
         th "Yeah, what’s up?"
@@ -3336,9 +3336,9 @@ label start:
             th "I got to go to class...later."
             pl "Later."
             "I stand there in dejected silence as Thomas heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it."
-            hide thomas 
+            hide thomas
             show gpa_rock
-            play music "<loop 3.5>music/spooky.oga"
+            play music "<loop 3.5>music/spooky.oga" volume 0.6
 
             gpa "I’ll go out with you [name]!"
             pl "The GPA rock!?"
@@ -3411,6 +3411,7 @@ label start:
         # First Rewind Ends
 
         scene forummainclapcheeks
+        play music "<loop 26.766>music/forum.oga" volume 0.6
 
         show jolee
 
@@ -3473,6 +3474,7 @@ label start:
         pl "{cps=200}What the…{/cps}{nw}"
 
         # Rewind Two Ends
+        play music "<loop 3.5>music/spooky.oga" volume 0.6
 
         pl "FUCK!"
         "I slam my hand into the shelf next to me, looking around to see that no one reactions to my outrage."
@@ -3489,7 +3491,6 @@ label start:
         mv "I am…"
 
         show gwee
-        play music "<loop 3.5>music/spooky.oga"
 
         mv "Something beyond your comprehension."
         pl "You’re a sharkpuppy."
@@ -3513,6 +3514,7 @@ label start:
         al "Normally I'd say, 'say your prayers,' but nobody's coming to help you. How ironic."
 
         show alex at left
+        play music "<loop 10.0>music/alex.oga" volume 0.6
 
         "I look past the entity to see a beautiful sight of an infuriated Alex pulling a bat out from behind one of the shelves."
         pl "Alex!"
@@ -3646,6 +3648,7 @@ label start:
         #Rewind One Ends
 
         scene forummainclapcheeks
+        play music "<loop 26.766>music/forum.oga" volume 0.6
 
         show jolee
 
@@ -3704,7 +3707,7 @@ label start:
         pl "{cps=200}What the…{/cps}{nw}"
 
         # Rewind Two Ends
-
+        play music "<loop 3.5>music/spooky.oga" volume 0.6
         pl "FUCK!"
         "I slam my hand into the shelf next to me, looking around to see that no one reactions to my outrage."
         "No one reacts at all. They’re just.. Frozen."
@@ -3720,7 +3723,7 @@ label start:
         mv "I am…"
 
         show gwee
-        play music "<loop 3.5>music/spooky.oga"
+
 
         mv "Something beyond your comprehension."
         pl "You’re a sharkpuppy."
@@ -3743,6 +3746,7 @@ label start:
         mv "First off I am no ‘man’, and second off, you don’t get a say in that. It is my story, you are my character and you need to know your place. The characters I create are made lucky, born for everything to go their way. You are lucky to have been made at all."
 
         show jolee at left
+        play music "<loop 4.0>music/jolee.oga" volume 0.6
 
         jo "Leave them alone!"
         "I look past the entity to see a beautiful sight of an infuriated Jolee."
@@ -3880,6 +3884,7 @@ label start:
         #Rewind One Ends
 
         scene forummainclapcheeks
+        play music "<loop 26.766>music/forum.oga" volume 0.6
 
         show jolee
 
@@ -3939,6 +3944,8 @@ label start:
 
         # Rewind Two Ends
 
+        play music "<loop 3.5>music/spooky.oga" volume 0.6
+
         pl "FUCK!"
         "I slam my hand into the shelf next to me, looking around to see that no one reactions to my outrage."
         "No one reacts at all. They’re just.. Frozen."
@@ -3954,7 +3961,7 @@ label start:
         mv "I am…"
 
         show gwee
-        play music "<loop 3.5>music/spooky.oga"
+
 
         mv "Something beyond your comprehension."
         pl "You’re a sharkpuppy."
@@ -3977,6 +3984,7 @@ label start:
         mv "First off I am no ‘man’, and second off, you don’t get a say in that. It is my story, you are my character and you need to know your place. The characters I create are made lucky, born for everything to go their way. You are lucky to have been made at all."
 
         show taylor at left
+        play music "<loop 6.5>music/taylor.oga" volume 0.6
 
         ta "You are lucky I don’t send this pocket knife into the back of your head you dog-sushi piece of shit."
         "I look past the entity to see a beautiful sight of an infuriated Taylor wielding a long pocket knife."
@@ -4099,11 +4107,11 @@ label start:
             th "{cps=200}Dare I ask if you were involved?{/cps}{nw}"
             ta "{cps=200}What a shame that only one bone broke.{/cps}{nw}"
 
-            
+
             #Rewind One Ends
 
             scene forummainclapcheeks
-
+            play music "<loop 26.766>music/forum.oga" volume 0.6
             show jolee
 
             jo "If there’s nothing else anyone has to add then I think we can mark this GBM as over!"
@@ -4161,6 +4169,7 @@ label start:
             pl "{cps=200}What the…{/cps}{nw}"
 
             # Rewind Two Ends
+            play music "<loop 3.5>music/spooky.oga" volume 0.6
 
             pl "FUCK!"
             "I slam my hand into the shelf next to me, looking around to see that no one reactions to my outrage."
@@ -4177,7 +4186,7 @@ label start:
             mv "I am…"
 
             show gwee
-            play music "<loop 3.5>music/spooky.oga"
+
 
             mv "Something beyond your comprehension."
             pl "You’re a sharkpuppy."
@@ -4201,6 +4210,7 @@ label start:
             th "I didn't expect to face a god today, huh. Fate is weird isn't it."
 
             show thomas at left
+            play music "<loop 0.5>music/thomas.oga" volume 0.6
 
             "I look past the entity to see a beautiful sight of an infuriated Taylor wielding a small pocket knife."
             pl "Thomas!"
@@ -4314,7 +4324,7 @@ label start:
         "I learned how to play Ascension that day."
 
         scene sbuoutside
-        play music "<loop 3.5>music/spooky.oga"
+        play music "<loop 3.5>music/spooky.oga" volume 0.6
 
         "We played and played and played until I realized I had missed class and almost was going to miss the train home."
         "Thomas thankfully drove me to the station so I’d get there in time, but it was the first of many days like that."
