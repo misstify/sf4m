@@ -1639,15 +1639,6 @@ label start:
 
     # Two choices code
     label dualScene:
-        python:
-            name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
-            name = name.strip()
-
-            if not name:
-                name="Samuel Stanley"
-
-        $ updateHearts(taylor, 3)
-        $ updateHearts(thomas, 4)
         # Jump to label for appropriate scene
         $ findDates()
 
@@ -3134,7 +3125,6 @@ label start:
         jump friday
 
     label friday:
-        $name = "test"
 
         scene friday
         "..."
