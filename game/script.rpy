@@ -117,8 +117,8 @@ label start:
     play music "<loop 22.4833>music/sbu.oga" volume 0.6
 
     # Nates testing cheaty jump
-    #$ name = "test"
-    #jump alex_end
+    $ name = "test"
+    jump alex_end
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
@@ -160,7 +160,6 @@ label start:
             jump endinga
     # needs close statement here
 
-
 # Decides to enter club room
     label welcome:
 
@@ -181,6 +180,11 @@ label start:
 
 # Hesitates before entering the forum
     label linger:
+
+        $ta = "???"
+        $al = "???"
+        $th = "???"
+        $jo = "???"
 
         "As I hear one of the voices hit a peak with a loud cackle and the sound of something being knocked over, I stop myself from fully walking in and look through the doorway."
 
@@ -241,6 +245,10 @@ label start:
         scene forummainclapcheeks
         with dissolve
         play music "<loop 26.766>music/forum.oga" volume 0.6
+        $ta = "???"
+        $al = "???"
+        $th = "???"
+        $jo = "???"
 
         "I walk inside just in time to see a water bottle fly across the room, the girl it’s presumably being aimed at hopelessly failing at catching it while the other girl who threw it cackles as it clatters on the floor."
 
@@ -293,6 +301,11 @@ label start:
 # Recoverge after the Hesitate/Go Inside choice
     label postspiel:
 
+        $ta = "???"
+        $al = "???"
+        $th = "???"
+        $jo = "???"
+
         jo "Taylor, we at least have to make the club sound good."
         ta "Am I wrong though in that most people come here to sleep and watch the latest netflix releases?"
 
@@ -341,6 +354,11 @@ label start:
 # After choosing how you introduce yourself
     label questioned:
 
+        $ta = "???"
+        $al = "???"
+        $th = "???"
+        $jo = "???"
+
         ta "So which do you prefer, Netflix or Hulu?"
 
     menu:
@@ -352,6 +370,11 @@ label start:
     # needs close statement here
 
     label hulu:
+
+            $ta = "???"
+            $al = "???"
+            $th = "???"
+            $jo = "???"
 
             show alex at right
 
@@ -367,6 +390,11 @@ label start:
     # needs close statement here
 
     label netflix:
+
+            $ta = "???"
+            $al = "???"
+            $th = "???"
+            $jo = "???"
 
             ta "Ha, see, new guy got taste."
 
@@ -395,6 +423,11 @@ label start:
         "Taylor falls back on the couch, hugging onto a giant blue couch pillow as the boy at the table speaks up, waving a hand at me."
 
         show thomas
+
+        $th = "Thomas"
+        $ta = "Taylor"
+        $al = "Alex"
+        $jo = "Jolee"
 
         th "[name] was it? Nice to meet you. I’m Thomas."
 
@@ -829,7 +862,8 @@ label start:
         jo "Don’t enjoy being reminded about how single you are?"
         ta "Well at least he doesn’t have to see Angela and Ken being lovey-dovey this time around, the lovebirds are studying abroad together!"
         al "Don’t worry [name], I get you."
-        "I look over to find Alex completely turned on the couch, nodding to me with an understanding expression."            al "Valentine’s day has never exactly been the happiest time of the year for me either."
+        "I look over to find Alex completely turned on the couch, nodding to me with an understanding expression."
+        al "Valentine’s day has never exactly been the happiest time of the year for me either."
         pl "Did something bad happen when you were younger?"
         al "Ah… story for another time."
         ta "Well, you can get the joys of experiencing it with us."
@@ -859,6 +893,8 @@ label start:
 
     label vnone:
 
+        show 4pspread
+
         pl "...I’m honestly hoping for love this year. I don’t know, I’m feeling optimistic."
         th "Nothing wrong with optimism I guess."
         ta "If you get crushed by whoever you plan on confessing to dude, I will happily take whatever chocolate you buy for them on their behalf."
@@ -876,6 +912,7 @@ label start:
     label vtom:
 
         $ updateHearts("THOMAS", 1)
+        show 4pspread
 
         pl "...I don’t care to be completely honest."
         pl "Not from a ‘oh it’s all about selling chocolate perspective’, but I just can’t find myself getting all worked up about a random day when you just have to confess to someone, or else."
@@ -902,17 +939,29 @@ label start:
         $ updateHearts("TAYLOR", 1)
 
         pl "...I honestly just am waiting to buy some discount chocolate after all this."
+
+        show taylor at left
+
         ta "My dude!"
         pl "I look over at Taylor immediately holds up her hand for a high-five towards me, smacking her hand on instinct as she laughs."
         ta "Forget the romance, this is a holiday of sugar highs and money lows!"
+
+        show alex at right
+
         al "Your money is always ‘low’."
         ta "Hence why I’m currently figuring out how to blackmail RJ by holding his discord account ransom until he gives me some chocolate."
+
+        show jolee
+
         jo "Damn Taylor, if you want someone to confess to you that badly, there’s a whole anime club down the hall that would love to have a female member."
         ta "Oh shut up, I’m in this for the food."
         "Taylor’s cheeks turn slightly red as she turns away from Jolee to look at me."
         ta "[name], you said you had a car right?"
         pl "I do but I take the train to campus."
         ta "Dammit! My quest for chocolate continues…"
+
+        hide jolee
+        show thomas
         "She turns to look at Thomas."
         th "...No."
         "She pouts and turns away."
@@ -921,6 +970,12 @@ label start:
 
 # Conversation between Vday choice and Forum History Choice
     label prehistory:
+
+        hide jolee
+        hide thomas
+        hide alex
+        hide taylor
+        show 4pspread
 
         "The conversation falls into a lull for a moment as we all look back at our screens."
         "I unlock my laptop and click through Blackboard, checking my class notifications."
@@ -979,6 +1034,8 @@ label start:
         al "We have a lot of random stuff around here that’s usually more distracting."
         ta "But come on, get on with the questioning! This article is due at midnight and I’d like to pretend that I didn’t wait until the last minute!"
 
+        hide 4pspread
+
         jump choiceloop
 
     # Setting up a looping menu for Thomas talking about Forum History
@@ -1000,14 +1057,22 @@ label start:
 
     label f451:
 
+        show thomas
+
         pl "I’d like to know more about this Fahrenheit 451 book and the fire you mentioned."
         pl "This copy of it does look like it’s been burnt, did you guys set it on fire or something?"
         th "Ah, that. Well this wasn’t us, this is something that happened back in the 1980s."
         th "You see, long ago, the four elements lived in harmony-"
+
+        show taylor at left
+
         ta "Thomas, I can’t use THAT in my article-!"
         th "But everything changed when the forum fire happened."
         th "Back in 1986, the forum wasn’t in this room but was being run out of one of the dorms."
         th "Suffice to say, one idiot student later, and the dorm had a giant fire."
+
+        show jolee at right
+
         jo "This was back when smoking in these kinds of areas was allowed, it’s believed that someone didn’t put a cigarette out properly and it caused the whole thing."
         th "The forum at the time lost pretty much most of its collection of books, memorabilia, artwork, all of it."
         th "But, you see, what makes the story worth telling is that our shelves were alphabetical at the time so the fire was able to only burn through A-M before being put out."
@@ -1019,9 +1084,16 @@ label start:
         jo "Yeah, even after losing half of our collection back then, we built it back even larger than before. We’re the largest free-lending library on the eastern seaboard."
         ta "We don’t beat out the New York public library system, but in terms of free-lending without cards and such, no one on this side of the Mississippi beats us."
 
+        hide jolee
+        hide thomas
+        hide alex
+        hide taylor
+
         jump choiceloop
 
     label raftenberg:
+
+        show thomas
 
         pl "So why did you put a White Castle wrapper in here Taylor? Who’s Sherman?"
         ta "Oh, Sherman was an old student from like the 70s or something."
@@ -1039,12 +1111,18 @@ label start:
         th "The third time, he was not as lucky."
         pl "You mean he?"
         th "He fell into the vent. And was steamed alive."
+
+        show taylor at left
+
         ta "Yeah, if you look in the cabinet, one of those old newspapers has the article about it. I scoped it out, it’s not even a wives’ tale."
         th "He was steamed alive for 18 seconds and his parents were paid restitution in $18,000 - $1,000 for each second he suffered."
         ta "That part I’m less sure about, but I mean, I wouldn’t put it past Stony Brook."
         pl "How does this all connect to White Castle though?"
         th "The tradition to remember Sherman was that they would make a pilgrimage to White Castle and purchase burgers there as they are… steamed."
         ta "Old forumites are crazier than we are honestly, I just leave some wrapped around or draw a burger on the white board, those guys went hard though."
+
+        show jolee at right
+
         jo "Don’t forget  the screaming."
         pl "The screaming…?!"
         th "Yes, following the pilgrimage, they travel to the steam vent in question and place these burgers as an offering."
@@ -1056,20 +1134,37 @@ label start:
         pl "Yeah."
         ta "Yeah."
         th "Yeah."
+
+        hide jolee
+        show alex at right
+
         al "Would it be wrong of me to say I’m hungry now?"
         ta "I’d say no, but I know Jolee will disagree with me."
         jo "Yup."
 
+        hide jolee
+        hide thomas
+        hide alex
+        hide taylor
+
         jump choiceloop
 
     label rockstory:
+
+        show thomas
 
         pl "I have to ask, what is up with this rock?"
         th "Yeah, so as you’ve noticed, we have this giant rock here."
         th "A long time ago, in a Stony Brook building far, far away, a forumite brought a rock into the forum."
         th "We don’t know where he got it. We don’t know how he was able to move it."
         th "What we do know is that somehow it ended up in the forum and every since then, we’ve just… moved it to every following location of the forum."
+
+        show alex at right
+
         al "It’s basically part of the family now."
+
+        show taylor at left
+
         ta "Except it’s cursed."
         pl "I feel like someone did mention the forum having a curse or two."
         al "Yeah, this is one of them."
@@ -1085,6 +1180,12 @@ label start:
         pl "What?"
         ta "You’re free to uncover the rock if you dare."
         th "I wouldn’t recommend it."
+
+        hide alex
+        hide thomas
+        hide taylor
+        show 4pspread
+
         jo "Taylor, why are you trying to kill his GPA, he just got here."
         ta "Well I mean, I could show him Ascension and get the same effect by getting him addicted to that game."
         pl "What’s Ascension?"
@@ -1092,6 +1193,8 @@ label start:
         ta "It’s fun but dangerous. That old historian was one of the few people who have uncovered the GPA rock so I maintain that the rock did it and Ascension was just the curse kicking in."
         al "Still though, leave their GPA alone."
         ta "Well I think that’s up to them to decide, no?"
+
+        hide 4pspread
 
 # Endings stored at the bottom of the script
         menu:
@@ -1103,17 +1206,24 @@ label start:
 
         label refusal:
 
+            show 4pspread
+
             pl "Nah, I’m good. I’d rather not tempt fate like that."
             jo "Smart move."
+            th "Honestly."
             ta "Aww, and here I was hoping to induct him into the Ascension cult."
             pl "Maybe later?"
             al "Don’t encourage her, she really isn’t kidding."
             ta "Blood for the blood god, cards for the card throne!"
 
+            hide 4pspread
+
             jump choiceloop
 
 # Release from the forum history loop
     label loopend:
+
+        show 4pspread
 
         pl "I think I’m good on old forum stories."
         th "Well if you’re ever curious let me know, there’s a lot more where that came from."
@@ -1132,6 +1242,8 @@ label start:
         ta "Why must you counter my sass?"
         al "Because you deserve it, let them answer."
 
+        hide 4pspread
+
         menu:
             "History is neat.":
                 jump neatnerd
@@ -1146,9 +1258,18 @@ label start:
 
         pl "I guess History is just… pretty neat?"
         pl "I like learning about all this, not really sure how to elaborate on it besides that."
+
+        show thomas
+
         "Thomas nods approvingly as he pats the cabinet."
         th "I can appreciate it, it’s fun to learn about all these different things."
+
+        show taylor at left
+
         ta "You can learn about me when I do something like rob fort knox and end up in your textbooks."
+
+        hide taylor
+        hide thomas
 
         jump classwalkja
 
@@ -1157,16 +1278,23 @@ label start:
         $ updateHearts("TAYLOR", 1)
 
         pl "History is cool and all, but I’d rather make history than learn it."
+
+        show taylor
+
         ta "Oh? Do I hear the sounds of a getaway driver?"
         "Taylor perks up and looks at me with an expression that concerns me and my jail-less life."
         pl "Not trying to become the next Billy the Kid."
         ta "Boo, no fun. You’ll be the alibi then though."
+
+        hide taylor
 
         jump classwalkja
 
 # Leaving for Class with Jolee and Alex
 
     label classwalkja:
+
+        show 4pspread
 
         "I stop as my phone begins to go off, forming a chorus as Jolee and Alex’s ping along as well."
         ta "Oh, all of you have class now, neat. Guess I’m in charge!"
@@ -1176,7 +1304,15 @@ label start:
         ta "No promises!"
         "We all stand, putting away our laptops and grabbing our backpacks."
         "Taylor and Thomas wave as we head out of the room and up the stairs, pausing as we reach the door outside."
+
+        hide 4pspread
+        show alex at left
+        show jolee at right
+
         al "[name], which way are you heading? I’m going by Harriman, Jolee is going near Life Sciences."
+
+        hide alex
+        hide jolee
 
         menu:
             "Jolee is going my way.":
@@ -1189,9 +1325,15 @@ label start:
 
         $ updateHearts("JOLEE", 1)
 
+        show alex at left
+        show jolee at right
+
         pl "Oh, I’m going Jolee’s way then."
         jo "Nice, let’s walk together!"
         al "Alright, then I’ll catch you two later."
+
+        hide alex
+        hide jolee
 
         scene sbuoutside
         show jolee
@@ -1586,7 +1728,7 @@ label start:
 
 # All the choices of the love letter game reconverge
     label llcontinue:
-        show rpspread
+        show 4pspread
         al "I have no idea how this happened."
         th "Perhaps the anime club mixed some of the cards up when they took the game?"
         ta "I mean, this wasn’t me for once, so it probably would have to be them?"
@@ -2098,6 +2240,8 @@ label start:
 # Ending scene for Jolee in the Hallway
     label joleehallwayend:
 
+        play music "<loop 3.5>music/spooky.oga" volume 0.6
+
         "Both of us fall into a comfortable silence as well as a nice rhythm of me attaching tape to the papers as well as her putting them on the walls."
         "Jolee starts humming a song I can’t quite place."
         pl "Drawing and singing. Are you a triple threat and going to start dancing to?"
@@ -2605,6 +2749,7 @@ label start:
         scene thursday
         "..."
 
+        scene sbuoutside
         "Thursday morning comes and with it, my dreaded 8am class."
         "It’s not even one that happens on Tuesday also, it’s just a blemish on my schedule, dooming me to sleep in and miss it at least once."
         "And this was one such morning."
@@ -2714,6 +2859,8 @@ label start:
 
     label alexdateend:
 
+        play music "<loop 3.5>music/spooky.oga" volume 0.6
+
         "The silence is interrupted as someone walks up to us. A guy, dressed in an ‘Athletic Teams’ hoodie and sweatpants, holding out a box of candy bars to us both."
         mv "Hi, we’re raising awareness for ALS by giving out free candy bars."
         al "Free you say?"
@@ -2741,6 +2888,7 @@ label start:
 
         scene thursday
         "..."
+        scene sbuoutside
 
         "Thursday morning comes and with it, my dreaded 8am class."
         "It’s not even one that happens on Tuesday also, it’s just a blemish on my schedule, dooming me to sleep in and miss it at least once."
@@ -2838,6 +2986,8 @@ label start:
 
     label thomasdateend:
 
+        play music "<loop 3.5>music/spooky.oga" volume 0.6
+
         "As we sit by the lakeside, I watch the water’s surface for a moment before I feel a wave of nausea wash over me. I jerk my hand to my mouth and Thomas looks over at me, concerned."
         th "You feel alright [name]?"
         pl "I just…"
@@ -2861,6 +3011,7 @@ label start:
 
         scene thursday
         "..."
+        scene sbuoutside
 
         "Thursday morning comes and with it, my dreaded 8am class."
         "It’s not even one that happens on Tuesday also, it’s just a blemish on my schedule, dooming me to sleep in and miss it at least once."
@@ -3096,6 +3247,8 @@ label start:
 
     label taylordateend:
 
+        play music "<loop 3.5>music/spooky.oga" volume 0.6
+
         "She doesn’t even seem like she believes what she’s saying, but as she stands up the monitor walks back in, apologizing for the delay."
         ta "Ah my knack for perfect timing kicks in one more, great!"
         pl "Are you-"
@@ -3127,6 +3280,7 @@ label start:
     label friday:
 
         scene friday
+        play music "<loop 26.766>music/forum.oga" volume 0.6
         "..."
 
         scene forummainclapcheeks
