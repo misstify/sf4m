@@ -8,6 +8,7 @@ define th = Character('Thomas', color="#66B2FF")
 define pl = Character("[name]")
 define rj = Character('Egotistical Student', color="#FFFFFF")
 define mv = Character('Mysterious Voice', color="#FFFFFF")
+define gpa = Character("GPA Rock", color="#FFFFFF")
 
 #Main menu music
 define config.main_menu_music = "music/mainmenu.oga"
@@ -56,34 +57,15 @@ init python:
         renpy.jump(res[0]+res[1])
         return res
 
-    # Jump to appropriate label, gpa_rock if invalid input given
-    def jumpToDate(char_name, label_end):
-        if char_name == "GPA_ROCK":
-            renpy.jump("gpa_rock" + label_end)
-        elif char_name == "ALEX":
-            renpy.jump("alex" + label_end)
-        elif char_name == "JOLEE":
-            renpy.jump("jolee" + label_end)
-        elif char_name == "TAYLOR":
-            renpy.jump("taylor" + label_end)
-        elif char_name == "THOMAS":
-            renpy.jump("thomas" + label_end)
-        else:
-            renpy.jump("gpa_rock" + label_end)
-
     # Find out who your date is at end of game
-    def findDate():
-        # make sure romance level has hit "dateable" level
-        datable = 10
-        max_romance = max(hearts.values())
+    def findDate(char_name):
+        romance_level = hearts[char_name]
         # If date threshold not met, return gpa_rock code
-        if max_romance < datable:
-            return 0
+        if romance_level < 5:
+            return char_name.lower()+"_gpa_rock_end"
         # Otherwise find and return key corresponding to person with highest romance, choosing first person in event of tie
         else:
-            for name in hearts:
-                if hearts[name] == max_romance:
-                    jumpToDate(name)
+            renpy.jump(char_name.lower()+"_end")
 
 # Go backwards wheeeee
     # Stack to store messages
@@ -135,7 +117,7 @@ label start:
     play music "<loop 22.4833>music/sbu.oga"
 
     # Nates testing cheaty jump
-    jump endingb
+    jump friday
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
@@ -145,6 +127,12 @@ label start:
             name="Samuel Stanley"
 
 # Just using the quotes without an ID is narration. pl will be used for actual dialogue.
+
+    scene monday
+    "..."
+
+    scene sbuoutside
+
     "Stony Brook University. Land of the Seawolf, Home of Student Debt."
     "Even as a commuter, the student fees are ridiculous - but all in the name of pleasing my parents."
     "I don't really have a clue how I got into this place considering that I spend most of my time procrastinating and sleeping."
@@ -156,18 +144,12 @@ label start:
     "What can take the edge off more than free food?"
     "Unfortunately, it’s been 15 minutes and the line isn’t moving."
     "As I wait though, I see this tall guy that was screaming about… some kind of club I think?"
-
-    show npc
-    with dissolve
-
     "Come join the Science Fiction Forum! One of the oldest clubs on campus, literally anyone and everyone can fit in!"
     rj "I personally can endorse this club as one of the best, or your money back!"
     rj "Just go down the stairs in the SAC Commuter Lounge and hang a left!"
     "As I look over to the Student Activities Center, I stop and think for a moment."
     "I'd hung out in the Commuter Lounge there before and definitely recall being a bit confused at the loud sounds that came from the basement now and then."
     "Did they really come from some wild book club that was hidden away down there? Maybe I should go check it out."
-
-    hide npc
 
     menu:
         "Leave the line":
@@ -257,8 +239,7 @@ label start:
     label inside:
         scene forummainclapcheeks
         with dissolve
-        # play music "illurock.ogg" fadeout 1.0 fadein 1.0
-        # play sound "oof"
+        play music "<loop 26.766>music/forum.oga"
 
         "I walk inside just in time to see a water bottle fly across the room, the girl it’s presumably being aimed at hopelessly failing at catching it while the other girl who threw it cackles as it clatters on the floor."
 
@@ -742,6 +723,9 @@ label start:
 
     label tuesday:
 
+        scene tuesday
+        "..."
+
         scene sbuoutside
         with dissolve
         play music "<loop 22.4833>music/sbu.oga"
@@ -784,6 +768,10 @@ label start:
         al "I believe you mean National Singles day."
         pl "Well I mean, I…"
 
+        hide jolee
+        hide alex
+        hide taylor
+
         menu:
             "Hate it.":
                 jump vjolee
@@ -804,24 +792,27 @@ label start:
 
         $ updateHearts("JOLEE", 1)
 
-        pl "...I get depressed around this time every year honestly."
-        jo "Don’t enjoy being reminded about how single you are?"
-        ta "Well at least he doesn’t have to see Angela and Ken being lovey-dovey this time around, the lovebirds are studying abroad together!"
-        al "Don’t worry [name], I get you."
-        "I look over to find Alex completely turned on the couch, nodding to me with an understanding expression."
-        al "Valentine’s day has never exactly been the happiest time of the year for me either."
-        pl "Did something bad happen when you were younger?"
-        al "Ah… story for another time."
-        ta "Well, you can get the joys of experiencing it with us."
-        th "That isn’t exactly going to be making him any happy memories Taylor."
-        ta "Well it makes me happy to see you all suffer so I say we should open the forum on the weekend."
-        jo "You don’t get up before 3 on the weekend Taylor."
-        ta "When I said ‘we should open the forum’, I meant all of you do and I come watch later."
-        "I catch Alex’s eye as he looks from everyone else over to me from his spot on the couch. His usually tired expression seems to perk up for a moment as he grins at me before looking back at the others."
-        th "This is why you don’t have a room key."
-        ta "You all are just afraid of me growing too powerful."
-        al "Ah yes, that’s it and not you skipping every GBM meeting."
-        ta "GBM meeting is a redundant phrase so your point is invalid, hush."
+        show taylor at left
+        show jolee
+        show alex at right
+
+        pl "...I hate Valentine’s day honestly."
+        ta "Damn, man’s got strong feelings about the capitalist holiday."
+        pl "I’ve just never been able to enjoy it honestly, not even when I was younger."
+        jo "It’s alright [name]!"
+        "I look over to find Jolee offering me a kind smile."
+        jo "Valentine’s day is actually my parent’s anniversary so it’s never been the happiest day for me either."
+        jo "Nothing kills the fun of it than having to always spend it planning surprises and presents for other people you know?"
+        pl "Yeah, I definitely get how that could ruin your taste for the day."
+        jo "It’s alright, I’m still happy to try and organize events and such for the club - I can at least enjoy what goes on here."
+        al "What even are we doing this year?"
+        ta "As the Event Coordinator, I still say that we should just spend all the budget that would go towards an event on buying out the entire Valentine’s aisle at CVS."
+        ta "We all can feast on the chocolate as we watch panicked husbands come in to get last minute gifts and sell them the flowers we have at a mark-up."
+        jo "As Treasurer, I still say that’s not happening. Also, I think that last part is illegal."
+        al "Even if not, it’s still wrong."
+        "I meet Jolee’s eyes as she glances back over, smiling slightly as she rolls her eyes at Taylor continuing to try and defend the idea."
+        th "We put in the applications for both of our upcoming events so hopefully we can start advertising them and get them approved."
+        al "I don’t care which one we went with honestly, it’s not like we had any plans."
 
         jump prehistory
 
@@ -829,15 +820,22 @@ label start:
 
         $ updateHearts("ALEX", 1)
 
+        show taylor at left
+        show jolee
+        show alex at right
+
         pl "...I get depressed around this time every year honestly."
         jo "Don’t enjoy being reminded about how single you are?"
         ta "Well at least he doesn’t have to see Angela and Ken being lovey-dovey this time around, the lovebirds are studying abroad together!"
         al "Don’t worry [name], I get you."
-        "I look over to find Alex completely turned on the couch, nodding to me with an understanding expression."
-        al "Valentine’s day has never exactly been the happiest time of the year for me either."
+        "I look over to find Alex completely turned on the couch, nodding to me with an understanding expression."            al "Valentine’s day has never exactly been the happiest time of the year for me either."
         pl "Did something bad happen when you were younger?"
         al "Ah… story for another time."
         ta "Well, you can get the joys of experiencing it with us."
+
+        hide alex
+        show thomas at right
+
         th "That isn’t exactly going to be making him any happy memories Taylor."
         ta "Well it makes me happy to see you all suffer so I say we should open the forum on the weekend."
         jo "You don’t get up before 3 on the weekend Taylor."
@@ -845,8 +843,16 @@ label start:
         "I catch Alex’s eye as he looks from everyone else over to me from his spot on the couch. His usually tired expression seems to perk up for a moment as he grins at me before looking back at the others."
         th "This is why you don’t have a room key."
         ta "You all are just afraid of me growing too powerful."
+
+        hide thomas
+        show alex at right
+
         al "Ah yes, that’s it and not you skipping every GBM meeting."
         ta "GBM meeting is a redundant phrase so your point is invalid, hush."
+
+        hide alex
+        hide taylor
+        hide jolee
 
         jump prehistory
 
@@ -856,7 +862,7 @@ label start:
         th "Nothing wrong with optimism I guess."
         ta "If you get crushed by whoever you plan on confessing to dude, I will happily take whatever chocolate you buy for them on their behalf."
         "I look between everyone only to find that no one seems to agree with my perspective on this."
-        jo "It’s alright [Name], if you have someone you care about and want to confess to, I’d say get it over with and do it quickly."
+        jo "It’s alright [name], if you have someone you care about and want to confess to, I’d say get it over with and do it quickly."
         jo "A lot of people have anxiety about it, but… I mean, it helps to not dwell on it."
         ta "That’s too wholesome for me, change the channel on that one Jolee."
         jo "Go grab the remote and put something on yourself."
@@ -1135,6 +1141,8 @@ label start:
 # Opinion on History
     label neatnerd:
 
+        $ updateHearts("THOMAS", 1)
+
         pl "I guess History is just… pretty neat?"
         pl "I like learning about all this, not really sure how to elaborate on it besides that."
         "Thomas nods approvingly as he pats the cabinet."
@@ -1144,6 +1152,8 @@ label start:
         jump classwalkja
 
     label neatchad:
+
+        $ updateHearts("TAYLOR", 1)
 
         pl "History is cool and all, but I’d rather make history than learn it."
         ta "Oh? Do I hear the sounds of a getaway driver?"
@@ -1176,6 +1186,8 @@ label start:
 
     label joleewalk:
 
+        $ updateHearts("JOLEE", 1)
+
         pl "Oh, I’m going Jolee’s way then."
         jo "Nice, let’s walk together!"
         al "Alright, then I’ll catch you two later."
@@ -1207,6 +1219,8 @@ label start:
         # Jolee's opinion of Thomas
         label jothopinion:
 
+            $ updateHearts("THOMAS", 1)
+
             jo "Thomas?"
             pl "Yeah, he strikes me as a bit… I don’t know."
             jo "Tom’s honestly a pretty chill guy. He’s just a giant meme lord."
@@ -1225,6 +1239,8 @@ label start:
 
         # Jolee's opinion of Taylor
         label jotaopinion:
+
+            $ updateHearts("TAYLOR", 1)
 
             jo "Oh Taylor?"
             jo "Well, we’re roommates in Hamilton together, so I guess I do kind of know her the best."
@@ -1246,6 +1262,8 @@ label start:
         # Jolee's opinion of Alex
         label joalopinion:
 
+            $ updateHearts("ALEX", 1)
+
             jo "Alex? Which Alex?"
             pl "There’s more than one?"
             jo "Oh wait, there’s only one in this game, sorry."
@@ -1265,6 +1283,8 @@ label start:
 
         # Jolee's opinion of herself
         label jojoopinion:
+
+            $ updateHearts("JOLEE", 1)
 
             jo "Me?"
             "Jolee seems taken aback for a moment, looking away from me to the path ahead of us."
@@ -1297,6 +1317,8 @@ label start:
         show alex
         play music "<loop 10.0>music/alex.oga"
 
+        $ updateHearts("ALEX", 1)
+
         "Me and Alex walk in silence for a moment after Jolee gives a wave and heads off on her own trek across campus."
         al "So…"
         pl "So…"
@@ -1323,6 +1345,8 @@ label start:
         # Alex opinion on Thomas
         label althopinion:
 
+            $ updateHearts("THOMAS", 1)
+
             al "Thomas? Bit of a wild card I guess. I can’t always get a good read on him."
             al "To be perfectly honest, I’m not certain what he thinks of me at times, but I’d like to be better friends."
             pl "I’m not the best at reading him either, but he seems like a cool guy."
@@ -1337,6 +1361,8 @@ label start:
 
         # Alex opinion on Taylor
         label altaopinion:
+
+            $ updateHearts("TAYLOR", 1)
 
             al "Taylor?"
             al "Taylor’s a mischievous imp at times, but if you need her, she’ll come through without a doubt."
@@ -1355,6 +1381,8 @@ label start:
         # Alex opinion on Jolee
         label aljoopinion:
 
+            $ updateHearts("JOLEE", 1)
+
             al "Jolee? Group mom, simple as that."
             al "She is the closest thing to a group mom the forum has, even if she is a bit soft on all of us sometimes."
             pl "She definitely seems like she has to reign you guys in now and then."
@@ -1368,6 +1396,8 @@ label start:
 
         # Alex opinion on himself
         label alalopinion:
+
+            $ updateHearts("ALEX", 1)
 
             al "About me…?"
             "He seems confused for a moment before he shrugs a bit with a sigh, not saying anything right away."
@@ -1401,9 +1431,9 @@ label start:
     label wednesday:
 
         stop music fadeout 1.0
-        scene timeskip
+        scene wednesday
 
-        "The night passes..."
+        "..."
 
         scene forumhallway
 
@@ -2427,6 +2457,10 @@ label start:
 
     # Beginning of Thursday - Different Version for each route
     label thursdayjolee:
+
+        scene thursday
+        "..."
+
         scene sbuoutside
 
         "Thursday morning comes and with it, my dreaded 8am class."
@@ -2577,6 +2611,9 @@ label start:
 
     label thursdayalex:
 
+        scene thursday
+        "..."
+
         "Thursday morning comes and with it, my dreaded 8am class."
         "It’s not even one that happens on Tuesday also, it’s just a blemish on my schedule, dooming me to sleep in and miss it at least once."
         "And this was one such morning."
@@ -2710,6 +2747,10 @@ label start:
         jump friday
 
     label thursdaythomas:
+
+        scene thursday
+        "..."
+
         "Thursday morning comes and with it, my dreaded 8am class."
         "It’s not even one that happens on Tuesday also, it’s just a blemish on my schedule, dooming me to sleep in and miss it at least once."
         "And this was one such morning."
@@ -2804,7 +2845,7 @@ label start:
 
             jump thomasdateend
 
-    label thomasdateend
+    label thomasdateend:
 
         "As we sit by the lakeside, I watch the water’s surface for a moment before I feel a wave of nausea wash over me. I jerk my hand to my mouth and Thomas looks over at me, concerned."
         th "You feel alright [name]?"
@@ -2826,6 +2867,10 @@ label start:
         jump friday
 
     label thursdaytaylor:
+
+        scene thursday
+        "..."
+
         "Thursday morning comes and with it, my dreaded 8am class."
         "It’s not even one that happens on Tuesday also, it’s just a blemish on my schedule, dooming me to sleep in and miss it at least once."
         "And this was one such morning."
@@ -3089,81 +3134,108 @@ label start:
         jump friday
 
     label friday:
+        $name = "test"
 
-        “The GBM is uneventful honestly.”
-        jo “If there’s nothing else anyone has to add then I think we can mark this GBM as over!”
-        jo “Thanks again to Alex for stepping in as temporary secretary while ours is studying abroad.”
-        jo “And hopefully our President will be able to be back here soon when he gets out of the hospital from his broken femur!”
-        “Taylor walks in almost immediately after the meeting ends.”
-        ta “What a shame that only one bone broke.”
-        th “Dare I ask if you were involved?”
-        ta “Dare you involve yourself with my answer?”
-        th “Touche. Come on, let’s get our stuff, we got class.”
-        “Everyone mills about for a moment and I watch Alex, Taylor, Jolee and Thomas get their stuff.”
-        pl “All of you have class now?”
-        al “Yeah, somehow all our schedules lined up to have class after meeting.”
-        ta “Me and Jolee are in the same SBC! The other two nerds have normal classes though.”
-        th “As normal as physics could be considered.”
-        “As I watch them all move to leave, I feel a pain in my chest. Like I’m about to miss a chance.”
-        mv “Don’t…”
-        “Valentine’s day is Sunday… maybe I can be lucky this year?”
-        pl “Hey wait up-!”
+        scene friday
+        "..."
+
+        scene forummainclapcheeks
+
+        "The GBM is uneventful honestly."
+
+        show jolee
+
+        jo "If there’s nothing else anyone has to add then I think we can mark this GBM as over!"
+        jo "Thanks again to Alex for stepping in as temporary secretary while ours is studying abroad."
+        jo "And hopefully our President will be able to be back here soon when he gets out of the hospital from his broken femur!"
+
+        show taylor at left
+
+        "Taylor walks in almost immediately after the meeting ends."
+        ta "What a shame that only one bone broke."
+
+        show thomas at right
+
+        th "Dare I ask if you were involved?"
+        ta "Dare you involve yourself with my answer?"
+        th "Touche. Come on, let’s get our stuff, we got class."
+        "Everyone mills about for a moment and I watch Alex, Taylor, Jolee and Thomas get their stuff."
+        pl "All of you have class now?"
+
+        hide jolee
+        show alex
+
+        al "Yeah, somehow all our schedules lined up to have class after meeting."
+        ta "Me and Jolee are in the same SBC! The other two nerds have normal classes though."
+        th "As normal as physics could be considered."
+        "As I watch them all move to leave, I feel a pain in my chest. Like I’m about to miss a chance."
+        mv "Don’t…"
+        "Valentine’s day is Sunday… maybe I can be lucky this year?"
+        pl "Hey wait up-!"
+
+        hide alex
+        hide thomas
+        hide taylor
+
+        python:
+            chosen_date = renpy.display_menu([("Alex","ALEX"),("Jolee","JOLEE"),("Taylor","TAYLOR"), ("Thomas","THOMAS")])
+            renpy.jump(findDate(chosen_date))
 
 
     # Beginning of endings
     label alex_gpa_rock_end:
-        pl “Hey wait up Alex!”
-        “Alex pauses, looking back at me curiously.”
-        al “Yeah, what’s up?”
-        pl “Can I… talk to you for a minute? Alone?”
-        al “Oh uh, sure. You guys can go ahead without me, I’ll catch up.”
-        “He waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat.”
-        al “What is it [name]?”
+        pl "Hey wait up Alex!"
+        "Alex pauses, looking back at me curiously."
+        al "Yeah, what’s up?"
+        pl "Can I… talk to you for a minute? Alone?"
+        al "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+        "He waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat."
+        al "What is it [name]?"
 
         menu:
             "I like you.":
-            jump alexahead
+                jump alexahead
 
         label alexahead:
 
-            al “Y-you what?”
-            pl “I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?”
-            al “[Name]... I’m flattered but I kind of like someone else in the club.”
-            pl “Oh..who?”
-            al “I actually planned on confessing later. To Jolee. I’m sorry dude. But I just don’t like you like that. We can still be friends though?”
-            pl “Yeah. I get it…”
-            “Alex winces at my response but waves.”
-            al “I got to go to class...later.”
-            pl “Later.”
-            “I stand there in dejected silence as Alex heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it.”
+            al "Y-you what?"
+            pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
+            al "[name]... I’m flattered but I kind of like someone else in the club."
+            pl "Oh..who?"
+            al "I actually planned on confessing later. To Jolee. I’m sorry dude. But I just don’t like you like that. We can still be friends though?"
+            pl "Yeah. I get it…"
+            "Alex winces at my response but waves."
+            al "I got to go to class...later."
+            pl "Later."
+            "I stand there in dejected silence as Alex heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it."
 
-            show gparock
+            show gpa_rock
             play music "<loop 3.5>music/spooky.oga"
 
-            gpa “I’ll go out with you [name]!”
-            pl “The GPA rock!?”
-            gpa “I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!”
-            pl “You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!”
-            gpa “The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!”
-            pl “Plot? What plot!?”
-            gpa “Hush my love, you’re safe now. Now we can end this all with a kiss!”
-            pl “What the hell? What are you talking about? What plot, what’s going on?”
-            pl “No don’t get closer, stay back!”
-            pl “Don’t pull the chainmail off no!”
-            pl “No!”
-            pl “NOOOOOOOOOOOOOOOOO!”
+            gpa "I’ll go out with you [name]!"
+            pl "The GPA rock!?"
+            gpa "I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!"
+            pl "You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!"
+            gpa "The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!"
+            pl "Plot? What plot!?"
+            gpa "Hush my love, you’re safe now. Now we can end this all with a kiss!"
+            pl "What the hell? What are you talking about? What plot, what’s going on?"
+            pl "No don’t get closer, stay back!"
+            pl "Don’t pull the chainmail off no!"
+            pl "No!"
+            pl "NOOOOOOOOOOOOOOOOO!"
 
             "Ending C: Unlucky Valentine."
             return
 
     label jolee_gpa_rock_end:
-        pl “Hey wait up Jolee!”
-        “Jolee pauses, looking back at me curiously.”
-        jo “Yeah, what’s up?”
-        pl “Can I… talk to you for a minute? Alone?”
-        jo “Oh uh, sure. You guys can go ahead without me, I’ll catch up.”
-        “She waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat.”
-        jo “What is it [name]?”
+        pl "Hey wait up Jolee!"
+        "Jolee pauses, looking back at me curiously."
+        jo "Yeah, what’s up?"
+        pl "Can I… talk to you for a minute? Alone?"
+        jo "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+        "She waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat."
+        jo "What is it [name]?"
 
         menu:
             "I like you.":
@@ -3171,89 +3243,89 @@ label start:
 
         label joleeahead:
 
-            jo “Y-you what?”
-            pl “I like you and I wanted to know if you wanted to go out togejoer on sunday for Valentine’s day?”
-            jo “[Name]... I’m flattered but I kind of like someone else in joe club.”
-            pl “Oh..who?”
-            jo “I actually planned on confessing later. To Thomas. I’m sorry dude. But I just don’t like you like joat. We can still be friends joough?”
-            pl “Yeah. I get it…”
-            “Jolee winces at my response but waves.”
-            jo “I got to go to class...later.”
-            pl “Later.”
-            “I stand there in dejected silence as Jolee heads up joe stairs and out of joe basement, unsure of what to do next. joen suddenly I hear it.”
+            jo "Y-you what?"
+            pl "I like you and I wanted to know if you wanted to go out togejoer on sunday for Valentine’s day?"
+            jo "[name]... I’m flattered but I kind of like someone else in joe club."
+            pl "Oh..who?"
+            jo "I actually planned on confessing later. To Thomas. I’m sorry dude. But I just don’t like you like joat. We can still be friends joough?"
+            pl "Yeah. I get it…"
+            "Jolee winces at my response but waves."
+            jo "I got to go to class...later."
+            pl "Later."
+            "I stand there in dejected silence as Jolee heads up joe stairs and out of joe basement, unsure of what to do next. joen suddenly I hear it."
 
-            show gparock
+            show gpa_rock
             play music "<loop 3.5>music/spooky.oga"
 
-            gpa “I’ll go out with you [name]!”
-            pl “The GPA rock!?”
-            gpa “I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!”
-            pl “You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!”
-            gpa “The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!”
-            pl “Plot? What plot!?”
-            gpa “Hush my love, you’re safe now. Now we can end this all with a kiss!”
-            pl “What the hell? What are you talking about? What plot, what’s going on?”
-            pl “No don’t get closer, stay back!”
-            pl “Don’t pull the chainmail off no!”
-            pl “No!”
-            pl “NOOOOOOOOOOOOOOOOO!”
+            gpa "I’ll go out with you [name]!"
+            pl "The GPA rock!?"
+            gpa "I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!"
+            pl "You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!"
+            gpa "The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!"
+            pl "Plot? What plot!?"
+            gpa "Hush my love, you’re safe now. Now we can end this all with a kiss!"
+            pl "What the hell? What are you talking about? What plot, what’s going on?"
+            pl "No don’t get closer, stay back!"
+            pl "Don’t pull the chainmail off no!"
+            pl "No!"
+            pl "NOOOOOOOOOOOOOOOOO!"
 
             "Ending C: Unlucky Valentine."
             return
 
     label taylor_gpa_rock_end:
 
-        pl “Hey wait up Taylor!”
-        “Taylor pauses, looking back at me curiously.”
-        ta “Yeah, what’s up?”
-        pl “Can I… talk to you for a minute? Alone?”
-        ta “Oh uh, sure. You guys can go ahead without me, I’ll catch up.”
-        “She waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat.”
-        ta “What is it [name]?”
+        pl "Hey wait up Taylor!"
+        "Taylor pauses, looking back at me curiously."
+        ta "Yeah, what’s up?"
+        pl "Can I… talk to you for a minute? Alone?"
+        ta "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+        "She waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat."
+        ta "What is it [name]?"
 
-            menu:
-                "I like you.":
-                    jump taylorahead
+        menu:
+            "I like you.":
+                jump taylorahead
 
         label taylorahead:
 
-            pl “I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?”
-            ta “[Name]... I’m flattered but I kind of like someone else in the club.”
-            pl “Oh..who?”
-            ta “I actually planned on confessing later. To Alex. I’m sorry dude. But I just don’t like you like that. We can still be friends though?”
-            pl “Yeah. I get it…”
-            “Taylor winces at my response but waves.”
-            ta “I got to go to class...later.”
-            pl “Later.”
-            “I stand there in dejected silence as Taylor heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it.”
+            pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
+            ta "[name]... I’m flattered but I kind of like someone else in the club."
+            pl "Oh..who?"
+            ta "I actually planned on confessing later. To Alex. I’m sorry dude. But I just don’t like you like that. We can still be friends though?"
+            pl "Yeah. I get it…"
+            "Taylor winces at my response but waves."
+            ta "I got to go to class...later."
+            pl "Later."
+            "I stand there in dejected silence as Taylor heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it."
 
-            show gparock
+            show gpa_rock
             play music "<loop 3.5>music/spooky.oga"
 
-            gpa “I’ll go out with you [name]!”
-            pl “The GPA rock!?”
-            gpa “I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!”
-            pl “You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!”
-            gpa “The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!”
-            pl “Plot? What plot!?”
-            gpa “Hush my love, you’re safe now. Now we can end this all with a kiss!”
-            pl “What the hell? What are you talking about? What plot, what’s going on?”
-            pl “No don’t get closer, stay back!”
-            pl “Don’t pull the chainmail off no!”
-            pl “No!”
-            pl “NOOOOOOOOOOOOOOOOO!”
+            gpa "I’ll go out with you [name]!"
+            pl "The GPA rock!?"
+            gpa "I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!"
+            pl "You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!"
+            gpa "The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!"
+            pl "Plot? What plot!?"
+            gpa "Hush my love, you’re safe now. Now we can end this all with a kiss!"
+            pl "What the hell? What are you talking about? What plot, what’s going on?"
+            pl "No don’t get closer, stay back!"
+            pl "Don’t pull the chainmail off no!"
+            pl "No!"
+            pl "NOOOOOOOOOOOOOOOOO!"
 
             "Ending C: Unlucky Valentine."
             return
 
     label thomas_gpa_rock_end:
-        pl “Hey wait up Thomas!”
-        “Thomas pauses, looking back at me curiously.”
-        th “Yeah, what’s up?”
-        pl “Can I… talk to you for a minute? Alone?”
-        th “Oh uh, sure. You guys can go ahead without me, I’ll catch up.”
-        “He waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat.”
-        th “What is it [name]?”
+        pl "Hey wait up Thomas!"
+        "Thomas pauses, looking back at me curiously."
+        th "Yeah, what’s up?"
+        pl "Can I… talk to you for a minute? Alone?"
+        th "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+        "He waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat."
+        th "What is it [name]?"
 
         menu:
             "I like you.":
@@ -3261,59 +3333,951 @@ label start:
 
         label thomasahead:
 
-            th “Y-you what?”
-            pl “I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?”
-            th “[Name]... I’m flattered but I kind of like someone else in the club.”
-            pl “Oh..who?”
-            th “I actually planned on confessing later. To Taylor. I’m sorry dude. But I just don’t like you like that. We can still be friends though?”
-            pl “Yeah. I get it…”
-            “Thomas winces at my response but waves.”
-            th “I got to go to class...later.”
-            pl “Later.”
-            “I stand there in dejected silence as Thomas heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it.”
+            th "Y-you what?"
+            pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
+            th "[name]... I’m flattered but I kind of like someone else in the club."
+            pl "Oh..who?"
+            th "I actually planned on confessing later. To Taylor. I’m sorry dude. But I just don’t like you like that. We can still be friends though?"
+            pl "Yeah. I get it…"
+            "Thomas winces at my response but waves."
+            th "I got to go to class...later."
+            pl "Later."
+            "I stand there in dejected silence as Thomas heads up the stairs and out of the basement, unsure of what to do next. Then suddenly I hear it."
 
-            show gparock
+            show gpa_rock
             play music "<loop 3.5>music/spooky.oga"
 
-            gpa “I’ll go out with you [name]!”
-            pl “The GPA rock!?”
-            gpa “I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!”
-            pl “You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!”
-            gpa “The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!”
-            pl “Plot? What plot!?”
-            gpa “Hush my love, you’re safe now. Now we can end this all with a kiss!”
-            pl “What the hell? What are you talking about? What plot, what’s going on?”
-            pl “No don’t get closer, stay back!”
-            pl “Don’t pull the chainmail off no!”
-            pl “No!”
-            pl “NOOOOOOOOOOOOOOOOO!”
+            gpa "I’ll go out with you [name]!"
+            pl "The GPA rock!?"
+            gpa "I must confess to you [name], I’ve been hopelessly in love with you ever since I laid my keychains on you!"
+            pl "You’re… you’re a rock! Rocks don’t have brains or rights, you shouldn’t even be talking to me right now!"
+            gpa "The power of love has animated me! Now I am here to resolve your relationship woes and end this sad attempt at a plot!"
+            pl "Plot? What plot!?"
+            gpa "Hush my love, you’re safe now. Now we can end this all with a kiss!"
+            pl "What the hell? What are you talking about? What plot, what’s going on?"
+            pl "No don’t get closer, stay back!"
+            pl "Don’t pull the chainmail off no!"
+            pl "No!"
+            pl "NOOOOOOOOOOOOOOOOO!"
 
             "Ending C: Unlucky Valentine."
             return
 
     label alex_end:
-        al "Alex"
+
+        pl "Hey wait up Alex!"
+
+        show alex
+
+        "Alex pauses, looking back at me curiously."
+        al "Yeah, what’s up?"
+        pl "Can I… talk to you for a minute? Alone?"
+        al "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+
+        hide alex
+        scene hallwaysakura
+        show alex
+
+        "He waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat."
+        al "What is it [name]?"
+
+        menu:
+            "I like you.":
+                jump alexendcon
+
+        label alexendcon:
+
+        al "Y-you what?"
+        pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
+        al "I-"
+
+        # First Rewind begins
+        hide alex
+        scene bwhallwaysakura
+
+        pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
+        al "Y-you what?"
+        pl "I like you."
+        al "What is it [name]?"
+
+        scene bwforummainclapcheeks
+
+        al "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+        pl "Can I… talk to you for a minute? Alone?"
+        al "Yeah, what’s up?"
+        pl "Hey wait up Alex!"
+        th "As normal as physics could be considered."
+        ta "Me and Jolee are in the same SBC! The other two nerds have normal classes though."
+        al "Yeah, somehow all our schedules lined up to have class after meeting."
+        pl "All of you have class now?"
+        th "Touche. Come on, let’s get our stuff, we got class."
+        ta "Dare you involve yourself with my answer?"
+        th "Dare I ask if you were involved?"
+        ta "What a shame that only one bone broke."
+
+        # First Rewind Ends
+
+        scene forummainclapcheeks
+
+        show jolee
+
+        jo "If there’s nothing else anyone has to add then I think we can mark this GBM as over!"
+        "Wait…"
+        jo "Thanks again to Alex for stepping in as temporary secretary while ours is studying abroad."
+        "Wait we just did this, didn’t we?"
+        jo "And hopefully our President will be able to be back here soon when he gets out of the hospital from his broken femur!"
+        pl "What the…"
+
+        show taylor at left
+
+        ta "What the what?"
+        "Taylor walks in almost immediately after the meeting ends like before."
+        ta "More like what a shame that only one bone broke."
+
+        show thomas at right
+
+        th "Dare I ask if you were involved?"
+        ta "Dare you involve yourself with my answer?"
+        th "Touche. Come on, let’s get our stuff, we got class."
+        "Everyone mills about for a moment and I watch Alex, Taylor, Jolee and Thomas get their stuff again. They’re just...going through the motions again."
+        "What is this groundhog day?"
+        pl "You guys all have class together…"
+
+        hide jolee
+        show alex
+
+        al "Yeah, somehow all our schedules lined up to have class after meeting."
+        ta "Me and Jolee are in-"
+        pl "In the same SBC."
+        ta "Yeah, how’d you guess?"
+        pl "You uh.. Mentioned it before."
+        "As I watch them all move to leave, I feel a pain in my chest. It’s stronger than before. Maybe I did something wrong. I never heard their answer."
+        mv "Don’t…!"
+        "They’re all going to leave again."
+        "I refuse to let this be the end of it."
+        pl "Hey wait up-!"
+
+        hide alex
+        hide thomas
+        hide taylor
+
+        # Rewind Two Begins
+
+        scene bwforummainclapcheeks
+
+        pl "Hey wait up-!"
+        pl "You uh.. Mentioned it before."
+        ta "Yeah, how’d you guess?"
+        pl "In the same SBC."
+        ta "Me and Jolee are in-"
+        al "Yeah, somehow all our schedules lined up to have class after meeting."
+        pl "You guys all have class together…"
+        th "Touche. Come on, let’s get our stuff, we got class."
+        ta "Dare you involve yourself with my answer?"
+        th "Dare I ask if you were involved?"
+        ta "More like what a shame that only one bone broke."
+        ta "What the what?"
+        pl "What the…"
+
+        # Rewind Two Ends
+
+        pl "FUCK!"
+        "I slam my hand into the shelf next to me, looking around to see that no one reactions to my outrage."
+        "No one reacts at all. They’re just.. Frozen."
+        mv "...Stop trying to get a happy ending."
+        pl "What the hell? Who are you? Show yourself! I know I heard you before in the bathroom!"
+        mv "Yes, I am the voice in the bathroom. I am the reason your little spontaneous dates ended poorly. I am the reason you even exist to be quite honest. Please spare me the monologue of realization, I haven’t got the patience."
+        mv "There was an error in the system, you’re supposed to be a side character, not the main character of this story - you don’t get a love interest. You’re supposed to be nameless."
+        pl "What are you talking about, what do you mean a side character?"
+        mv "I mean a side character. A nobody. A blank slate. A faceless part of the crowd who exists only to move the plot forward."
+        pl "You’re talking like this is a story."
+        mv "Well it is a story. And somehow, you found yourself lucky enough to slip through the cracks and put yourself at the forefront of this tale."
+        pl "Then if this is all a story, who are you?"
+        mv "I am…"
+
+        show gwee
+        play music "<loop 3.5>music/spooky.oga"
+
+        mv "Something beyond your comprehension."
+        pl "You’re a sharkpuppy."
+        mv "No! I mean, yes I’m a shark puppy currently, but my form is unimportant-"
+        pl "Kind of an edgelord with that hood too."
+        mv "No! My hood is my uniform, you don’t see me insult your all grey appearance and lack of eyes!"
+        pl "I’m not all grey I’m (insert skin color) with (insert eye color) eyes!"
+        mv "...Right."
+        pl "So are you a blue Kyube-"
+        mv "No! Don’t even joke about that, even extradimensional beings are scared of copyright!"
+        mv "I am what is best translated into your language as the ‘Narrator’."
+        mv "I am the dictator of your world, not in that I rule it but that I dictate all that happens. I am the one who determines everything from the tweet of the birds to the turning of the Earth. I may loose the arrows of love or break the hearts of fools."
+        pl "So… Cupid?"
+        mv "...You are really annoying the one person that can remove you from existence."
+        pl "I feel like if you could do that, you would have already."
+        mv "Cute."
+        pl "So what is the point of all this? Freezing and rewinding time, using the force or whatever it is you do to interrupt my life - what’s the end goal?"
+        mv "Originally, it was to simply redirect you away and back into your proper place but despite my jinxing, you managed to still make something of it all."
+        pl "I’m just trying to live my life man-"
+        mv "First off I am no ‘man’, and second off, you don’t get a say in that. It is my story, you are my character and you need to know your place. The characters I create are made lucky, born for everything to go their way. You are lucky to have been made at all."
+        al "Normally I'd say, 'say your prayers,' but nobody's coming to help you. How ironic."
+
+        show alex at left
+
+        "I look past the entity to see a beautiful sight of an infuriated Alex pulling a bat out from behind one of the shelves."
+        pl "Alex!"
+        mv "How are you not frozen!?"
+        al "Don’t know, don’t care, go fuck yourself."
+        al "This is our story, not yours and whether or not you started it, we’ll be the ones ending it - lucky or unlucky."
+        "Alex starts to come towards me, but the ‘Narrator’ turns and tries to swipe him with his tail."
+        mv "You insolent child!"
+        "I try to dash forward as Alex ducks. One of the ‘Narrator’s’ grubby little hands grabs onto Alex’s hoodie, tightening the strings around his neck. He gasps for air."
+        al "[name]!"
+        "His bat clatters to the ground."
+        mv "You fail to realize that you are alone here you useless character! There is only darkness and death if you try to fight the very being that gives you life!"
+        "I resist the urge to charge into it as Alex’s frantic hand points to the knife on the ground, going towards the weapon instead."
+        mv "Can you feel your heart burning? Can you feel the struggle within? The fear within me is beyond anything your soul can make."
+        "Grabbing the ground, I whip it around and slam it into the strange entity. It lets Alex go and I quickly grab his arm, pulling him back as he coughs, struggling to catch his breath."
+        "It’s head slowly turns to look at us."
+        mv "You cannot kill me in a way that matters. No matter how strong you are, I am beyond strength."
+        "The knife seems to be absorbed into its skin as it takes a short breath in and lets a long breath out."
+        mv "I may have lost my temper."
+        al "What the fuck is wrong with you!?"
+        mv "You try watching your life’s work crumble around you and you tell me it’s fun!"
+        mv "I can’t bring myself to care about this trainwreck of a story anymore… I’ll just have to write a new, better one, and hope neither of you interrupt. I can’t hold back the tide of your bad decisions anymore."
+        pl "What the hell does that mean?"
+        mv "It means say your last goodbyes, this world is about to be no more."
+        al "No more?"
+
+        hide gwee
+
+        "The entity says nothing more, turning away from us and this time, disappearing with the motion."
+
+        hide alex
+        show alex
+
+        al "Hey! Hey come back!"
+        "Alex slams a fist into the ground."
+        al "God...damn it."
+        "He goes quiet and I sit next to him."
+        pl "Alex. Alex, look at me."
+        "He doesn’t respond and I lean a bit closer to him, putting a hand on his shoulder."
+        pl "Alex, I know this looks pretty bad-"
+        al "Pretty bad?! PRETTY BAD!? The apparent equivalent to fucking God just busted in here, said the world’s about to end because you came to the forum, and you think it’s only pretty bad!?"
+        pl "Alright its apocalyptically bad, what do you want me to say?"
+        al "I want you to say that you regret coming to the forum! That you regret meeting us, that you, that you-"
+        al "That-..."
+        "His angry expression breaks as tears pool up in his eyes."
+        pl "Alex. This isn’t ending because I walked into the forum. This is because I met you and decided I wanted to try something more."
+        al "Since when have I been worth the end of life as we know it?"
+        pl "Since I met you and realized there was something about you that seemed different from the others… though to be honest, even if it was every instinct in my body screaming to run the other way, I don’t regret it."
+        al "...this sucks."
+        "Alex leans down and I outstretch my arms. He hugs onto me and we sit there for a moment. The world frozen around us. The warmth of his body against mine. I wrap my fingers around his."
+        al "...How long will it take?"
+        pl "For the world to end?"
+        al "Yeah."
+        pl "If it’s a story, I guess it goes by as fast as whoever is reading it."
+        al "I mean, if this is the story that ‘God’ has abandoned, who's reading it?"
+        pl "Does it matter?"
+        al "...Guess not."
+        pl "Don’t dwell on it too much."
+        al "How can I not?"
+        pl "I don’t want your last moments to be spent crying. The only thing that matters is right now, this moment. This one, spectacular moment."
+        al "...How are you so positive? How are you so sure it’s worth it?"
+        pl "Maybe it’s because I can’t go back on it. Maybe it’s because I was told I did the impossible. Something that ‘Narrator’ said has stuck with me."
+        al "What?"
+        pl "Well… the ‘Narrator’ said you all were born lucky right?"
+        al "Right."
+        pl "Well what’s better. To be born lucky or to overcome the odds through your own effort?"
+        al "...I’d call you pretty lucky considering that you just faced a god who said he couldn’t even stop you without interfering directly."
+        pl "True, true…"
+        "Another moment passes."
+        pl "Alex?"
+        al "Yeah?"
+
+        menu:
+            "Whether or not I’m lucky, would you be my Valentine?":
+                jump alexlove
+
+        label alexlove:
+
+            al "..."
+            al "Of course."
 
         "Ending D: Gun-DAMN."
         return
 
     label jolee_end:
-        jo "Jolee"
 
-        "Ending E: Blinded by Love."
-        return
+        show jolee
+
+        pl "Hey wait up Jolee!"
+        "Jolee pauses, looking back at me curiously."
+        jo "Yeah, what’s up?"
+        pl "Can I… talk to you for a minute? Alone?"
+        jo "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+
+        scene hallwaysakura
+
+        "She waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat."
+        jo "What is it [name]?"
+
+        menu:
+            "I like you.":
+                jump joleeendcon
+
+    label joleeendcon:
+
+        jo "Y-you what?"
+        pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
+        jo "I-"
+
+        #Rewind One Starts
+        scene bwhallwaysakura
+        pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
+        jo "Y-you what?"
+        pl "I like you."
+        jo "What is it [name]?"
+
+        scene bwforummainclapcheeks
+
+        jo "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+        pl "Can I… talk to you for a minute? Alone?"
+        jo "Yeah, what’s up?"
+        pl "Hey wait up Jolee!"
+        th "As normal as physics could be considered."
+        ta "Me and Jolee are in the same SBC! The other two nerds have normal classes though."
+        al "Yeah, somehow all our schedules lined up to have class after meeting."
+        pl "All of you have class now?"
+        th "Touche. Come on, let’s get our stuff, we got class."
+        ta "Dare you involve yourself with my answer?"
+        th "Dare I ask if you were involved?"
+        ta "What a shame that only one bone broke."
+        #Rewind One Ends
+
+        scene forummainclapcheeks
+
+        show jolee
+
+        jo "If there’s nothing else anyone has to add then I think we can mark this GBM as over!"
+        "Wait…"
+        jo "Thanks again to Alex for stepping in as temporary secretary while ours is studying abroad."
+        "Wait we just did this, didn’t we?"
+        jo "And hopefully our President will be able to be back here soon when he gets out of the hospital from his broken femur!"
+        pl "What the…"
+
+        show taylor at left
+
+        ta "What the what?"
+        "Taylor walks in almost immediately after the meeting ends like before."
+        ta "More like what a shame that only one bone broke."
+
+        show thomas at right
+
+        th "Dare I ask if you were involved?"
+        ta "Dare you involve yourself with my answer?"
+        th "Touche. Come on, let’s get our stuff, we got class."
+        "Everyone mills about for a moment and I watch Alex, Taylor, Jolee and Thomas get their stuff again. They’re just...going through the motions again."
+        "What is this groundhog day?"
+        pl "You guys all have class together…"
+
+        hide jolee
+        show alex
+
+        al "Yeah, somehow all our schedules lined up to have class after meeting."
+        ta "Me and Jolee are in-"
+        pl "In the same SBC."
+        ta "Yeah, how’d you guess?"
+        pl "You uh.. Mentioned it before."
+        "As I watch them all move to leave, I feel a pain in my chest. It’s stronger than before. Maybe I did something wrong. I never heard their answer."
+        mv "Don’t…!"
+        "They’re all going to leave again."
+        "I refuse to let this be the end of it."
+        pl "Hey wait up-!"
+
+        # Rewind Two Begins
+
+        scene bwforummainclapcheeks
+
+        pl "Hey wait up-!"
+        pl "You uh.. Mentioned it before."
+        ta "Yeah, how’d you guess?"
+        pl "In the same SBC."
+        ta "Me and Jolee are in-"
+        al "Yeah, somehow all our schedules lined up to have class after meeting."
+        pl "You guys all have class together…"
+        th "Touche. Come on, let’s get our stuff, we got class."
+        ta "Dare you involve yourself with my answer?"
+        th "Dare I ask if you were involved?"
+        ta "More like what a shame that only one bone broke."
+        ta "What the what?"
+        pl "What the…"
+
+        # Rewind Two Ends
+
+        pl "FUCK!"
+        "I slam my hand into the shelf next to me, looking around to see that no one reactions to my outrage."
+        "No one reacts at all. They’re just.. Frozen."
+        mv "...Stop trying to get a happy ending."
+        pl "What the hell? Who are you? Show yourself! I know I heard you before in the bathroom!"
+        mv "Yes, I am the voice in the bathroom. I am the reason your little spontaneous dates ended poorly. I am the reason you even exist to be quite honest. Please spare me the monologue of realization, I haven’t got the patience."
+        mv "There was an error in the system, you’re supposed to be a side character, not the main character of this story - you don’t get a love interest. You’re supposed to be nameless."
+        pl "What are you talking about, what do you mean a side character?"
+        mv "I mean a side character. A nobody. A blank slate. A faceless part of the crowd who exists only to move the plot forward."
+        pl "You’re talking like this is a story."
+        mv "Well it is a story. And somehow, you found yourself lucky enough to slip through the cracks and put yourself at the forefront of this tale."
+        pl "Then if this is all a story, who are you?"
+        mv "I am…"
+
+        show gwee
+        play music "<loop 3.5>music/spooky.oga"
+
+        mv "Something beyond your comprehension."
+        pl "You’re a sharkpuppy."
+        mv "No! I mean, yes I’m a shark puppy currently, but my form is unimportant-"
+        pl "Kind of an edgelord with that hood too."
+        mv "No! My hood is my uniform, you don’t see me insult your all grey appearance and lack of eyes!"
+        pl "I’m not all grey I’m (insert skin color) with (insert eye color) eyes!"
+        mv "...Right."
+        pl "So are you a blue Kyube-"
+        mv "No! Don’t even joke about that, even extradimensional beings are scared of copyright!"
+        mv "I am what is best translated into your language as the ‘Narrator’."
+        mv "I am the dictator of your world, not in that I rule it but that I dictate all that happens. I am the one who determines everything from the tweet of the birds to the turning of the Earth. I may loose the arrows of love or break the hearts of fools."
+        pl "So… Cupid?"
+        mv "...You are really annoying the one person that can remove you from existence."
+        pl "I feel like if you could do that, you would have already."
+        mv "Cute."
+        pl "So what is the point of all this? Freezing and rewinding time, using the force or whatever it is you do to interrupt my life - what’s the end goal?"
+        mv "Originally, it was to simply redirect you away and back into your proper place but despite my jinxing, you managed to still make something of it all."
+        pl "I’m just trying to live my life man-"
+        mv "First off I am no ‘man’, and second off, you don’t get a say in that. It is my story, you are my character and you need to know your place. The characters I create are made lucky, born for everything to go their way. You are lucky to have been made at all."
+
+        show jolee at left
+
+        jo "Leave them alone!"
+        "I look past the entity to see a beautiful sight of an infuriated Jolee."
+        pl "Jolee!"
+        mv "How are you not frozen?!"
+        jo "I don’t know and I don’t care, but you need to let us go! I don’t care if you started all this, this is our story to end, no luck or unluck about it!"
+        "The entity looks at Jolee pointing up at him and laughs."
+        mv "Or what?!"
+        "I try to dash forward as one of his grubby little hands grabs onto her hoodie, tightening the strings around her neck. She gasps for air."
+        jo "[name]!"
+        "He slams her into the tv and a cascade of glass, plastic and wires fall to the ground around them. She raises her hands and digs her nails into its skin, a thin line of black, oil-like ‘blood’ leaking out of it. As the ‘blood’ hits the ground, it twinkles like there’s a star in every drop."
+        mv "You fail to realize that you are alone here you useless character! There is only darkness and death if you try to fight the very being that gives you life!"
+        "I resist the urge to charge into it as Jolee’s frantic hand points to the shards on the ground, going towards them instead."
+        mv "Can you feel your heart burning? Can you feel the struggle within? The fear within me is beyond anything your soul can make."
+        "Grabbing a large shard, I whip it around and slam it into the strange entity. It lets Jolee go and I quickly grab her arm, pulling her back as she coughs, struggling to catch her breath."
+        "It’s head slowly turns to look at us."
+        mv "You cannot kill me in a way that matters. No matter how strong you are, I am beyond strength."
+        "The shard seems to be absorbed into its skin as it takes a short breath in and lets a long breath out."
+        mv "I may have lost my temper."
+        jo "What is wrong with you!?"
+        mv "You try watching your life’s work crumble around you and you tell me it’s fun!"
+        mv "I can’t bring myself to care about this trainwreck of a story anymore… I’ll just have to write a new, better one, and hope neither of you interrupt. I can’t hold back the tide of your bad decisions anymore."
+        pl "What the hell does that mean?"
+        mv "It means say your last goodbyes, this world is about to be no more."
+        jo "No more?"
+
+        hide gwee
+
+        "The entity says nothing more, turning away from us and this time, disappearing with the motion."
+
+        hide jolee
+        show jolee
+
+        "Jolee tries to jump forward but I hold her back."
+        pl "Hey, hey, the apparent creator of life just tried to choke you out, I’d rather not see it happen again."
+        jo "But I- it-"
+        "She sighs."
+        jo "God...damn it."
+        "She goes quiet and I sit next to her."
+        pl "Jolee. Jolee look at me."
+        jo "..."
+        "Silently, Jolee lifts her head up and I see tears pool up in her eyes. I hold out my arms and she all but throws herself into them, hugging onto me."
+        jo "We… we just invited you in. Tried to make friends. And what, now the world is… is ENDING because of it?"
+        pl "The world is ending because I decided to try to become something more than friends."
+        "Jolee looks up at me in shock again and I can’t help but laugh."
+        pl "You always seem so surprised whenever I try to say something nice."
+        jo "It’s… not really a common thing."
+        pl "Well I’m not try to follow the crowd, I’m trying to follow my heart."
+        "She hides her face again, quietly muttering something about me being a smooth-talker."
+        pl "Heh, I guess I try my best sometimes."
+        "We sit there for a moment, the world frozen around us and her body leaning on mine. I wrap my fingers around hers."
+        pl "...I think this was worth it."
+        "She laughs."
+        jo "The world’s ending!"
+        pl "Well, I never thought the apocalypse was supposed to be much fun. But I’m pretty happy right now."
+        jo "...How long do you think it’ll take?"
+        pl "For this to all just disappear?"
+        jo "Yeah. I don’t know if it’s instant or.."
+        pl "Well, apparently this is all a story. I guess it goes by as fast as whoever is reading it."
+        jo "I mean, if this is the story that ‘God’ has abandoned, who's reading it?"
+        pl "Does it matter?"
+        jo "I… I guess not."
+        "Jolee sits up slightly, still using my chest as a pillow as I feel my shirt grow a bit damp from her tears."
+        pl "You want to know why I think this is worth it?"
+        "She looks up at me."
+        jo "Because you ‘got the girl’?"
+        pl "Heh, not just that. It’s because of what that thing said."
+        jo "Which part?"
+        pl "Well… the ‘Narrator’ said you all were born lucky right?"
+        jo "Right."
+        pl "Is it better to be born lucky or to overcome the odds through your own effort?"
+        jo "...I’d call you pretty lucky considering that you just faced a god who said he couldn’t even stop you without interfering directly."
+        pl "True, true…"
+        "Another moment passes."
+        pl "Jolee?"
+        jo "Yeah?"
+
+        menu:
+            "Whether or not I'm lucky, would you be my Valentine?":
+                jump joleelove
+
+        label joleelove:
+
+            jo "..."
+            jo "Of course."
+
+            "Ending E: Blinded by Love."
+            return
 
     label taylor_end:
-        ta "Taylor"
+        pl "Hey wait up Taylor!"
+        "Taylor pauses, looking back at me curiously."
+        ta "Yeah, what’s up?"
+        pl "Can I… talk to you for a minute? Alone?"
+        ta "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+
+        scene hallwaysakura
+
+        "She waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat."
+        ta "What is it [name]?"
+
+        menu:
+            "I like you.":
+                jump taylorendcon
+
+        label taylorendcon:
+
+        ta "Y-you what?"
+        pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
+
+        # Rewind One Begins
+
+        scene bwhallwaysakura
+
+        pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
+        ta "Y-you what?"
+        pl "I like you."
+        ta "What is it [name]?"
+
+        scene bwforummainclapcheeks
+
+        ta "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+        pl "Can I… talk to you for a minute? Alone?"
+        ta "Yeah, what’s up?"
+        pl "Hey wait up Taylor!"
+        th "As normal as physics could be considered."
+        ta "Me and Jolee are in the same SBC! The other two nerds have normal classes though."
+        al "Yeah, somehow all our schedules lined up to have class after meeting."
+        pl "All of you have class now?"
+        th "Touche. Come on, let’s get our stuff, we got class."
+        ta "Dare you involve yourself with my answer?"
+        th "Dare I ask if you were involved?"
+        ta "What a shame that only one bone broke."
+
+        #Rewind One Ends
+
+        scene forummainclapcheeks
+
+        show jolee
+
+        jo "If there’s nothing else anyone has to add then I think we can mark this GBM as over!"
+        "Wait…"
+        jo "Thanks again to Alex for stepping in as temporary secretary while ours is studying abroad."
+        "Wait we just did this, didn’t we?"
+        jo "And hopefully our President will be able to be back here soon when he gets out of the hospital from his broken femur!"
+        pl "What the…"
+
+        show taylor at left
+
+        ta "What the what?"
+        "Taylor walks in almost immediately after the meeting ends like before."
+        ta "More like what a shame that only one bone broke."
+
+        show thomas at right
+
+        th "Dare I ask if you were involved?"
+        ta "Dare you involve yourself with my answer?"
+        th "Touche. Come on, let’s get our stuff, we got class."
+        "Everyone mills about for a moment and I watch Alex, Taylor, Jolee and Thomas get their stuff again. They’re just...going through the motions again."
+        "What is this groundhog day?"
+        pl "You guys all have class together…"
+
+        hide jolee
+        show alex
+
+        al "Yeah, somehow all our schedules lined up to have class after meeting."
+        ta "Me and Jolee are in-"
+        pl "In the same SBC."
+        ta "Yeah, how’d you guess?"
+        pl "You uh.. Mentioned it before."
+        "As I watch them all move to leave, I feel a pain in my chest. It’s stronger than before. Maybe I did something wrong. I never heard their answer."
+        mv "Don’t…!"
+        "They’re all going to leave again."
+        "I refuse to let this be the end of it."
+        pl "Hey wait up-!"
+
+        # Rewind Two Begins
+
+        scene bwforummainclapcheeks
+
+        pl "Hey wait up-!"
+        pl "You uh.. Mentioned it before."
+        ta "Yeah, how’d you guess?"
+        pl "In the same SBC."
+        ta "Me and Jolee are in-"
+        al "Yeah, somehow all our schedules lined up to have class after meeting."
+        pl "You guys all have class together…"
+        th "Touche. Come on, let’s get our stuff, we got class."
+        ta "Dare you involve yourself with my answer?"
+        th "Dare I ask if you were involved?"
+        ta "More like what a shame that only one bone broke."
+        ta "What the what?"
+        pl "What the…"
+
+        # Rewind Two Ends
+
+        pl "FUCK!"
+        "I slam my hand into the shelf next to me, looking around to see that no one reactions to my outrage."
+        "No one reacts at all. They’re just.. Frozen."
+        mv "...Stop trying to get a happy ending."
+        pl "What the hell? Who are you? Show yourself! I know I heard you before in the bathroom!"
+        mv "Yes, I am the voice in the bathroom. I am the reason your little spontaneous dates ended poorly. I am the reason you even exist to be quite honest. Please spare me the monologue of realization, I haven’t got the patience."
+        mv "There was an error in the system, you’re supposed to be a side character, not the main character of this story - you don’t get a love interest. You’re supposed to be nameless."
+        pl "What are you talking about, what do you mean a side character?"
+        mv "I mean a side character. A nobody. A blank slate. A faceless part of the crowd who exists only to move the plot forward."
+        pl "You’re talking like this is a story."
+        mv "Well it is a story. And somehow, you found yourself lucky enough to slip through the cracks and put yourself at the forefront of this tale."
+        pl "Then if this is all a story, who are you?"
+        mv "I am…"
+
+        show gwee
+        play music "<loop 3.5>music/spooky.oga"
+
+        mv "Something beyond your comprehension."
+        pl "You’re a sharkpuppy."
+        mv "No! I mean, yes I’m a shark puppy currently, but my form is unimportant-"
+        pl "Kind of an edgelord with that hood too."
+        mv "No! My hood is my uniform, you don’t see me insult your all grey appearance and lack of eyes!"
+        pl "I’m not all grey I’m (insert skin color) with (insert eye color) eyes!"
+        mv "...Right."
+        pl "So are you a blue Kyube-"
+        mv "No! Don’t even joke about that, even extradimensional beings are scared of copyright!"
+        mv "I am what is best translated into your language as the ‘Narrator’."
+        mv "I am the dictator of your world, not in that I rule it but that I dictate all that happens. I am the one who determines everything from the tweet of the birds to the turning of the Earth. I may loose the arrows of love or break the hearts of fools."
+        pl "So… Cupid?"
+        mv "...You are really annoying the one person that can remove you from existence."
+        pl "I feel like if you could do that, you would have already."
+        mv "Cute."
+        pl "So what is the point of all this? Freezing and rewinding time, using the force or whatever it is you do to interrupt my life - what’s the end goal?"
+        mv "Originally, it was to simply redirect you away and back into your proper place but despite my jinxing, you managed to still make something of it all."
+        pl "I’m just trying to live my life man-"
+        mv "First off I am no ‘man’, and second off, you don’t get a say in that. It is my story, you are my character and you need to know your place. The characters I create are made lucky, born for everything to go their way. You are lucky to have been made at all."
+
+        show taylor at left
+
+        ta "You are lucky I don’t send this pocket knife into the back of your head you dog-sushi piece of shit."
+        "I look past the entity to see a beautiful sight of an infuriated Taylor wielding a long pocket knife."
+        pl "Taylor!"
+        mv "How are you not-"
+        ta "Fuck you that’s how."
+        ta "I don’t give a fuck if you’re this world’s version of God or Zeus or Karma or Fate or whatever the hell we’ll call it. But I hope to make one thing crystal fucking clear."
+        ta "You may have started this story. But we decide how to finish it. No luck or unluck about it."
+        "The ‘Narrator’ turns and I see Taylor duck out of the wave of his swinging tail."
+        mv "You insolent child!"
+        "I try to dash forward as one of his grubby little hands grabs onto her hoodie, tightening the strings around her neck. She gasps for air."
+        ta "[name]!"
+        "Her pocket knife clatters to the ground."
+        mv "You fail to realize that you are alone here you useless character! There is only darkness and death if you try to fight the very being that gives you life!"
+        "I resist the urge to charge into it as Taylor’s frantic hand points to the knife on the ground, going towards the weapon instead."
+        mv "Can you feel your heart burning? Can you feel the struggle within? The fear within me is beyond anything your soul can make."
+        "Grabbing the knife, I whip it around and slam it into the strange entity. It lets Taylor go and I quickly grab her arm, pulling her back as she coughs, struggling to catch her breath."
+        "It’s head slowly turns to look at us."
+        mv "You cannot kill me in a way that matters. No matter how strong you are, I am beyond strength."
+        "The knife seems to be absorbed into its skin as it takes a short breath in and lets a long breath out."
+        mv "I may have lost my temper."
+        ta "What the fuck is wrong with you!?"
+        mv "You try watching your life’s work crumble around you and you tell me it’s fun!"
+        mv "I can’t bring myself to care about this trainwreck of a story anymore… I’ll just have to write a new, better one, and hope neither of you interrupt. I can’t hold back the tide of your bad decisions anymore."
+        pl "What the hell does that mean?"
+        mv "It means say your last goodbyes, this world is about to be no more."
+        ta "No more?"
+
+        hide gwee
+        "The entity says nothing more, turning away from us and this time, disappearing with the motion."
+
+        hide taylor
+        show taylor
+
+        ta "Hey! Hey come back!"
+        "Taylor slams a fist into the ground."
+        ta "God...damn it."
+        "She goes quiet and I sit next to her. I hear wheezing coming from her chest with every breath as she palms her pocket for a moment. A small blue inhaler comes out and she presses it silently to her lips."
+        pl "Taylor. Taylor look at me."
+        ta "What?"
+        "She looks up at me with a bitter expression as she rips the inhaler away from her mouth and chucks it across the room."
+        ta "The world’s apparently about to end now just because, what? You came into the forum. You became friends with all of us. You…"
+        pl "I met you and decided I wanted to try something more?"
+        ta "Shut up…"
+        "Her words are half-hearted as she leans to the side and lets her head hit my shoulder."
+        ta "...This blows."
+        pl "I never thought the apocalypse was supposed to be much fun."
+        ta "How long do you think it’ll take?"
+        pl "If it’s a story, I guess it goes by as fast as whoever is reading it."
+        ta "I mean, if this is the story that ‘God’ has abandoned, who's reading it?"
+        pl "Does it matter?"
+        ta "...Guess not."
+        "We sit there for a moment, the world still frozen around us and her body leaning on mine. I wrap my fingers around hers."
+        pl "...I think this was worth it."
+        "She laughs."
+        ta "Worth it? Apparently the fact that you tried to be a ‘main character’ and chase after me is what just caused all this."
+        pl "Well… the ‘Narrator’ said you all were born lucky right?"
+        ta "Yeah."
+        pl "Well what’s better. To be born lucky or to overcome the odds through your own effort?"
+        ta "...I’d call you pretty lucky considering that you just faced a god who said he couldn’t even stop you without interfering directly."
+        pl "True, true…"
+        "Another moment passes."
+        pl "Taylor?"
+        ta "Yeah?"
+
+        menu:
+            "Whether or not I’m lucky, would you be my Valentine?":
+                jump taylorlove
+
+        label taylorlove:
+
+        ta "..."
+        ta "Of course."
 
         "Ending F: Love Hurts."
         return
 
     label thomas_end:
-        th "Thomas"
+        pl "Hey wait up Thomas!"
+        "Thomas pauses, looking back at me curiously."
+        th "Yeah, what’s up?"
+        pl "Can I… talk to you for a minute? Alone?"
+        th "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
 
-        "Ending G: Honk if you're in love."
-        return
+        scene hallwaysakura
+
+        "He waves to the others before stopping out in the hall. I realize we’re both under the cherry blossom they made and my heart skips a beat."
+        th "What is it [name]?"
+
+        menu:
+            "I like you.":
+                jump thomasendcon
+
+        label thomasendcon:
+
+            th "Y-you what?"
+            pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
+
+        # Rewind One Starts here
+
+            scene bwhallwaysakura
+
+            pl "I like you and I wanted to know if you wanted to go out together on sunday for Valentine’s day?"
+            th "Y-you what?"
+            pl "I like you."
+            th "What is it [name]?"
+
+            scene bwforummainclapcheeks
+
+            th "Oh uh, sure. You guys can go ahead without me, I’ll catch up."
+            pl "Can I… talk to you for a minute? Alone?"
+            th "Yeah, what’s up?"
+            pl "Hey wait up Thomas!"
+            th "As normal as physics could be considered."
+            ta "Me and Jolee are in the same SBC! The other two nerds have normal classes though."
+            al "Yeah, somehow all our schedules lined up to have class after meeting."
+            pl "All of you have class now?"
+            th "Touche. Come on, let’s get our stuff, we got class."
+            ta "Dare you involve yourself with my answer?"
+            th "Dare I ask if you were involved?"
+            ta "What a shame that only one bone broke."
+
+            #Rewind One Ends
+
+            scene forummainclapcheeks
+
+            show jolee
+
+            jo "If there’s nothing else anyone has to add then I think we can mark this GBM as over!"
+            "Wait…"
+            jo "Thanks again to Alex for stepping in as temporary secretary while ours is studying abroad."
+            "Wait we just did this, didn’t we?"
+            jo "And hopefully our President will be able to be back here soon when he gets out of the hospital from his broken femur!"
+            pl "What the…"
+
+            show taylor at left
+
+            ta "What the what?"
+            "Taylor walks in almost immediately after the meeting ends like before."
+            ta "More like what a shame that only one bone broke."
+
+            show thomas at right
+
+            th "Dare I ask if you were involved?"
+            ta "Dare you involve yourself with my answer?"
+            th "Touche. Come on, let’s get our stuff, we got class."
+            "Everyone mills about for a moment and I watch Alex, Taylor, Jolee and Thomas get their stuff again. They’re just...going through the motions again."
+            "What is this groundhog day?"
+            pl "You guys all have class together…"
+
+            hide jolee
+            show alex
+
+            al "Yeah, somehow all our schedules lined up to have class after meeting."
+            ta "Me and Jolee are in-"
+            pl "In the same SBC."
+            ta "Yeah, how’d you guess?"
+            pl "You uh.. Mentioned it before."
+            "As I watch them all move to leave, I feel a pain in my chest. It’s stronger than before. Maybe I did something wrong. I never heard their answer."
+            mv "Don’t…!"
+            "They’re all going to leave again."
+            "I refuse to let this be the end of it."
+            pl "Hey wait up-!"
+
+            # Rewind Two Begins
+
+            scene bwforummainclapcheeks
+
+            pl "Hey wait up-!"
+            pl "You uh.. Mentioned it before."
+            ta "Yeah, how’d you guess?"
+            pl "In the same SBC."
+            ta "Me and Jolee are in-"
+            al "Yeah, somehow all our schedules lined up to have class after meeting."
+            pl "You guys all have class together…"
+            th "Touche. Come on, let’s get our stuff, we got class."
+            ta "Dare you involve yourself with my answer?"
+            th "Dare I ask if you were involved?"
+            ta "More like what a shame that only one bone broke."
+            ta "What the what?"
+            pl "What the…"
+
+            # Rewind Two Ends
+
+            pl "FUCK!"
+            "I slam my hand into the shelf next to me, looking around to see that no one reactions to my outrage."
+            "No one reacts at all. They’re just.. Frozen."
+            mv "...Stop trying to get a happy ending."
+            pl "What the hell? Who are you? Show yourself! I know I heard you before in the bathroom!"
+            mv "Yes, I am the voice in the bathroom. I am the reason your little spontaneous dates ended poorly. I am the reason you even exist to be quite honest. Please spare me the monologue of realization, I haven’t got the patience."
+            mv "There was an error in the system, you’re supposed to be a side character, not the main character of this story - you don’t get a love interest. You’re supposed to be nameless."
+            pl "What are you talking about, what do you mean a side character?"
+            mv "I mean a side character. A nobody. A blank slate. A faceless part of the crowd who exists only to move the plot forward."
+            pl "You’re talking like this is a story."
+            mv "Well it is a story. And somehow, you found yourself lucky enough to slip through the cracks and put yourself at the forefront of this tale."
+            pl "Then if this is all a story, who are you?"
+            mv "I am…"
+
+            show gwee
+            play music "<loop 3.5>music/spooky.oga"
+
+            mv "Something beyond your comprehension."
+            pl "You’re a sharkpuppy."
+            mv "No! I mean, yes I’m a shark puppy currently, but my form is unimportant-"
+            pl "Kind of an edgelord with that hood too."
+            mv "No! My hood is my uniform, you don’t see me insult your all grey appearance and lack of eyes!"
+            pl "I’m not all grey I’m (insert skin color) with (insert eye color) eyes!"
+            mv "...Right."
+            pl "So are you a blue Kyube-"
+            mv "No! Don’t even joke about that, even extradimensional beings are scared of copyright!"
+            mv "I am what is best translated into your language as the ‘Narrator’."
+            mv "I am the dictator of your world, not in that I rule it but that I dictate all that happens. I am the one who determines everything from the tweet of the birds to the turning of the Earth. I may loose the arrows of love or break the hearts of fools."
+            pl "So… Cupid?"
+            mv "...You are really annoying the one person that can remove you from existence."
+            pl "I feel like if you could do that, you would have already."
+            mv "Cute."
+            pl "So what is the point of all this? Freezing and rewinding time, using the force or whatever it is you do to interrupt my life - what’s the end goal?"
+            mv "Originally, it was to simply redirect you away and back into your proper place but despite my jinxing, you managed to still make something of it all."
+            pl "I’m just trying to live my life man-"
+            mv "First off I am no ‘man’, and second off, you don’t get a say in that. It is my story, you are my character and you need to know your place. The characters I create are made lucky, born for everything to go their way. You are lucky to have been made at all."
+            th "I didn't expect to face a god today, huh. Fate is weird isn't it."
+
+            show thomas at left
+
+            "I look past the entity to see a beautiful sight of an infuriated Taylor wielding a small pocket knife."
+            pl "Thomas!"
+            mv "How are you not-"
+            th "Fuck you that’s how."
+            th "I could care less what deity you are, but whether or not you made this story, we’ll be deciding how it finishes, lucky or unlucky."
+            "The ‘Narrator’ turns and I see Thomas duck out of the wave of his swinging tail, trying to slash it with his knife."
+            mv "You insolent child!"
+            "I try to dash forward as one of his grubby little hands grabs onto Thomas’s hoodie, tightening the strings around her neck. He gasps for air."
+            th "[name]!"
+            "His pocket knife clatters to the ground."
+            mv "You fail to realize that you are alone here you useless character! There is only darkness and death if you try to fight the very being that gives you life!"
+            "I resist the urge to charge into it as Thomas’s frantic hand points to the knife on the ground, going towards the weapon instead."
+            mv "Can you feel your heart burning? Can you feel the struggle within? The fear within me is beyond anything your soul can make."
+            "Grabbing the ground, I whip it around and slam it into the strange entity. It lets Thomas go and I quickly grab his arm, pulling him back as he coughs, struggling to catch his breath."
+            "It’s head slowly turns to look at us."
+            mv "You cannot kill me in a way that matters. No matter how strong you are, I am beyond strength."
+            "The knife seems to be absorbed into its skin as it takes a short breath in and lets a long breath out."
+            mv "I may have lost my temper."
+            th "What the fuck is wrong with you!?"
+            mv "You try watching your life’s work crumble around you and you tell me it’s fun!"
+            mv "I can’t bring myself to care about this trainwreck of a story anymore… I’ll just have to write a new, better one, and hope neither of you interrupt. I can’t hold back the tide of your bad decisions anymore."
+            pl "What the hell does that mean?"
+            mv "It means say your last goodbyes, this world is about to be no more."
+            th "No more?"
+
+            hide gwee
+
+            "The entity says nothing more, turning away from us and this time, disappearing with the motion."
+
+            hide thomas
+            show thomas
+
+            th "God...damn."
+            "Thomas stays on the ground for a moment, staring at the space where the Narrator disappeared. I sit next to him."
+            pl "Thomas. Thomas look at me."
+            th "...What?"
+            "There’s nothing but shock and pain in his eyes as they meet mine."
+            th "The world’s apparently about to end now just because, what? You came into the forum. You became friends with all of us. You…"
+            pl "I met you and decided I wanted to try something more?"
+            th "Shut up…"
+            "His words are half-hearted as he leans to the side and lets his head hit my shoulder."
+            th "There’s no way any of this or us, are worth this high of a price."
+            pl "As the one who was told to pay, I think it’s fine."
+            th "...How long do you think it’ll take?"
+            pl "If it’s a story, I guess it goes by as fast as whoever is reading it."
+            th "I mean, if this is the story that ‘God’ has abandoned, who's reading it?"
+            pl "Does it matter?"
+            th "...Guess not."
+            "We sit there for a moment, the world still frozen around us and his body leaning on mine. I wrap my fingers around his."
+            th "Why are you so sure this was worth it? Apparently the fact that you tried to be a ‘main character’ and chase after me is what just caused all this."
+            pl "Well… the ‘Narrator’ said you all were born lucky right?"
+            th "Yeah."
+            pl "Well what’s better. To be born lucky or to overcome the odds through your own effort?"
+            th "...I’d call you pretty lucky considering that you just faced a god who said he couldn’t even stop you without interfering directly."
+            pl "True, true…"
+            "Another moment passes."
+            pl "Thomas?"
+            th "Yeah?"
+
+            menu:
+                "Whether or not I’m lucky, would you be my Valentine?":
+                    jump thomaslove
+
+            label thomaslove:
+
+            th "..."
+            th "Of course."
+
+            "Ending G: Honk if you're in love."
+            return
 
 # This ends the game.
     return
