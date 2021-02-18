@@ -117,7 +117,7 @@ label start:
     play music "<loop 22.4833>music/sbu.oga"
 
     # Nates testing cheaty jump
-    jump friday
+    # jump friday
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
