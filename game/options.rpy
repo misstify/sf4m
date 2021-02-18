@@ -30,6 +30,14 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
+Heartbreaking by Kevin MacLeod
+Link: https://incompetech.filmmusic.io/song/3863-heartbreaking
+License: https://filmmusic.io/standard-license
+
+Head Programmer: Nate
+Head Writer: Taylor
+Head Audio Dude: Thomas
+Head Artist: Jolee
 """)
 
 

@@ -117,8 +117,8 @@ label start:
     play music "<loop 22.4833>music/sbu.oga" volume 0.6
 
     # Nates testing cheaty jump
-    $ name = "test"
-    jump alex_end
+    # $ name = "test"
+    # jump alex_end
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
@@ -3696,6 +3696,7 @@ label start:
         al "No more?"
 
         hide gwee
+        play music "music/end.oga" noloop volume 0.6
 
         "The entity says nothing more, turning away from us and this time, disappearing with the motion."
 
@@ -3928,6 +3929,7 @@ label start:
         jo "No more?"
 
         hide gwee
+        play music "music/end.oga" noloop volume 0.6
 
         "The entity says nothing more, turning away from us and this time, disappearing with the motion."
 
@@ -4168,6 +4170,7 @@ label start:
         ta "No more?"
 
         hide gwee
+        play music "music/end.oga" noloop volume 0.6
         "The entity says nothing more, turning away from us and this time, disappearing with the motion."
 
         hide taylor
@@ -4392,6 +4395,7 @@ label start:
             th "No more?"
 
             hide gwee
+            play music "music/end.oga" noloop volume 0.6
 
             "The entity says nothing more, turning away from us and this time, disappearing with the motion."
 
