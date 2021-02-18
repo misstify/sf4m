@@ -117,7 +117,8 @@ label start:
     play music "<loop 22.4833>music/sbu.oga"
 
     # Nates testing cheaty jump
-    # jump friday
+    #$ name = "test"
+    #jump alex_end
 
     python:
         name = renpy.input("Welcome to SBU, what is your preferred name?", length=32)
@@ -1633,7 +1634,6 @@ label start:
         pl "...What kind of fumes are in this bathroom?"
         "Feeling the wall, there’s definitely no mirror and looking around I can’t see anyone else here, or even any kind of microphone they could use to speak in here so clearly."
         "Unsure of what else to do and the nausea having passed, I make my way back down the hall and to the forum."
-        return
         scene forummainclapcheeks
         play music "<loop 26.766>music/forum.oga"
 
